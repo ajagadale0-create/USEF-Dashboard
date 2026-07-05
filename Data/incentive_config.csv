@@ -1,0 +1,6 @@
+Component,Rate_Pct,Description
+Base Commission,1.5,% of revenue above threshold
+Target Accelerator,2.0,Extra % when achievement > 100%
+Collection Bonus,0.5,Bonus if collection > 90%
+New Logo Bonus,1.0,Per new customer acquired
+GP Protection,0.75,Bonus if GP% above division avg
