@@ -34,6 +34,10 @@ OUTPUT_DIR = str(BASE_DIR / "Output")
 COMPANY_NAME = "Aramex Logistics"
 SEED = 42
 DATA_VERSION = "2026-07-05-v45-jul-2026-forecast"
+GITHUB_OWNER = "ajagadale0-create"
+GITHUB_REPO = "USEF-Dashboard"
+GITHUB_BRANCH = "main"
+GITHUB_REPO_URL = f"https://github.com/{GITHUB_OWNER}/{GITHUB_REPO}"
 REGIONS = ["North", "South", "East", "West", "Central"]
 REGION_PERFORMANCE = {
     "West": {"revenue": 1.06, "collection": 1.03, "activity": 1.04, "pipeline": 1.18, "ach": 1.00},
@@ -4622,6 +4626,121 @@ def render_data_dictionary(data, filters):
         """)
 
 
+def _github_config_from_secrets() -> dict[str, str]:
+    cfg: dict[str, str] = {}
+    try:
+        gh = st.secrets.get("github", {})
+        if gh:
+            cfg = {k: str(gh[k]) for k in ("token", "username", "repo", "branch") if k in gh}
+    except (FileNotFoundError, KeyError, AttributeError, TypeError):
+        pass
+    return cfg
+
+
+def _get_github_push_config() -> dict[str, str]:
+    secrets_cfg = _github_config_from_secrets()
+    saved = st.session_state.get("github_cfg", {})
+    defaults = {
+        "username": GITHUB_OWNER,
+        "repo": GITHUB_REPO,
+        "branch": GITHUB_BRANCH,
+    }
+    return {**defaults, **saved, **{k: v for k, v in secrets_cfg.items() if v}}
+
+
+def _execute_github_push(
+    token: str,
+    owner: str,
+    repo: str,
+    branch: str,
+    commit_message: str,
+    include_data: bool = True,
+) -> tuple[bool, str, list[str], list[str]]:
+    from github_publish import push_dashboard_to_github, repo_exists
+
+    if not token:
+        return False, "GitHub token missing. Add `token` in `.streamlit/secrets.toml`.", [], []
+    found, repo_msg = repo_exists(token, owner, repo)
+    if not found:
+        return False, repo_msg, [], []
+    ok_paths, errors = push_dashboard_to_github(
+        token, owner, repo, branch, commit_message, include_data
+    )
+    if ok_paths and not errors:
+        return True, f"Uploaded {len(ok_paths)} files to {owner}/{repo}", ok_paths, errors
+    if ok_paths:
+        return False, f"Partial upload: {len(errors)} file(s) failed.", ok_paths, errors
+    return False, errors[0] if errors else "Upload failed.", ok_paths, errors
+
+
+def render_github_publish():
+    from github_publish import verify_github_token
+
+    st.markdown('<div class="exec-section-title">Publish to GitHub</div>', unsafe_allow_html=True)
+    st.markdown(
+        f"Target repo: **[{GITHUB_OWNER}/{GITHUB_REPO}]({GITHUB_REPO_URL})** · branch `{GITHUB_BRANCH}`"
+    )
+
+    cfg = _get_github_push_config()
+    token = cfg.get("token", "")
+
+    if not token:
+        st.warning("Add token in `.streamlit/secrets.toml` or paste below (this session only).")
+        token = st.text_input(
+            "GitHub Personal Access Token",
+            type="password",
+            key="settings_gh_token",
+            placeholder="ghp_...",
+        )
+        if token:
+            st.session_state.github_cfg = {**cfg, "token": token.strip()}
+            st.rerun()
+    else:
+        st.success(f"Token loaded · pushing to `{GITHUB_OWNER}/{GITHUB_REPO}`")
+
+    if st.session_state.get("github_push_msg"):
+        kind, text = st.session_state.github_push_msg
+        if kind == "ok":
+            st.success(text)
+        else:
+            st.error(text[:200])
+
+    if st.button("Test connection", key="test_github"):
+        active = token or cfg.get("token", "")
+        ok, msg, _ = verify_github_token(active)
+        st.success(msg) if ok else st.error(msg)
+
+    commit_message = st.text_input(
+        "Commit message",
+        value=f"USEF dashboard update {datetime.now().strftime('%d %b %Y %H:%M')}",
+        key="gh_commit_settings",
+    )
+    include_data = st.checkbox("Include Data/*.csv", value=True, key="gh_data_settings")
+
+    c1, c2 = st.columns(2)
+    with c1:
+        if st.button("Push to GitHub", type="primary", key="push_github", use_container_width=True):
+            active_token = token or cfg.get("token", "")
+            if not active_token:
+                st.error("GitHub token required.")
+            else:
+                with st.spinner(f"Uploading to {GITHUB_OWNER}/{GITHUB_REPO}..."):
+                    ok, msg, ok_paths, errors = _execute_github_push(
+                        active_token, cfg["username"], cfg["repo"], cfg["branch"],
+                        commit_message, include_data,
+                    )
+                st.session_state.github_push_msg = (
+                    "ok" if ok else "err",
+                    msg if ok else (errors[0] if errors else msg),
+                )
+                st.rerun()
+    with c2:
+        st.link_button("Open GitHub repo", GITHUB_REPO_URL, use_container_width=True)
+
+    if st.session_state.get("github_push_msg", ("", ""))[0] == "ok":
+        st.caption("Files: dashboard code, requirements, config, and Data/*.csv")
+
+
 def render_settings(data, filters):
     st.subheader("Dashboard Configuration")
     c1, c2, c3 = st.columns(3)
@@ -4641,6 +4760,9 @@ def render_settings(data, filters):
         slab = pd.DataFrame(INCENTIVE_SLABS, columns=["From %", "To %", "Rate"])
         slab["Rate"] = (slab["Rate"] * 100).round(2).astype(str) + "%"
         st.dataframe(slab, hide_index=True, use_container_width=True)
+
+    st.markdown("---")
+    render_github_publish()
 
 
 def render_industry(data, filters):
@@ -4750,7 +4872,7 @@ def main():
             st.session_state.data = generate_all_data(force=True)
             st.session_state.data_version = DATA_VERSION
             st.rerun()
-        st.caption("BUILD: Jul 2026 Forecast Added")
+        st.caption("BUILD: GitHub in Settings")
 
     months = ["All"] + sorted(data["sales"]["Month"].unique(), key=lambda x: pd.to_datetime(x, format="%b").month)
     years = sorted(data["sales"]["Year"].unique())
