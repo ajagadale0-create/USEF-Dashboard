@@ -1,0 +1,201 @@
+Customer_ID,Customer_Name,Industry,Region,City,Segment,Credit_Days,Customer_Tier
+CUST0001,Flipkart Marketplace,Pharma,North,Lucknow,Growth,45,Healthy
+CUST0002,Amazon Seller Services,E-commerce,West,Mumbai,Growth,60,Healthy
+CUST0003,Reliance Retail,FMCG,East,Patna,Growth,45,Healthy
+CUST0004,Tata 1mg,Healthcare,East,Bhubaneswar,Growth,45,Healthy
+CUST0005,Apollo Pharmacy,Healthcare,East,Bhubaneswar,VIP,30,Healthy
+CUST0006,Mahindra Auto Components,E-commerce,Central,Raipur,VIP,30,Healthy
+CUST0007,Maruti Vendor Hub,Auto,East,Kolkata,Standard,15,Healthy
+CUST0008,Samsung India,Pharma,South,Hyderabad,Standard,90,Healthy
+CUST0009,Vivo Distribution,Auto,West,Mumbai,Standard,90,Healthy
+CUST0010,Nykaa Fulfillment,Pharma,South,Bengaluru,Growth,45,Healthy
+CUST0011,Myntra Logistics,Auto,South,Kochi,Standard,90,Healthy
+CUST0012,Sun Pharma,Pharma,South,Kochi,Growth,60,Healthy
+CUST0013,Cipla Healthcare,Manufacturing,East,Bhubaneswar,Standard,15,Healthy
+CUST0014,Lupin Labs,Electronics,North,Delhi,Growth,90,Healthy
+CUST0015,Hindustan Unilever,Pharma,Central,Raipur,Standard,90,Healthy
+CUST0016,ITC Distribution,Pharma,Central,Raipur,Growth,45,Healthy
+CUST0017,Nestle India,E-commerce,South,Kochi,Standard,45,Healthy
+CUST0018,Asian Paints,Manufacturing,South,Bengaluru,Standard,30,Healthy
+CUST0019,D-Mart Supply Chain,E-commerce,South,Kochi,Growth,15,Healthy
+CUST0020,Blue Star Components,E-commerce,North,Lucknow,VIP,60,Healthy
+CUST0021,Bharat Electronics,Auto,North,Jaipur,Standard,15,Healthy
+CUST0022,Godrej Appliances,Auto,North,Chandigarh,Standard,30,Healthy
+CUST0023,Titan Company,FMCG,Central,Nagpur,VIP,90,Healthy
+CUST0024,Aditya Birla Fashion,Pharma,North,Delhi,VIP,15,Healthy
+CUST0025,Zomato Hyperpure,Manufacturing,West,Mumbai,Growth,90,Healthy
+CUST0026,Swiggy Instamart,Healthcare,West,Ahmedabad,VIP,90,Healthy
+CUST0027,Zepto Dark Store,E-commerce,Central,Nagpur,Standard,90,Healthy
+CUST0028,BigBasket Fulfillment,FMCG,North,Delhi,Standard,15,Healthy
+CUST0029,Urban Company,Manufacturing,South,Chennai,Growth,45,Healthy
+CUST0030,Boat Lifestyle,Auto,West,Surat,Growth,90,Healthy
+CUST0031,India B2B Account 31,FMCG,Central,Bhopal,Growth,15,Healthy
+CUST0032,India B2B Account 32,Healthcare,West,Mumbai,VIP,60,Healthy
+CUST0033,India B2B Account 33,E-commerce,East,Patna,Growth,15,Healthy
+CUST0034,India B2B Account 34,Textile,Central,Raipur,Growth,60,Healthy
+CUST0035,India B2B Account 35,Healthcare,West,Mumbai,VIP,30,Healthy
+CUST0036,India B2B Account 36,Auto,Central,Raipur,Growth,30,Healthy
+CUST0037,India B2B Account 37,Healthcare,East,Guwahati,Standard,60,Healthy
+CUST0038,India B2B Account 38,Auto,West,Pune,Growth,90,Healthy
+CUST0039,India B2B Account 39,E-commerce,East,Guwahati,Standard,30,Healthy
+CUST0040,India B2B Account 40,Electronics,East,Kolkata,Growth,90,Healthy
+CUST0041,India B2B Account 41,Healthcare,West,Surat,VIP,90,Healthy
+CUST0042,India B2B Account 42,FMCG,North,Jaipur,VIP,15,Healthy
+CUST0043,India B2B Account 43,Auto,Central,Indore,VIP,90,Healthy
+CUST0044,India B2B Account 44,Electronics,Central,Bhopal,Growth,45,Healthy
+CUST0045,India B2B Account 45,FMCG,North,Delhi,VIP,60,Healthy
+CUST0046,India B2B Account 46,Pharma,North,Delhi,VIP,45,Healthy
+CUST0047,India B2B Account 47,Electronics,East,Guwahati,Growth,90,Healthy
+CUST0048,India B2B Account 48,Manufacturing,South,Hyderabad,Standard,60,Healthy
+CUST0049,India B2B Account 49,Electronics,Central,Bhopal,VIP,90,Healthy
+CUST0050,India B2B Account 50,Pharma,South,Bengaluru,Growth,90,Healthy
+CUST0051,India B2B Account 51,Auto,East,Kolkata,Growth,90,Healthy
+CUST0052,India B2B Account 52,Manufacturing,East,Kolkata,Standard,15,Healthy
+CUST0053,India B2B Account 53,FMCG,North,Lucknow,VIP,90,Healthy
+CUST0054,India B2B Account 54,Healthcare,Central,Raipur,Standard,30,Healthy
+CUST0055,India B2B Account 55,Electronics,Central,Raipur,Growth,60,Healthy
+CUST0056,India B2B Account 56,Textile,West,Mumbai,Growth,30,Healthy
+CUST0057,India B2B Account 57,Manufacturing,East,Patna,Growth,60,Healthy
+CUST0058,India B2B Account 58,Textile,South,Hyderabad,Growth,15,Healthy
+CUST0059,India B2B Account 59,FMCG,North,Chandigarh,Growth,60,Healthy
+CUST0060,India B2B Account 60,Auto,South,Chennai,Growth,60,Healthy
+CUST0061,India B2B Account 61,FMCG,South,Chennai,Standard,30,Healthy
+CUST0062,India B2B Account 62,Healthcare,South,Kochi,Standard,90,Healthy
+CUST0063,India B2B Account 63,Healthcare,East,Bhubaneswar,Growth,90,Healthy
+CUST0064,India B2B Account 64,FMCG,Central,Nagpur,Standard,45,Healthy
+CUST0065,India B2B Account 65,Healthcare,East,Guwahati,Growth,15,Healthy
+CUST0066,India B2B Account 66,E-commerce,West,Mumbai,Standard,45,Healthy
+CUST0067,India B2B Account 67,Manufacturing,Central,Bhopal,Growth,60,Healthy
+CUST0068,India B2B Account 68,Electronics,North,Jaipur,VIP,45,Healthy
+CUST0069,India B2B Account 69,Textile,Central,Bhopal,Standard,15,Healthy
+CUST0070,India B2B Account 70,FMCG,Central,Nagpur,Standard,90,Healthy
+CUST0071,India B2B Account 71,Manufacturing,West,Surat,Growth,60,Healthy
+CUST0072,India B2B Account 72,E-commerce,East,Kolkata,Growth,15,Healthy
+CUST0073,India B2B Account 73,Pharma,North,Jaipur,Growth,45,Healthy
+CUST0074,India B2B Account 74,Textile,East,Guwahati,Standard,90,Healthy
+CUST0075,India B2B Account 75,Electronics,West,Pune,Growth,15,Healthy
+CUST0076,India B2B Account 76,Healthcare,Central,Bhopal,VIP,60,Healthy
+CUST0077,India B2B Account 77,FMCG,North,Jaipur,Growth,90,Healthy
+CUST0078,India B2B Account 78,Pharma,West,Ahmedabad,Growth,60,Healthy
+CUST0079,India B2B Account 79,Healthcare,Central,Raipur,Growth,60,Healthy
+CUST0080,India B2B Account 80,Electronics,South,Chennai,VIP,90,Healthy
+CUST0081,India B2B Account 81,E-commerce,North,Lucknow,Growth,60,Healthy
+CUST0082,India B2B Account 82,Pharma,South,Hyderabad,Growth,90,Healthy
+CUST0083,India B2B Account 83,Auto,Central,Raipur,Growth,15,Healthy
+CUST0084,India B2B Account 84,Textile,South,Kochi,Standard,90,Healthy
+CUST0085,India B2B Account 85,FMCG,Central,Bhopal,Standard,90,Healthy
+CUST0086,India B2B Account 86,E-commerce,West,Mumbai,Growth,15,Healthy
+CUST0087,India B2B Account 87,Electronics,West,Mumbai,Growth,60,Healthy
+CUST0088,India B2B Account 88,FMCG,Central,Indore,Growth,30,Healthy
+CUST0089,India B2B Account 89,E-commerce,East,Bhubaneswar,Standard,60,Healthy
+CUST0090,India B2B Account 90,Electronics,West,Mumbai,Standard,15,Healthy
+CUST0091,India B2B Account 91,Textile,Central,Indore,Standard,15,Healthy
+CUST0092,India B2B Account 92,Textile,North,Lucknow,Standard,15,Healthy
+CUST0093,India B2B Account 93,Electronics,West,Mumbai,Standard,90,Healthy
+CUST0094,India B2B Account 94,Pharma,North,Delhi,VIP,90,Healthy
+CUST0095,India B2B Account 95,Healthcare,West,Mumbai,Standard,30,Healthy
+CUST0096,India B2B Account 96,Manufacturing,West,Mumbai,VIP,15,Healthy
+CUST0097,India B2B Account 97,Healthcare,North,Jaipur,Standard,90,Healthy
+CUST0098,India B2B Account 98,Auto,South,Kochi,VIP,60,Healthy
+CUST0099,India B2B Account 99,Manufacturing,Central,Raipur,Standard,90,Healthy
+CUST0100,India B2B Account 100,Healthcare,West,Surat,VIP,45,Healthy
+CUST0101,India B2B Account 101,E-commerce,South,Bengaluru,Growth,45,Healthy
+CUST0102,India B2B Account 102,Electronics,West,Ahmedabad,Standard,45,Healthy
+CUST0103,India B2B Account 103,Healthcare,North,Jaipur,VIP,15,Healthy
+CUST0104,India B2B Account 104,E-commerce,South,Hyderabad,Standard,60,Healthy
+CUST0105,India B2B Account 105,Electronics,West,Mumbai,Growth,15,Healthy
+CUST0106,India B2B Account 106,Pharma,North,Lucknow,Standard,45,Healthy
+CUST0107,India B2B Account 107,Auto,North,Delhi,VIP,30,Healthy
+CUST0108,India B2B Account 108,Electronics,Central,Indore,Standard,30,Healthy
+CUST0109,India B2B Account 109,Healthcare,West,Ahmedabad,VIP,30,Healthy
+CUST0110,India B2B Account 110,Electronics,Central,Indore,Growth,45,Healthy
+CUST0111,India B2B Account 111,Auto,West,Ahmedabad,Standard,15,Healthy
+CUST0112,India B2B Account 112,FMCG,North,Jaipur,Growth,90,Healthy
+CUST0113,India B2B Account 113,Pharma,East,Kolkata,VIP,90,Healthy
+CUST0114,India B2B Account 114,E-commerce,South,Chennai,Growth,60,Healthy
+CUST0115,India B2B Account 115,FMCG,West,Ahmedabad,Growth,15,Healthy
+CUST0116,India B2B Account 116,Healthcare,East,Kolkata,Growth,60,Healthy
+CUST0117,India B2B Account 117,Manufacturing,South,Bengaluru,Growth,45,Healthy
+CUST0118,India B2B Account 118,Pharma,East,Kolkata,Growth,30,Healthy
+CUST0119,India B2B Account 119,Electronics,East,Guwahati,Growth,45,Healthy
+CUST0120,India B2B Account 120,Electronics,West,Pune,Standard,30,Healthy
+CUST0121,India B2B Account 121,Pharma,East,Bhubaneswar,Growth,45,Healthy
+CUST0122,India B2B Account 122,Manufacturing,South,Hyderabad,Standard,45,Healthy
+CUST0123,India B2B Account 123,Pharma,Central,Raipur,Growth,60,Healthy
+CUST0124,India B2B Account 124,Auto,East,Patna,Growth,45,Healthy
+CUST0125,India B2B Account 125,FMCG,Central,Indore,VIP,15,Healthy
+CUST0126,India B2B Account 126,Healthcare,North,Lucknow,VIP,15,Healthy
+CUST0127,India B2B Account 127,Electronics,South,Chennai,VIP,60,Healthy
+CUST0128,India B2B Account 128,E-commerce,South,Hyderabad,VIP,45,Healthy
+CUST0129,India B2B Account 129,Textile,Central,Raipur,Growth,60,Healthy
+CUST0130,India B2B Account 130,Pharma,North,Jaipur,VIP,45,Healthy
+CUST0131,India B2B Account 131,Electronics,South,Kochi,Standard,45,Healthy
+CUST0132,India B2B Account 132,FMCG,West,Pune,Standard,15,Healthy
+CUST0133,India B2B Account 133,Healthcare,West,Pune,Growth,30,Healthy
+CUST0134,India B2B Account 134,Textile,North,Delhi,Growth,45,Healthy
+CUST0135,India B2B Account 135,Textile,North,Delhi,Standard,90,Healthy
+CUST0136,India B2B Account 136,Manufacturing,Central,Nagpur,Standard,90,Healthy
+CUST0137,India B2B Account 137,Textile,Central,Bhopal,Growth,90,Healthy
+CUST0138,India B2B Account 138,Auto,South,Bengaluru,Standard,15,Healthy
+CUST0139,India B2B Account 139,FMCG,East,Bhubaneswar,VIP,30,Healthy
+CUST0140,India B2B Account 140,Pharma,North,Lucknow,VIP,60,Healthy
+CUST0141,India B2B Account 141,Pharma,South,Chennai,Growth,90,Healthy
+CUST0142,India B2B Account 142,Textile,East,Bhubaneswar,VIP,30,Healthy
+CUST0143,India B2B Account 143,Healthcare,South,Kochi,Growth,45,Healthy
+CUST0144,India B2B Account 144,FMCG,West,Ahmedabad,Standard,60,Healthy
+CUST0145,India B2B Account 145,Textile,North,Chandigarh,Growth,90,Healthy
+CUST0146,India B2B Account 146,Manufacturing,South,Kochi,Growth,45,Healthy
+CUST0147,India B2B Account 147,Textile,West,Surat,Growth,45,Healthy
+CUST0148,India B2B Account 148,Auto,Central,Nagpur,Standard,30,Healthy
+CUST0149,India B2B Account 149,Electronics,South,Chennai,Growth,45,Healthy
+CUST0150,India B2B Account 150,E-commerce,North,Chandigarh,Standard,60,Healthy
+CUST0151,India B2B Account 151,FMCG,West,Mumbai,Growth,30,Healthy
+CUST0152,India B2B Account 152,Auto,North,Delhi,Standard,60,Healthy
+CUST0153,India B2B Account 153,FMCG,East,Bhubaneswar,Growth,45,Healthy
+CUST0154,India B2B Account 154,FMCG,North,Chandigarh,Standard,45,Healthy
+CUST0155,India B2B Account 155,Textile,West,Surat,Growth,90,Healthy
+CUST0156,India B2B Account 156,Manufacturing,East,Patna,Standard,45,Healthy
+CUST0157,India B2B Account 157,Auto,West,Surat,Standard,45,Healthy
+CUST0158,India B2B Account 158,E-commerce,Central,Bhopal,Standard,90,Healthy
+CUST0159,India B2B Account 159,Textile,East,Guwahati,Standard,45,Healthy
+CUST0160,India B2B Account 160,E-commerce,Central,Raipur,Growth,90,Healthy
+CUST0161,India B2B Account 161,Manufacturing,West,Ahmedabad,Growth,15,Healthy
+CUST0162,India B2B Account 162,Auto,North,Delhi,Standard,90,Healthy
+CUST0163,India B2B Account 163,Manufacturing,East,Patna,Growth,30,Healthy
+CUST0164,India B2B Account 164,Pharma,Central,Indore,Standard,60,Healthy
+CUST0165,India B2B Account 165,Pharma,North,Jaipur,Standard,30,Healthy
+CUST0166,India B2B Account 166,FMCG,Central,Raipur,VIP,15,Healthy
+CUST0167,India B2B Account 167,Manufacturing,South,Bengaluru,VIP,90,Healthy
+CUST0168,India B2B Account 168,Healthcare,West,Ahmedabad,Standard,15,Healthy
+CUST0169,India B2B Account 169,Textile,Central,Nagpur,Standard,30,Healthy
+CUST0170,India B2B Account 170,Manufacturing,North,Delhi,Growth,30,Healthy
+CUST0171,India B2B Account 171,FMCG,Central,Bhopal,Growth,30,Healthy
+CUST0172,India B2B Account 172,Electronics,West,Mumbai,Growth,60,Healthy
+CUST0173,India B2B Account 173,Electronics,Central,Nagpur,Growth,45,Healthy
+CUST0174,India B2B Account 174,Electronics,Central,Indore,Standard,90,Healthy
+CUST0175,India B2B Account 175,Textile,South,Hyderabad,Growth,15,Healthy
+CUST0176,India B2B Account 176,Electronics,South,Kochi,VIP,60,Healthy
+CUST0177,India B2B Account 177,Textile,North,Chandigarh,Standard,45,Healthy
+CUST0178,India B2B Account 178,Electronics,Central,Raipur,Growth,60,Healthy
+CUST0179,India B2B Account 179,Electronics,East,Kolkata,Growth,15,Healthy
+CUST0180,India B2B Account 180,Healthcare,Central,Nagpur,Growth,15,Healthy
+CUST0181,City Care Hospital,FMCG,South,Kochi,Risk,30,Focus
+CUST0182,Medicover Pvt. Ltd.,E-commerce,North,Chandigarh,Standard,30,Focus
+CUST0183,Apollo Hospitals,Electronics,South,Bengaluru,Risk,90,Focus
+CUST0184,Fortis Healthcare,Manufacturing,West,Pune,Risk,90,Focus
+CUST0185,Sunrise Hospital,Manufacturing,Central,Raipur,Risk,90,Focus
+CUST0186,North Star Pharma,Auto,South,Kochi,Standard,45,Focus
+CUST0187,Metro Auto Parts,Manufacturing,South,Kochi,Risk,90,Focus
+CUST0188,Prime Retail Hub,Pharma,West,Ahmedabad,Risk,15,Focus
+CUST0189,Eastern Cold Chain,Healthcare,South,Bengaluru,Standard,15,Focus
+CUST0190,QuickCart Sellers,Auto,North,Lucknow,Standard,15,Focus
+CUST0191,Heritage Foods DC,Auto,East,Patna,Risk,60,Focus
+CUST0192,Central Medical Stores,Healthcare,East,Bhubaneswar,Risk,45,Focus
+CUST0193,OmniTech Distribution,Auto,West,Surat,Risk,30,Focus
+CUST0194,Bharat Textiles,FMCG,West,Mumbai,Risk,30,Focus
+CUST0195,Galaxy Electronics,FMCG,North,Jaipur,Risk,60,Focus
+CUST0196,Nova FMCG Depot,Manufacturing,East,Bhubaneswar,Standard,90,Focus
+CUST0197,Zenith Export House,Textile,Central,Bhopal,Standard,15,Focus
+CUST0198,CarePlus Diagnostics,Electronics,South,Bengaluru,Risk,30,Focus
+CUST0199,Urban Fresh Supply,Healthcare,East,Bhubaneswar,Standard,90,Focus
+CUST0200,Apex Industrial Tools,Textile,North,Chandigarh,Standard,90,Focus
