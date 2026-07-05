@@ -1,0 +1,651 @@
+Opportunity_ID,Opportunity_Name,Employee_ID,Customer_ID,Division,Region,Opportunity_Type,Stage,Deal_Size,Weighted_Value,Win_Probability,Created_Date,Age_Days,Competitor,Risk_Flag
+OPP0001,Deal 1 - India B2B Account 35,EMP046,CUST0035,Express,North,Expansion,Proposal,2639023.0,1240341.0,47,2025-07-30,366,None,None
+OPP0002,Deal 2 - India B2B Account 67,EMP019,CUST0067,Express,West,Upsell,Negotiation,9790349.0,7930183.0,81,2026-04-07,115,Delhivery,None
+OPP0003,Deal 3 - Tata 1mg,EMP004,CUST0004,Express,West,New Logo,Lead,5068071.0,456126.0,9,2026-02-04,177,Blue Dart,None
+OPP0004,Deal 4 - India B2B Account 98,EMP032,CUST0098,Freight Forward,South,Expansion,Closed Won,35709106.0,35709106.0,100,2026-03-03,150,FedEx,None
+OPP0005,Deal 5 - Galaxy Electronics,EMP032,CUST0195,Freight Forward,South,Upsell,Qualification,25062287.0,6516195.0,26,2025-10-26,278,FedEx,Pricing
+OPP0006,Deal 6 - India B2B Account 150,EMP019,CUST0150,Express,West,Upsell,Proposal,4220977.0,1772810.0,42,2025-07-04,392,Delhivery,Competitor
+OPP0007,Deal 7 - India B2B Account 38,EMP034,CUST0038,Express,West,Upsell,Qualification,6620617.0,2251010.0,34,2026-06-16,45,FedEx,Pricing
+OPP0008,Deal 8 - India B2B Account 85,EMP034,CUST0085,Express,West,Cross-sell,Negotiation,10357912.0,6525485.0,63,2025-10-10,294,None,Competitor
+OPP0009,Deal 9 - India B2B Account 130,EMP010,CUST0130,Express,Central,Cross-sell,Proposal,1063589.0,510523.0,48,2025-09-23,311,Blue Dart,None
+OPP0010,Deal 10 - India B2B Account 62,EMP019,CUST0062,Express,West,Upsell,Negotiation,5262773.0,3315547.0,63,2026-01-25,187,None,Low Activity
+OPP0011,Deal 11 - India B2B Account 169,EMP028,CUST0169,Express,East,Cross-sell,Qualification,1717529.0,480908.0,28,2026-01-02,210,None,Pricing
+OPP0012,Deal 12 - India B2B Account 136,EMP045,CUST0136,Logistics,Central,Cross-sell,Lead,2921815.0,262963.0,9,2026-05-06,86,DHL,None
+OPP0013,Deal 13 - India B2B Account 51,EMP012,CUST0051,Logistics,South,New Logo,Proposal,29323688.0,13488897.0,46,2025-08-22,343,FedEx,Competitor
+OPP0014,Deal 14 - India B2B Account 90,EMP001,CUST0090,Express,North,Expansion,Negotiation,2783620.0,1976370.0,71,2025-07-02,394,Blue Dart,None
+OPP0015,Deal 15 - India B2B Account 82,EMP036,CUST0082,Logistics,North,Cross-sell,Closed Won,5232283.0,5232283.0,100,2025-07-15,381,FedEx,None
+OPP0016,Deal 16 - India B2B Account 122,EMP042,CUST0122,Logistics,South,Upsell,Proposal,9102679.0,4278259.0,47,2026-01-11,201,DHL,Pricing
+OPP0017,Deal 17 - India B2B Account 83,EMP025,CUST0083,Express,Central,Cross-sell,Qualification,1123446.0,247158.0,22,2025-12-02,241,None,None
+OPP0018,Deal 18 - India B2B Account 145,EMP045,CUST0145,Logistics,Central,Upsell,Qualification,1348887.0,391177.0,29,2026-03-09,144,DHL,Competitor
+OPP0019,Deal 19 - India B2B Account 126,EMP046,CUST0126,Express,North,Upsell,Proposal,2532821.0,1013128.0,40,2026-03-30,123,Delhivery,None
+OPP0020,Deal 20 - India B2B Account 82,EMP045,CUST0082,Logistics,Central,Expansion,Proposal,3972091.0,1707999.0,43,2026-06-18,43,Blue Dart,Competitor
+OPP0021,Deal 21 - India B2B Account 81,EMP001,CUST0081,Express,North,Expansion,Closed Won,3446762.0,3446762.0,100,2026-02-28,153,None,None
+OPP0022,Deal 22 - India B2B Account 111,EMP018,CUST0111,Logistics,East,Upsell,Closed Lost,14914688.0,0.0,0,2026-01-24,188,Blue Dart,None
+OPP0023,Deal 23 - India B2B Account 70,EMP014,CUST0070,Freight Forward,West,Upsell,Negotiation,38083428.0,23230891.0,61,2026-01-02,210,Delhivery,None
+OPP0024,Deal 24 - India B2B Account 143,EMP010,CUST0143,Express,Central,Upsell,Negotiation,1721334.0,1118867.0,65,2026-06-20,41,Delhivery,Pricing
+OPP0025,Deal 25 - Zepto Dark Store,EMP050,CUST0027,Freight Forward,Central,Cross-sell,Negotiation,7635165.0,5497319.0,72,2026-05-07,85,FedEx,None
+OPP0026,Deal 26 - India B2B Account 93,EMP009,CUST0093,Logistics,West,Cross-sell,Lead,14991635.0,1349247.0,9,2025-09-28,306,Blue Dart,Low Activity
+OPP0027,Deal 27 - Sunrise Hospital,EMP049,CUST0185,Express,West,New Logo,Closed Lost,9411586.0,0.0,0,2025-09-03,331,FedEx,None
+OPP0028,Deal 28 - India B2B Account 180,EMP035,CUST0180,Freight Forward,Central,Upsell,Negotiation,2131680.0,1577443.0,74,2025-09-28,306,DHL,None
+OPP0029,Deal 29 - India B2B Account 91,EMP040,CUST0091,Express,Central,Upsell,Proposal,348128.0,163620.0,47,2026-05-04,88,None,None
+OPP0030,Deal 30 - India B2B Account 145,EMP003,CUST0145,Logistics,East,Cross-sell,Proposal,5490169.0,2360773.0,43,2025-09-17,317,Blue Dart,Low Activity
+OPP0031,Deal 31 - India B2B Account 130,EMP043,CUST0130,Express,East,Upsell,Proposal,2300304.0,1265167.0,55,2025-09-26,308,Blue Dart,Low Activity
+OPP0032,Deal 32 - Boat Lifestyle,EMP019,CUST0030,Express,West,Cross-sell,Closed Won,9790832.0,9790832.0,100,2025-12-28,215,Delhivery,None
+OPP0033,Deal 33 - India B2B Account 100,EMP018,CUST0100,Logistics,East,Cross-sell,Lead,13585521.0,2445394.0,18,2026-05-02,90,DHL,Low Activity
+OPP0034,Deal 34 - India B2B Account 62,EMP047,CUST0062,Freight Forward,South,Upsell,Proposal,37709667.0,15083867.0,40,2025-12-10,233,None,None
+OPP0035,Deal 35 - India B2B Account 68,EMP011,CUST0068,Freight Forward,North,Cross-sell,Lead,4366456.0,785962.0,18,2026-03-19,134,None,Low Activity
+OPP0036,Deal 36 - Myntra Logistics,EMP026,CUST0011,Freight Forward,North,Expansion,Closed Won,4295191.0,4295191.0,100,2026-04-18,104,DHL,Competitor
+OPP0037,Deal 37 - India B2B Account 172,EMP034,CUST0172,Express,West,Upsell,Closed Lost,5628165.0,0.0,0,2026-05-21,71,FedEx,Pricing
+OPP0038,Deal 38 - India B2B Account 105,EMP021,CUST0105,Logistics,North,Cross-sell,Closed Won,1617801.0,1617801.0,100,2026-03-08,145,FedEx,None
+OPP0039,Deal 39 - India B2B Account 72,EMP034,CUST0072,Express,West,New Logo,Closed Lost,10190538.0,0.0,0,2026-03-02,151,Delhivery,Low Activity
+OPP0040,Deal 40 - Amazon Seller Services,EMP016,CUST0002,Express,North,Upsell,Closed Lost,512071.0,0.0,0,2025-10-29,275,Blue Dart,None
+OPP0041,Deal 41 - Apollo Pharmacy,EMP035,CUST0005,Freight Forward,Central,Upsell,Qualification,2713729.0,759844.0,28,2026-04-20,102,Blue Dart,Low Activity
+OPP0042,Deal 42 - India B2B Account 177,EMP043,CUST0177,Express,East,Upsell,Closed Lost,7559912.0,0.0,0,2025-10-15,289,DHL,Pricing
+OPP0043,Deal 43 - India B2B Account 92,EMP009,CUST0092,Logistics,West,Cross-sell,Qualification,32122629.0,9315563.0,29,2025-08-10,355,Delhivery,Pricing
+OPP0044,Deal 44 - India B2B Account 149,EMP025,CUST0149,Express,Central,Upsell,Proposal,1309181.0,720050.0,55,2026-01-05,207,Delhivery,Competitor
+OPP0045,Deal 45 - India B2B Account 62,EMP043,CUST0062,Express,East,New Logo,Proposal,5503601.0,2696764.0,49,2026-02-28,153,FedEx,None
+OPP0046,Deal 46 - India B2B Account 138,EMP015,CUST0138,Logistics,Central,Cross-sell,Qualification,1177765.0,294441.0,25,2026-05-25,67,Blue Dart,Competitor
+OPP0047,Deal 47 - Aditya Birla Fashion,EMP050,CUST0024,Freight Forward,Central,Cross-sell,Qualification,2438301.0,536426.0,22,2026-04-22,100,Delhivery,None
+OPP0048,Deal 48 - India B2B Account 132,EMP046,CUST0132,Express,North,Upsell,Lead,445212.0,80138.0,18,2026-01-14,198,None,None
+OPP0049,Deal 49 - India B2B Account 95,EMP002,CUST0095,Freight Forward,South,Cross-sell,Qualification,38113431.0,8766089.0,23,2025-12-06,237,None,Competitor
+OPP0050,Deal 50 - India B2B Account 83,EMP047,CUST0083,Freight Forward,South,Expansion,Qualification,35866287.0,10759886.0,30,2025-12-26,217,Blue Dart,Competitor
+OPP0051,Deal 51 - India B2B Account 93,EMP030,CUST0093,Logistics,Central,Upsell,Qualification,2796062.0,922700.0,33,2025-11-02,271,Delhivery,Competitor
+OPP0052,Deal 52 - India B2B Account 98,EMP017,CUST0098,Freight Forward,South,Upsell,Proposal,41653928.0,17078111.0,41,2026-01-03,209,FedEx,Competitor
+OPP0053,Deal 53 - India B2B Account 47,EMP010,CUST0047,Express,Central,Expansion,Qualification,620906.0,167645.0,27,2026-01-01,211,Delhivery,Pricing
+OPP0054,Deal 54 - India B2B Account 135,EMP048,CUST0135,Logistics,East,Expansion,Lead,15743074.0,2361461.0,15,2025-07-04,392,None,None
+OPP0055,Deal 55 - India B2B Account 125,EMP036,CUST0125,Logistics,North,Upsell,Proposal,4100138.0,2255076.0,55,2026-04-12,110,Blue Dart,None
+OPP0056,Deal 56 - India B2B Account 105,EMP041,CUST0105,Freight Forward,North,Cross-sell,Lead,7087737.0,637896.0,9,2026-05-08,84,None,None
+OPP0057,Deal 57 - India B2B Account 115,EMP047,CUST0115,Freight Forward,South,Cross-sell,Proposal,24818480.0,12657425.0,51,2025-12-17,226,FedEx,None
+OPP0058,Deal 58 - India B2B Account 85,EMP023,CUST0085,Freight Forward,East,Expansion,Qualification,39730246.0,13110981.0,33,2026-05-29,63,None,None
+OPP0059,Deal 59 - India B2B Account 155,EMP039,CUST0155,Logistics,West,Upsell,Closed Lost,21107641.0,0.0,0,2026-04-19,103,Delhivery,Competitor
+OPP0060,Deal 60 - Mahindra Auto Components,EMP028,CUST0006,Express,East,Upsell,Proposal,3451187.0,1622058.0,47,2026-06-05,56,None,None
+OPP0061,Deal 61 - India B2B Account 137,EMP031,CUST0137,Express,North,Expansion,Negotiation,3199006.0,1919404.0,60,2025-10-07,297,None,None
+OPP0062,Deal 62 - Cipla Healthcare,EMP025,CUST0013,Express,Central,Expansion,Closed Lost,1159511.0,0.0,0,2025-10-25,279,Blue Dart,Low Activity
+OPP0063,Deal 63 - India B2B Account 178,EMP009,CUST0178,Logistics,West,New Logo,Proposal,23988183.0,9835155.0,41,2026-02-18,163,Blue Dart,Competitor
+OPP0064,Deal 64 - India B2B Account 113,EMP046,CUST0113,Express,North,Upsell,Negotiation,2144569.0,1586981.0,74,2026-04-16,106,FedEx,None
+OPP0065,Deal 65 - India B2B Account 73,EMP021,CUST0073,Logistics,North,Upsell,Qualification,5556663.0,1611432.0,29,2025-12-06,237,Blue Dart,Low Activity
+OPP0066,Deal 66 - Prime Retail Hub,EMP043,CUST0188,Express,East,New Logo,Lead,4169759.0,583766.0,14,2026-06-13,48,None,Low Activity
+OPP0067,Deal 67 - Zomato Hyperpure,EMP031,CUST0025,Express,North,Upsell,Negotiation,1019312.0,652359.0,64,2025-07-31,365,FedEx,None
+OPP0068,Deal 68 - Boat Lifestyle,EMP047,CUST0030,Freight Forward,South,Expansion,Proposal,38439858.0,18451132.0,48,2025-09-19,315,Delhivery,Low Activity
+OPP0069,Deal 69 - Boat Lifestyle,EMP030,CUST0030,Logistics,Central,Cross-sell,Negotiation,4911404.0,3929123.0,80,2025-12-19,224,Delhivery,None
+OPP0070,Deal 70 - Zepto Dark Store,EMP008,CUST0027,Freight Forward,East,Upsell,Closed Won,40751384.0,40751384.0,100,2025-09-01,333,None,Pricing
+OPP0071,Deal 71 - India B2B Account 107,EMP015,CUST0107,Logistics,Central,Expansion,Closed Lost,3224249.0,0.0,0,2025-10-21,283,None,None
+OPP0072,Deal 72 - India B2B Account 179,EMP008,CUST0179,Freight Forward,East,New Logo,Qualification,23646886.0,6857597.0,29,2026-06-17,44,DHL,None
+OPP0073,Deal 73 - Fortis Healthcare,EMP046,CUST0184,Express,North,New Logo,Negotiation,2365756.0,1514084.0,64,2026-03-25,128,None,Competitor
+OPP0074,Deal 74 - India B2B Account 67,EMP027,CUST0067,Logistics,South,Upsell,Lead,6294029.0,1132925.0,18,2025-08-06,359,FedEx,Pricing
+OPP0075,Deal 75 - India B2B Account 153,EMP037,CUST0153,Express,South,Cross-sell,Closed Won,5466248.0,5466248.0,100,2026-01-05,207,None,None
+OPP0076,Deal 76 - India B2B Account 65,EMP023,CUST0065,Freight Forward,East,Cross-sell,Proposal,34729161.0,15975414.0,46,2026-01-13,199,None,Competitor
+OPP0077,Deal 77 - India B2B Account 117,EMP028,CUST0117,Express,East,Upsell,Proposal,2927891.0,1346830.0,46,2025-07-23,373,FedEx,None
+OPP0078,Deal 78 - Nova FMCG Depot,EMP031,CUST0196,Express,North,New Logo,Lead,1308678.0,196302.0,15,2026-03-23,130,None,Pricing
+OPP0079,Deal 79 - India B2B Account 94,EMP013,CUST0094,Express,East,Cross-sell,Closed Won,6586483.0,6586483.0,100,2025-11-03,270,Blue Dart,Pricing
+OPP0080,Deal 80 - Nykaa Fulfillment,EMP033,CUST0010,Logistics,East,Cross-sell,Qualification,15247184.0,5031571.0,33,2025-12-15,228,DHL,Low Activity
+OPP0081,Deal 81 - Central Medical Stores,EMP006,CUST0192,Logistics,North,Expansion,Qualification,5661808.0,1415452.0,25,2026-06-04,57,FedEx,None
+OPP0082,Deal 82 - India B2B Account 143,EMP041,CUST0143,Freight Forward,North,Expansion,Qualification,6278384.0,1381244.0,22,2026-01-31,181,FedEx,None
+OPP0083,Deal 83 - India B2B Account 142,EMP045,CUST0142,Logistics,Central,Upsell,Lead,4869823.0,876568.0,18,2025-11-03,270,None,None
+OPP0084,Deal 84 - India B2B Account 33,EMP038,CUST0033,Freight Forward,East,Cross-sell,Qualification,21082391.0,5481422.0,26,2025-09-14,320,None,Competitor
+OPP0085,Deal 85 - India B2B Account 57,EMP001,CUST0057,Express,North,New Logo,Qualification,1417260.0,439351.0,31,2026-06-12,49,None,None
+OPP0086,Deal 86 - India B2B Account 158,EMP007,CUST0158,Express,South,Cross-sell,Qualification,2310424.0,531398.0,23,2025-08-14,351,Delhivery,Low Activity
+OPP0087,Deal 87 - India B2B Account 58,EMP027,CUST0058,Logistics,South,Upsell,Lead,28728889.0,4596622.0,16,2025-11-18,255,Delhivery,None
+OPP0088,Deal 88 - India B2B Account 41,EMP009,CUST0041,Logistics,West,Cross-sell,Qualification,12720500.0,3561740.0,28,2026-05-12,80,FedEx,None
+OPP0089,Deal 89 - India B2B Account 39,EMP049,CUST0039,Express,West,Upsell,Proposal,6915858.0,3457929.0,50,2025-12-07,236,None,None
+OPP0090,Deal 90 - India B2B Account 142,EMP025,CUST0142,Express,Central,Expansion,Qualification,1583287.0,364156.0,23,2025-11-01,272,DHL,Competitor
+OPP0091,Deal 91 - Tata 1mg,EMP006,CUST0004,Logistics,North,Upsell,Closed Lost,5219052.0,0.0,0,2026-03-27,126,Delhivery,None
+OPP0092,Deal 92 - India B2B Account 173,EMP001,CUST0173,Express,North,New Logo,Proposal,1925181.0,1020346.0,53,2025-12-04,239,DHL,Competitor
+OPP0093,Deal 93 - CarePlus Diagnostics,EMP005,CUST0198,Freight Forward,Central,Cross-sell,Negotiation,5534418.0,4095469.0,74,2026-05-20,72,Blue Dart,None
+OPP0094,Deal 94 - India B2B Account 67,EMP040,CUST0067,Express,Central,Upsell,Lead,502313.0,75347.0,15,2026-05-31,61,Blue Dart,Low Activity
+OPP0095,Deal 95 - Urban Fresh Supply,EMP033,CUST0199,Logistics,East,Cross-sell,Qualification,10217908.0,3269731.0,32,2026-05-08,84,DHL,Competitor
+OPP0096,Deal 96 - Zepto Dark Store,EMP050,CUST0027,Freight Forward,Central,Upsell,Closed Won,6544664.0,6544664.0,100,2026-04-12,110,FedEx,Pricing
+OPP0097,Deal 97 - India B2B Account 129,EMP050,CUST0129,Freight Forward,Central,Upsell,Qualification,5355619.0,1874467.0,35,2025-12-05,238,DHL,Pricing
+OPP0098,Deal 98 - India B2B Account 75,EMP034,CUST0075,Express,West,Upsell,Negotiation,3171502.0,2156622.0,68,2026-03-12,141,Blue Dart,Low Activity
+OPP0099,Deal 99 - India B2B Account 153,EMP002,CUST0153,Freight Forward,South,Cross-sell,Lead,11766615.0,1647326.0,14,2026-06-16,45,DHL,Low Activity
+OPP0100,Deal 100 - India B2B Account 98,EMP034,CUST0098,Express,West,Cross-sell,Lead,3676535.0,330888.0,9,2025-09-09,325,None,Competitor
+OPP0101,Deal 101 - Nykaa Fulfillment,EMP044,CUST0010,Freight Forward,West,Cross-sell,Proposal,19970945.0,9386344.0,47,2025-07-15,381,None,None
+OPP0102,Deal 102 - Nova FMCG Depot,EMP048,CUST0196,Logistics,East,New Logo,Qualification,7181597.0,1867215.0,26,2026-01-26,186,None,None
+OPP0103,Deal 103 - Mahindra Auto Components,EMP007,CUST0006,Express,South,Upsell,Lead,5372220.0,805833.0,15,2025-09-04,330,Delhivery,None
+OPP0104,Deal 104 - India B2B Account 167,EMP034,CUST0167,Express,West,New Logo,Lead,11124749.0,1112475.0,10,2026-04-24,98,Blue Dart,None
+OPP0105,Deal 105 - India B2B Account 145,EMP023,CUST0145,Freight Forward,East,Upsell,Proposal,30364058.0,13663826.0,45,2026-01-23,189,DHL,None
+OPP0106,Deal 106 - Swiggy Instamart,EMP046,CUST0026,Express,North,Upsell,Lead,1910227.0,305636.0,16,2026-02-16,165,FedEx,Competitor
+OPP0107,Deal 107 - India B2B Account 141,EMP045,CUST0141,Logistics,Central,Upsell,Closed Lost,1067736.0,0.0,0,2026-06-19,42,Blue Dart,Pricing
+OPP0108,Deal 108 - India B2B Account 41,EMP004,CUST0041,Express,West,Upsell,Qualification,5059652.0,1366106.0,27,2026-02-14,167,Blue Dart,Pricing
+OPP0109,Deal 109 - India B2B Account 137,EMP039,CUST0137,Logistics,West,Cross-sell,Qualification,25445327.0,7124692.0,28,2025-07-14,382,FedEx,Pricing
+OPP0110,Deal 110 - India B2B Account 143,EMP036,CUST0143,Logistics,North,Upsell,Lead,3869728.0,348275.0,9,2025-11-23,250,DHL,None
+OPP0111,Deal 111 - Lupin Labs,EMP026,CUST0014,Freight Forward,North,Upsell,Lead,9912903.0,1486935.0,15,2025-11-02,271,DHL,Low Activity
+OPP0112,Deal 112 - India B2B Account 48,EMP043,CUST0048,Express,East,Expansion,Lead,2418281.0,386925.0,16,2025-10-31,273,Delhivery,Competitor
+OPP0113,Deal 113 - India B2B Account 36,EMP011,CUST0036,Freight Forward,North,Cross-sell,Proposal,13153387.0,5787490.0,44,2025-07-02,394,FedEx,None
+OPP0114,Deal 114 - India B2B Account 105,EMP041,CUST0105,Freight Forward,North,Upsell,Qualification,16776685.0,5871840.0,35,2025-10-15,289,None,None
+OPP0115,Deal 115 - Medicover Pvt. Ltd.,EMP027,CUST0182,Logistics,South,New Logo,Lead,14482302.0,1448230.0,10,2026-03-07,146,None,Pricing
+OPP0116,Deal 116 - Amazon Seller Services,EMP003,CUST0002,Logistics,East,Upsell,Negotiation,16796126.0,10245637.0,61,2026-05-12,80,FedEx,None
+OPP0117,Deal 117 - Aditya Birla Fashion,EMP020,CUST0024,Freight Forward,Central,Cross-sell,Proposal,4149790.0,2033397.0,49,2025-09-05,329,None,None
+OPP0118,Deal 118 - India B2B Account 131,EMP023,CUST0131,Freight Forward,East,Upsell,Proposal,25040639.0,11769100.0,47,2025-11-23,250,FedEx,Pricing
+OPP0119,Deal 119 - India B2B Account 59,EMP049,CUST0059,Express,West,Cross-sell,Negotiation,4485466.0,2691280.0,60,2026-06-13,48,None,None
+OPP0120,Deal 120 - India B2B Account 128,EMP005,CUST0128,Freight Forward,Central,Upsell,Lead,3449926.0,551988.0,16,2025-09-05,329,None,None
+OPP0121,Deal 121 - India B2B Account 86,EMP035,CUST0086,Freight Forward,Central,Expansion,Negotiation,2218426.0,1641636.0,74,2026-06-08,53,Blue Dart,Low Activity
+OPP0122,Deal 122 - India B2B Account 32,EMP003,CUST0032,Logistics,East,Upsell,Closed Won,21303960.0,21303960.0,100,2025-09-15,319,FedEx,None
+OPP0123,Deal 123 - India B2B Account 94,EMP002,CUST0094,Freight Forward,South,Expansion,Proposal,26745516.0,13105303.0,49,2025-07-20,376,None,None
+OPP0124,Deal 124 - India B2B Account 120,EMP044,CUST0120,Freight Forward,West,Cross-sell,Qualification,30431487.0,6999242.0,23,2025-11-05,268,None,Competitor
+OPP0125,Deal 125 - India B2B Account 180,EMP042,CUST0180,Logistics,South,Upsell,Lead,5675013.0,737752.0,13,2025-09-24,310,Blue Dart,None
+OPP0126,Deal 126 - Asian Paints,EMP040,CUST0018,Express,Central,New Logo,Negotiation,1177242.0,729890.0,62,2025-10-14,290,DHL,Low Activity
+OPP0127,Deal 127 - India B2B Account 42,EMP022,CUST0042,Express,South,Expansion,Lead,3660570.0,292846.0,8,2025-10-17,287,None,None
+OPP0128,Deal 128 - India B2B Account 105,EMP040,CUST0105,Express,Central,New Logo,Lead,1329541.0,159545.0,12,2025-08-10,355,FedEx,None
+OPP0129,Deal 129 - Aditya Birla Fashion,EMP042,CUST0024,Logistics,South,Upsell,Closed Lost,10410298.0,0.0,0,2025-12-31,212,FedEx,Low Activity
+OPP0130,Deal 130 - Metro Auto Parts,EMP010,CUST0187,Express,Central,New Logo,Lead,1645167.0,213872.0,13,2026-02-23,158,None,None
+OPP0131,Deal 131 - India B2B Account 124,EMP040,CUST0124,Express,Central,Upsell,Proposal,760306.0,387756.0,51,2025-12-17,226,Blue Dart,Low Activity
+OPP0132,Deal 132 - India B2B Account 98,EMP036,CUST0098,Logistics,North,Expansion,Lead,7122999.0,783530.0,11,2025-11-07,266,DHL,Pricing
+OPP0133,Deal 133 - India B2B Account 66,EMP048,CUST0066,Logistics,East,Upsell,Closed Won,4643386.0,4643386.0,100,2025-10-04,300,Delhivery,Low Activity
+OPP0134,Deal 134 - India B2B Account 86,EMP026,CUST0086,Freight Forward,North,Upsell,Qualification,17923148.0,4480787.0,25,2025-08-31,334,None,None
+OPP0135,Deal 135 - India B2B Account 105,EMP009,CUST0105,Logistics,West,Expansion,Qualification,18514175.0,5924536.0,32,2025-10-16,288,Delhivery,None
+OPP0136,Deal 136 - India B2B Account 90,EMP038,CUST0090,Freight Forward,East,Cross-sell,Qualification,28953552.0,6659317.0,23,2026-06-22,39,Blue Dart,None
+OPP0137,Deal 137 - India B2B Account 76,EMP024,CUST0076,Logistics,West,Expansion,Qualification,23720608.0,7116182.0,30,2025-09-12,322,Blue Dart,None
+OPP0138,Deal 138 - India B2B Account 168,EMP018,CUST0168,Logistics,East,Cross-sell,Qualification,18476914.0,4988767.0,27,2025-09-23,311,Delhivery,None
+OPP0139,Deal 139 - India B2B Account 168,EMP044,CUST0168,Freight Forward,West,Cross-sell,Proposal,31530527.0,13873432.0,44,2025-08-28,337,Blue Dart,Competitor
+OPP0140,Deal 140 - Heritage Foods DC,EMP049,CUST0191,Express,West,Cross-sell,Closed Won,9905197.0,9905197.0,100,2025-09-05,329,Delhivery,None
+OPP0141,Deal 141 - India B2B Account 79,EMP030,CUST0079,Logistics,Central,Cross-sell,Negotiation,4374483.0,2843414.0,65,2025-11-24,249,DHL,Low Activity
+OPP0142,Deal 142 - India B2B Account 56,EMP005,CUST0056,Freight Forward,Central,Cross-sell,Lead,2757277.0,358446.0,13,2025-11-03,270,Blue Dart,None
+OPP0143,Deal 143 - India B2B Account 159,EMP038,CUST0159,Freight Forward,East,Upsell,Qualification,24142724.0,6277108.0,26,2026-02-06,175,FedEx,Competitor
+OPP0144,Deal 144 - India B2B Account 133,EMP003,CUST0133,Logistics,East,Upsell,Proposal,14950920.0,6279386.0,42,2025-09-01,333,None,Low Activity
+OPP0145,Deal 145 - India B2B Account 35,EMP050,CUST0035,Freight Forward,Central,Upsell,Proposal,7332964.0,3739811.0,51,2025-10-11,293,DHL,Low Activity
+OPP0146,Deal 146 - Nykaa Fulfillment,EMP047,CUST0010,Freight Forward,South,Upsell,Qualification,34049930.0,8171983.0,24,2026-04-06,116,None,Pricing
+OPP0147,Deal 147 - India B2B Account 111,EMP036,CUST0111,Logistics,North,Expansion,Closed Won,7861748.0,7861748.0,100,2025-11-09,264,Delhivery,None
+OPP0148,Deal 148 - India B2B Account 109,EMP033,CUST0109,Logistics,East,Expansion,Negotiation,10547102.0,8015797.0,76,2026-06-04,57,Blue Dart,Low Activity
+OPP0149,Deal 149 - India B2B Account 65,EMP026,CUST0065,Freight Forward,North,Cross-sell,Lead,8316539.0,748489.0,9,2026-06-25,36,DHL,Competitor
+OPP0150,Deal 150 - India B2B Account 125,EMP048,CUST0125,Logistics,East,Expansion,Proposal,23728431.0,11626931.0,49,2026-03-20,133,FedEx,None
+OPP0151,Deal 151 - India B2B Account 110,EMP009,CUST0110,Logistics,West,Upsell,Closed Lost,17014391.0,0.0,0,2025-12-11,232,None,None
+OPP0152,Deal 152 - India B2B Account 48,EMP012,CUST0048,Logistics,South,Cross-sell,Lead,12648122.0,1897218.0,15,2026-01-05,207,Blue Dart,Pricing
+OPP0153,Deal 153 - India B2B Account 155,EMP049,CUST0155,Express,West,Expansion,Negotiation,9941426.0,6461927.0,65,2026-02-14,167,FedEx,None
+OPP0154,Deal 154 - India B2B Account 136,EMP026,CUST0136,Freight Forward,North,Expansion,Lead,17775736.0,2844118.0,16,2026-06-04,57,None,None
+OPP0155,Deal 155 - India B2B Account 136,EMP026,CUST0136,Freight Forward,North,Cross-sell,Closed Won,5893798.0,5893798.0,100,2025-07-17,379,Blue Dart,Competitor
+OPP0156,Deal 156 - India B2B Account 86,EMP043,CUST0086,Express,East,Upsell,Negotiation,4324086.0,3156583.0,73,2026-01-06,206,DHL,Low Activity
+OPP0157,Deal 157 - India B2B Account 106,EMP036,CUST0106,Logistics,North,Cross-sell,Proposal,9196141.0,3862379.0,42,2026-01-20,192,FedEx,None
+OPP0158,Deal 158 - India B2B Account 107,EMP038,CUST0107,Freight Forward,East,Cross-sell,Proposal,22306361.0,9145608.0,41,2026-03-19,134,Blue Dart,Pricing
+OPP0159,Deal 159 - India B2B Account 32,EMP019,CUST0032,Express,West,Cross-sell,Lead,2597938.0,337732.0,13,2026-02-26,155,Blue Dart,None
+OPP0160,Deal 160 - Swiggy Instamart,EMP025,CUST0026,Express,Central,Cross-sell,Proposal,983342.0,432670.0,44,2026-02-12,169,Delhivery,None
+OPP0161,Deal 161 - Fortis Healthcare,EMP030,CUST0184,Logistics,Central,Expansion,Closed Lost,2108680.0,0.0,0,2025-12-27,216,None,Pricing
+OPP0162,Deal 162 - Urban Fresh Supply,EMP030,CUST0199,Logistics,Central,New Logo,Qualification,3607754.0,938016.0,26,2025-11-10,263,Delhivery,Pricing
+OPP0163,Deal 163 - India B2B Account 81,EMP005,CUST0081,Freight Forward,Central,Cross-sell,Proposal,5736930.0,2294772.0,40,2026-04-22,100,None,None
+OPP0164,Deal 164 - India B2B Account 41,EMP038,CUST0041,Freight Forward,East,Cross-sell,Qualification,33754340.0,10801389.0,32,2025-09-21,313,FedEx,None
+OPP0165,Deal 165 - India B2B Account 112,EMP037,CUST0112,Express,South,Cross-sell,Closed Won,2677938.0,2677938.0,100,2025-07-19,377,Blue Dart,Pricing
+OPP0166,Deal 166 - India B2B Account 125,EMP046,CUST0125,Express,North,Cross-sell,Proposal,1430273.0,743742.0,52,2026-04-15,107,Blue Dart,None
+OPP0167,Deal 167 - India B2B Account 179,EMP019,CUST0179,Express,West,Upsell,Negotiation,8950503.0,6175847.0,69,2026-02-17,164,None,Low Activity
+OPP0168,Deal 168 - OmniTech Distribution,EMP050,CUST0193,Freight Forward,Central,New Logo,Proposal,5170999.0,2844049.0,55,2025-08-10,355,None,None
+OPP0169,Deal 169 - India B2B Account 138,EMP027,CUST0138,Logistics,South,Upsell,Closed Won,6574202.0,6574202.0,100,2025-08-07,358,Delhivery,None
+OPP0170,Deal 170 - India B2B Account 35,EMP014,CUST0035,Freight Forward,West,Expansion,Proposal,29476692.0,15917414.0,54,2025-11-20,253,DHL,Pricing
+OPP0171,Deal 171 - India B2B Account 44,EMP045,CUST0044,Logistics,Central,Upsell,Proposal,1901312.0,798551.0,42,2025-08-29,336,None,None
+OPP0172,Deal 172 - India B2B Account 138,EMP006,CUST0138,Logistics,North,Upsell,Proposal,11420279.0,6052748.0,53,2025-11-06,267,FedEx,Competitor
+OPP0173,Deal 173 - India B2B Account 151,EMP016,CUST0151,Express,North,Expansion,Proposal,2650491.0,1431265.0,54,2025-11-22,251,FedEx,Competitor
+OPP0174,Deal 174 - India B2B Account 117,EMP008,CUST0117,Freight Forward,East,Cross-sell,Proposal,28581719.0,14576677.0,51,2025-12-24,219,None,Low Activity
+OPP0175,Deal 175 - India B2B Account 145,EMP049,CUST0145,Express,West,Cross-sell,Qualification,6832853.0,1844870.0,27,2025-09-18,316,Blue Dart,Pricing
+OPP0176,Deal 176 - India B2B Account 48,EMP002,CUST0048,Freight Forward,South,Expansion,Closed Won,26397283.0,26397283.0,100,2026-02-19,162,Blue Dart,None
+OPP0177,Deal 177 - India B2B Account 47,EMP012,CUST0047,Logistics,South,Cross-sell,Negotiation,7887950.0,6152601.0,78,2026-05-10,82,None,Competitor
+OPP0178,Deal 178 - Flipkart Marketplace,EMP018,CUST0001,Logistics,East,Cross-sell,Lead,15478213.0,2631296.0,17,2025-11-26,247,DHL,Competitor
+OPP0179,Deal 179 - India B2B Account 129,EMP003,CUST0129,Logistics,East,Expansion,Lead,3660074.0,402608.0,11,2025-11-17,256,Delhivery,None
+OPP0180,Deal 180 - India B2B Account 89,EMP015,CUST0089,Logistics,Central,New Logo,Lead,742368.0,103931.0,14,2025-09-20,314,None,None
+OPP0181,Deal 181 - Fortis Healthcare,EMP005,CUST0184,Freight Forward,Central,Cross-sell,Qualification,2029603.0,669769.0,33,2026-03-14,139,DHL,Competitor
+OPP0182,Deal 182 - India B2B Account 158,EMP006,CUST0158,Logistics,North,Upsell,Proposal,6351498.0,3239264.0,51,2025-11-21,252,DHL,None
+OPP0183,Deal 183 - Urban Fresh Supply,EMP015,CUST0199,Logistics,Central,Expansion,Qualification,4290389.0,1372924.0,32,2025-12-23,220,None,Competitor
+OPP0184,Deal 184 - India B2B Account 161,EMP037,CUST0161,Express,South,New Logo,Proposal,5284714.0,2536663.0,48,2025-08-06,359,None,None
+OPP0185,Deal 185 - India B2B Account 149,EMP044,CUST0149,Freight Forward,West,Upsell,Negotiation,10487753.0,7131672.0,68,2026-05-18,74,Blue Dart,Competitor
+OPP0186,Deal 186 - India B2B Account 40,EMP033,CUST0040,Logistics,East,Expansion,Proposal,16007518.0,6403007.0,40,2025-12-12,231,None,Competitor
+OPP0187,Deal 187 - India B2B Account 72,EMP001,CUST0072,Express,North,Upsell,Negotiation,3577386.0,2647266.0,74,2025-10-16,288,FedEx,Competitor
+OPP0188,Deal 188 - India B2B Account 137,EMP026,CUST0137,Freight Forward,North,Expansion,Negotiation,8183628.0,5401194.0,66,2026-06-05,56,FedEx,Competitor
+OPP0189,Deal 189 - India B2B Account 180,EMP012,CUST0180,Logistics,South,Upsell,Qualification,13393980.0,4018194.0,30,2026-04-24,98,None,None
+OPP0190,Deal 190 - India B2B Account 114,EMP024,CUST0114,Logistics,West,Upsell,Proposal,28951425.0,15923284.0,55,2025-11-02,271,None,None
+OPP0191,Deal 191 - India B2B Account 68,EMP031,CUST0068,Express,North,Cross-sell,Qualification,3858028.0,1195989.0,31,2025-07-16,380,FedEx,Competitor
+OPP0192,Deal 192 - India B2B Account 110,EMP041,CUST0110,Freight Forward,North,Cross-sell,Negotiation,4969781.0,3130962.0,63,2025-12-07,236,FedEx,None
+OPP0193,Deal 193 - India B2B Account 168,EMP028,CUST0168,Express,East,New Logo,Closed Lost,3506308.0,0.0,0,2025-08-11,354,None,Low Activity
+OPP0194,Deal 194 - India B2B Account 63,EMP024,CUST0063,Logistics,West,Upsell,Negotiation,31887264.0,21683340.0,68,2026-01-01,211,Blue Dart,None
+OPP0195,Deal 195 - India B2B Account 121,EMP045,CUST0121,Logistics,Central,Upsell,Proposal,1989207.0,1034387.0,52,2026-03-31,122,None,None
+OPP0196,Deal 196 - India B2B Account 102,EMP024,CUST0102,Logistics,West,Upsell,Lead,18814578.0,2822187.0,15,2025-11-25,248,None,None
+OPP0197,Deal 197 - India B2B Account 62,EMP006,CUST0062,Logistics,North,Upsell,Qualification,8316461.0,2827597.0,34,2026-05-22,70,FedEx,None
+OPP0198,Deal 198 - India B2B Account 117,EMP050,CUST0117,Freight Forward,Central,New Logo,Lead,5304902.0,954882.0,18,2026-05-01,91,Delhivery,None
+OPP0199,Deal 199 - India B2B Account 81,EMP028,CUST0081,Express,East,New Logo,Negotiation,5004678.0,3953696.0,79,2026-05-12,80,FedEx,Competitor
+OPP0200,Deal 200 - India B2B Account 107,EMP021,CUST0107,Logistics,North,Cross-sell,Lead,2406444.0,409095.0,17,2026-01-22,190,Blue Dart,Low Activity
+OPP0201,Deal 201 - India B2B Account 69,EMP005,CUST0069,Freight Forward,Central,Cross-sell,Qualification,7387734.0,2437952.0,33,2025-07-13,383,FedEx,Low Activity
+OPP0202,Deal 202 - India B2B Account 46,EMP049,CUST0046,Express,West,New Logo,Lead,3366205.0,605917.0,18,2025-07-10,386,FedEx,Competitor
+OPP0203,Deal 203 - India B2B Account 173,EMP039,CUST0173,Logistics,West,New Logo,Lead,19749498.0,3159920.0,16,2025-08-09,356,DHL,Competitor
+OPP0204,Deal 204 - India B2B Account 44,EMP004,CUST0044,Express,West,Upsell,Proposal,3847119.0,1615790.0,42,2025-07-12,384,None,None
+OPP0205,Deal 205 - India B2B Account 114,EMP008,CUST0114,Freight Forward,East,Cross-sell,Negotiation,18644681.0,14542851.0,78,2026-04-26,96,None,Competitor
+OPP0206,Deal 206 - India B2B Account 54,EMP015,CUST0054,Logistics,Central,Cross-sell,Negotiation,3086163.0,2098591.0,68,2025-11-05,268,Blue Dart,None
+OPP0207,Deal 207 - India B2B Account 83,EMP033,CUST0083,Logistics,East,Cross-sell,Negotiation,17678892.0,14496691.0,82,2026-03-04,149,Delhivery,None
+OPP0208,Deal 208 - India B2B Account 118,EMP018,CUST0118,Logistics,East,Expansion,Closed Won,11493550.0,11493550.0,100,2025-08-02,363,None,Competitor
+OPP0209,Deal 209 - India B2B Account 122,EMP041,CUST0122,Freight Forward,North,Cross-sell,Closed Lost,7438332.0,0.0,0,2025-11-27,246,None,None
+OPP0210,Deal 210 - India B2B Account 112,EMP006,CUST0112,Logistics,North,Cross-sell,Qualification,2944071.0,1000984.0,34,2025-10-29,275,FedEx,None
+OPP0211,Deal 211 - India B2B Account 137,EMP025,CUST0137,Express,Central,Cross-sell,Lead,795759.0,63661.0,8,2025-09-01,333,FedEx,None
+OPP0212,Deal 212 - India B2B Account 68,EMP015,CUST0068,Logistics,Central,Upsell,Closed Won,2428433.0,2428433.0,100,2025-07-31,365,Blue Dart,None
+OPP0213,Deal 213 - India B2B Account 68,EMP047,CUST0068,Freight Forward,South,Expansion,Lead,23290794.0,3726527.0,16,2026-03-11,142,None,None
+OPP0214,Deal 214 - India B2B Account 64,EMP015,CUST0064,Logistics,Central,Upsell,Closed Won,2699997.0,2699997.0,100,2025-11-25,248,DHL,None
+OPP0215,Deal 215 - ITC Distribution,EMP034,CUST0016,Express,West,Cross-sell,Negotiation,7022532.0,5407350.0,77,2025-09-02,332,None,None
+OPP0216,Deal 216 - India B2B Account 68,EMP037,CUST0068,Express,South,Cross-sell,Proposal,1956740.0,997938.0,51,2025-12-25,218,FedEx,None
+OPP0217,Deal 217 - India B2B Account 136,EMP013,CUST0136,Express,East,Cross-sell,Lead,1034229.0,124107.0,12,2025-07-05,391,Blue Dart,None
+OPP0218,Deal 218 - India B2B Account 173,EMP014,CUST0173,Freight Forward,West,New Logo,Qualification,27689222.0,6368521.0,23,2026-02-11,170,Blue Dart,Pricing
+OPP0219,Deal 219 - India B2B Account 31,EMP008,CUST0031,Freight Forward,East,Upsell,Closed Lost,20210062.0,0.0,0,2025-12-31,212,None,Competitor
+OPP0220,Deal 220 - Amazon Seller Services,EMP012,CUST0002,Logistics,South,Upsell,Proposal,15619490.0,7965940.0,51,2025-07-13,383,Blue Dart,None
+OPP0221,Deal 221 - India B2B Account 172,EMP040,CUST0172,Express,Central,New Logo,Negotiation,1556874.0,1167655.0,75,2025-11-15,258,Delhivery,Pricing
+OPP0222,Deal 222 - Titan Company,EMP022,CUST0023,Express,South,Upsell,Qualification,5626397.0,1800447.0,32,2025-11-01,272,None,None
+OPP0223,Deal 223 - India B2B Account 150,EMP030,CUST0150,Logistics,Central,Upsell,Lead,4054101.0,729738.0,18,2026-01-11,201,None,None
+OPP0224,Deal 224 - India B2B Account 136,EMP032,CUST0136,Freight Forward,South,Upsell,Proposal,34756250.0,17378125.0,50,2025-07-27,369,FedEx,None
+OPP0225,Deal 225 - Sunrise Hospital,EMP033,CUST0185,Logistics,East,New Logo,Lead,13887349.0,1388735.0,10,2026-01-21,191,Blue Dart,Low Activity
+OPP0226,Deal 226 - India B2B Account 81,EMP015,CUST0081,Logistics,Central,Expansion,Qualification,881060.0,229076.0,26,2026-04-06,116,None,Pricing
+OPP0227,Deal 227 - Sunrise Hospital,EMP016,CUST0185,Express,North,New Logo,Proposal,3072653.0,1351967.0,44,2025-07-22,374,FedEx,None
+OPP0228,Deal 228 - India B2B Account 95,EMP043,CUST0095,Express,East,Expansion,Proposal,7425604.0,3564290.0,48,2025-08-04,361,DHL,Low Activity
+OPP0229,Deal 229 - India B2B Account 179,EMP029,CUST0179,Freight Forward,West,Expansion,Negotiation,35948434.0,28399263.0,79,2025-12-26,217,Delhivery,Pricing
+OPP0230,Deal 230 - India B2B Account 139,EMP011,CUST0139,Freight Forward,North,New Logo,Proposal,14565295.0,7282647.0,50,2025-08-04,361,Blue Dart,Pricing
+OPP0231,Deal 231 - Mahindra Auto Components,EMP042,CUST0006,Logistics,South,New Logo,Negotiation,7294742.0,4449792.0,61,2025-12-20,223,Blue Dart,None
+OPP0232,Deal 232 - India B2B Account 111,EMP021,CUST0111,Logistics,North,Cross-sell,Qualification,5177219.0,1656710.0,32,2025-09-09,325,Blue Dart,Low Activity
+OPP0233,Deal 233 - India B2B Account 180,EMP010,CUST0180,Express,Central,New Logo,Proposal,698040.0,300157.0,43,2026-04-09,113,None,Competitor
+OPP0234,Deal 234 - India B2B Account 78,EMP009,CUST0078,Logistics,West,Upsell,Qualification,19409466.0,6211029.0,32,2026-01-09,203,Delhivery,Competitor
+OPP0235,Deal 235 - Nestle India,EMP044,CUST0017,Freight Forward,West,Upsell,Qualification,35969846.0,10790954.0,30,2026-03-23,130,None,None
+OPP0236,Deal 236 - Central Medical Stores,EMP048,CUST0192,Logistics,East,New Logo,Proposal,18462576.0,8492785.0,46,2025-07-19,377,None,None
+OPP0237,Deal 237 - India B2B Account 73,EMP041,CUST0073,Freight Forward,North,Cross-sell,Negotiation,12585295.0,8180442.0,65,2025-08-31,334,Blue Dart,Low Activity
+OPP0238,Deal 238 - India B2B Account 39,EMP010,CUST0039,Express,Central,Expansion,Negotiation,1364955.0,859922.0,63,2025-11-16,257,Blue Dart,Competitor
+OPP0239,Deal 239 - India B2B Account 153,EMP006,CUST0153,Logistics,North,Upsell,Closed Won,10812553.0,10812553.0,100,2025-11-22,251,None,Low Activity
+OPP0240,Deal 240 - India B2B Account 84,EMP016,CUST0084,Express,North,Cross-sell,Proposal,2046834.0,1043885.0,51,2025-07-19,377,DHL,Competitor
+OPP0241,Deal 241 - India B2B Account 39,EMP027,CUST0039,Logistics,South,Expansion,Lead,9638501.0,771080.0,8,2026-05-27,65,None,Pricing
+OPP0242,Deal 242 - India B2B Account 129,EMP043,CUST0129,Express,East,Cross-sell,Closed Won,4985326.0,4985326.0,100,2025-10-31,273,Blue Dart,None
+OPP0243,Deal 243 - QuickCart Sellers,EMP009,CUST0190,Logistics,West,New Logo,Negotiation,11427387.0,7656350.0,67,2025-08-15,350,DHL,Pricing
+OPP0244,Deal 244 - India B2B Account 102,EMP013,CUST0102,Express,East,Upsell,Proposal,6574519.0,3353005.0,51,2025-07-26,370,None,None
+OPP0245,Deal 245 - Flipkart Marketplace,EMP028,CUST0001,Express,East,Expansion,Qualification,7903890.0,2687322.0,34,2026-05-04,88,None,None
+OPP0246,Deal 246 - CarePlus Diagnostics,EMP026,CUST0198,Freight Forward,North,Cross-sell,Lead,17142473.0,1714247.0,10,2026-05-13,79,FedEx,None
+OPP0247,Deal 247 - Cipla Healthcare,EMP010,CUST0013,Express,Central,Upsell,Proposal,1549639.0,774819.0,50,2025-11-22,251,Blue Dart,None
+OPP0248,Deal 248 - India B2B Account 139,EMP045,CUST0139,Logistics,Central,Cross-sell,Proposal,2804442.0,1542443.0,55,2026-05-21,71,None,Competitor
+OPP0249,Deal 249 - India B2B Account 116,EMP010,CUST0116,Express,Central,Cross-sell,Negotiation,592412.0,408764.0,69,2026-01-02,210,FedEx,None
+OPP0250,Deal 250 - India B2B Account 162,EMP014,CUST0162,Freight Forward,West,New Logo,Qualification,24886171.0,8461298.0,34,2026-01-06,206,Delhivery,Low Activity
+OPP0251,Deal 251 - India B2B Account 44,EMP041,CUST0044,Freight Forward,North,Cross-sell,Closed Lost,4846897.0,0.0,0,2025-12-21,222,None,None
+OPP0252,Deal 252 - India B2B Account 61,EMP001,CUST0061,Express,North,Upsell,Negotiation,683807.0,512855.0,75,2026-05-15,77,None,None
+OPP0253,Deal 253 - India B2B Account 119,EMP049,CUST0119,Express,West,Cross-sell,Proposal,1721255.0,757352.0,44,2025-10-11,293,Blue Dart,None
+OPP0254,Deal 254 - Urban Company,EMP045,CUST0029,Logistics,Central,Expansion,Qualification,1322562.0,357092.0,27,2025-12-16,227,Blue Dart,None
+OPP0255,Deal 255 - India B2B Account 74,EMP020,CUST0074,Freight Forward,Central,Upsell,Lead,6129384.0,919408.0,15,2025-10-05,299,None,None
+OPP0256,Deal 256 - India B2B Account 114,EMP037,CUST0114,Express,South,Upsell,Proposal,4547931.0,1819172.0,40,2025-12-30,213,Delhivery,None
+OPP0257,Deal 257 - India B2B Account 96,EMP038,CUST0096,Freight Forward,East,Upsell,Closed Won,13405826.0,13405826.0,100,2025-09-28,306,None,Low Activity
+OPP0258,Deal 258 - India B2B Account 114,EMP005,CUST0114,Freight Forward,Central,Cross-sell,Qualification,7180758.0,1723382.0,24,2026-05-22,70,FedEx,None
+OPP0259,Deal 259 - India B2B Account 76,EMP003,CUST0076,Logistics,East,Upsell,Proposal,26009349.0,11964301.0,46,2025-07-11,385,Blue Dart,Competitor
+OPP0260,Deal 260 - India B2B Account 64,EMP034,CUST0064,Express,West,Upsell,Qualification,1870257.0,635887.0,34,2026-01-04,208,None,None
+OPP0261,Deal 261 - Nova FMCG Depot,EMP032,CUST0196,Freight Forward,South,Expansion,Proposal,10154848.0,5280521.0,52,2026-04-28,94,None,Pricing
+OPP0262,Deal 262 - Flipkart Marketplace,EMP027,CUST0001,Logistics,South,New Logo,Negotiation,22189934.0,16864350.0,76,2025-07-08,388,Delhivery,Low Activity
+OPP0263,Deal 263 - India B2B Account 158,EMP049,CUST0158,Express,West,Upsell,Negotiation,7351324.0,4998901.0,68,2025-10-29,275,Delhivery,None
+OPP0264,Deal 264 - India B2B Account 110,EMP037,CUST0110,Express,South,New Logo,Lead,8941063.0,894106.0,10,2025-07-19,377,None,Low Activity
+OPP0265,Deal 265 - Zenith Export House,EMP048,CUST0197,Logistics,East,New Logo,Proposal,25777792.0,13920008.0,54,2025-12-21,222,None,None
+OPP0266,Deal 266 - India B2B Account 122,EMP024,CUST0122,Logistics,West,Upsell,Negotiation,13605367.0,8435328.0,62,2026-05-20,72,None,Competitor
+OPP0267,Deal 267 - Asian Paints,EMP021,CUST0018,Logistics,North,Expansion,Negotiation,5396874.0,4317499.0,80,2025-11-03,270,None,None
+OPP0268,Deal 268 - India B2B Account 160,EMP007,CUST0160,Express,South,Cross-sell,Negotiation,9705824.0,6405844.0,66,2026-04-19,103,FedEx,Pricing
+OPP0269,Deal 269 - India B2B Account 168,EMP007,CUST0168,Express,South,New Logo,Proposal,6986964.0,3772961.0,54,2026-01-07,205,None,Pricing
+OPP0270,Deal 270 - India B2B Account 179,EMP009,CUST0179,Logistics,West,Cross-sell,Lead,16724058.0,2341368.0,14,2026-01-24,188,DHL,None
+OPP0271,Deal 271 - India B2B Account 48,EMP021,CUST0048,Logistics,North,Expansion,Qualification,4551066.0,1274298.0,28,2026-06-02,59,None,Low Activity
+OPP0272,Deal 272 - India B2B Account 134,EMP009,CUST0134,Logistics,West,Upsell,Proposal,17067508.0,6827003.0,40,2026-04-17,105,Blue Dart,Low Activity
+OPP0273,Deal 273 - Vivo Distribution,EMP039,CUST0009,Logistics,West,New Logo,Negotiation,11314515.0,7015000.0,62,2026-02-10,171,Delhivery,None
+OPP0274,Deal 274 - India B2B Account 80,EMP038,CUST0080,Freight Forward,East,Cross-sell,Negotiation,17670071.0,13075853.0,74,2026-04-30,92,Blue Dart,Low Activity
+OPP0275,Deal 275 - India B2B Account 153,EMP030,CUST0153,Logistics,Central,Cross-sell,Proposal,3851757.0,2079949.0,54,2026-03-30,123,FedEx,None
+OPP0276,Deal 276 - Bharat Electronics,EMP001,CUST0021,Express,North,Upsell,Proposal,3065589.0,1532794.0,50,2025-12-19,224,Blue Dart,Low Activity
+OPP0277,Deal 277 - India B2B Account 38,EMP021,CUST0038,Logistics,North,Upsell,Negotiation,8300995.0,6391766.0,77,2025-09-23,311,None,Low Activity
+OPP0278,Deal 278 - India B2B Account 46,EMP019,CUST0046,Express,West,Cross-sell,Qualification,4612632.0,1245411.0,27,2025-09-17,317,None,None
+OPP0279,Deal 279 - Bharat Electronics,EMP044,CUST0021,Freight Forward,West,Cross-sell,Qualification,17403425.0,5743130.0,33,2026-02-25,156,None,None
+OPP0280,Deal 280 - India B2B Account 72,EMP002,CUST0072,Freight Forward,South,Expansion,Proposal,41409203.0,17805957.0,43,2026-05-01,91,None,Competitor
+OPP0281,Deal 281 - India B2B Account 139,EMP008,CUST0139,Freight Forward,East,Upsell,Proposal,18195907.0,9825790.0,54,2026-01-16,196,FedEx,Pricing
+OPP0282,Deal 282 - India B2B Account 112,EMP037,CUST0112,Express,South,Expansion,Negotiation,9566477.0,7748847.0,81,2025-12-09,234,DHL,Low Activity
+OPP0283,Deal 283 - India B2B Account 79,EMP031,CUST0079,Express,North,Upsell,Lead,4139687.0,538159.0,13,2026-01-22,190,FedEx,None
+OPP0284,Deal 284 - India B2B Account 38,EMP005,CUST0038,Freight Forward,Central,Cross-sell,Qualification,2276585.0,523615.0,23,2026-03-15,138,None,None
+OPP0285,Deal 285 - India B2B Account 155,EMP031,CUST0155,Express,North,Upsell,Lead,498416.0,44857.0,9,2026-03-20,133,DHL,None
+OPP0286,Deal 286 - India B2B Account 135,EMP013,CUST0135,Express,East,New Logo,Proposal,3964871.0,1704894.0,43,2025-11-03,270,FedEx,Low Activity
+OPP0287,Deal 287 - India B2B Account 174,EMP005,CUST0174,Freight Forward,Central,Upsell,Negotiation,4870683.0,3263358.0,67,2025-09-29,305,Blue Dart,Pricing
+OPP0288,Deal 288 - Asian Paints,EMP030,CUST0018,Logistics,Central,Upsell,Proposal,1246709.0,511151.0,41,2026-06-15,46,DHL,Competitor
+OPP0289,Deal 289 - Myntra Logistics,EMP046,CUST0011,Express,North,Upsell,Proposal,1451947.0,769532.0,53,2026-02-13,168,Delhivery,Low Activity
+OPP0290,Deal 290 - India B2B Account 85,EMP048,CUST0085,Logistics,East,Upsell,Proposal,19861935.0,8342013.0,42,2026-06-02,59,FedEx,None
+OPP0291,Deal 291 - India B2B Account 62,EMP050,CUST0062,Freight Forward,Central,Cross-sell,Closed Won,4876207.0,4876207.0,100,2025-09-05,329,Blue Dart,None
+OPP0292,Deal 292 - India B2B Account 130,EMP001,CUST0130,Express,North,Upsell,Negotiation,550726.0,319421.0,58,2026-04-24,98,FedEx,Low Activity
+OPP0293,Deal 293 - India B2B Account 123,EMP038,CUST0123,Freight Forward,East,Upsell,Proposal,35158257.0,17227546.0,49,2025-10-04,300,Delhivery,None
+OPP0294,Deal 294 - India B2B Account 96,EMP031,CUST0096,Express,North,Upsell,Proposal,1638297.0,851914.0,52,2026-01-02,210,Blue Dart,None
+OPP0295,Deal 295 - India B2B Account 100,EMP013,CUST0100,Express,East,Upsell,Proposal,8004860.0,4002430.0,50,2026-03-28,125,DHL,Low Activity
+OPP0296,Deal 296 - India B2B Account 105,EMP008,CUST0105,Freight Forward,East,Upsell,Lead,19533968.0,3320774.0,17,2025-09-03,331,DHL,Pricing
+OPP0297,Deal 297 - OmniTech Distribution,EMP032,CUST0193,Freight Forward,South,New Logo,Qualification,10742025.0,3437448.0,32,2026-05-24,68,DHL,None
+OPP0298,Deal 298 - India B2B Account 103,EMP001,CUST0103,Express,North,Upsell,Proposal,831252.0,399001.0,48,2026-02-23,158,Delhivery,None
+OPP0299,Deal 299 - North Star Pharma,EMP023,CUST0186,Freight Forward,East,New Logo,Proposal,8639738.0,4579061.0,53,2025-08-08,357,DHL,Low Activity
+OPP0300,Deal 300 - Godrej Appliances,EMP028,CUST0022,Express,East,Upsell,Negotiation,5109003.0,2963222.0,58,2026-05-30,62,FedEx,Low Activity
+OPP0301,Deal 301 - Bharat Textiles,EMP013,CUST0194,Express,East,New Logo,Lead,8481485.0,1102593.0,13,2026-06-02,59,None,Pricing
+OPP0302,Deal 302 - Bharat Electronics,EMP029,CUST0021,Freight Forward,West,Cross-sell,Lead,19509006.0,2926351.0,15,2026-06-05,56,DHL,Competitor
+OPP0303,Deal 303 - Fortis Healthcare,EMP013,CUST0184,Express,East,Expansion,Qualification,6197644.0,2107199.0,34,2026-06-13,48,Delhivery,Competitor
+OPP0304,Deal 304 - India B2B Account 111,EMP030,CUST0111,Logistics,Central,Cross-sell,Proposal,1156055.0,543346.0,47,2026-04-11,111,FedEx,Competitor
+OPP0305,Deal 305 - India B2B Account 71,EMP015,CUST0071,Logistics,Central,Cross-sell,Negotiation,4280159.0,2739302.0,64,2026-02-09,172,Blue Dart,None
+OPP0306,Deal 306 - India B2B Account 63,EMP050,CUST0063,Freight Forward,Central,Cross-sell,Negotiation,6159593.0,4989271.0,81,2025-09-09,325,None,None
+OPP0307,Deal 307 - India B2B Account 172,EMP043,CUST0172,Express,East,New Logo,Qualification,7110256.0,2488590.0,35,2025-07-18,378,Delhivery,None
+OPP0308,Deal 308 - India B2B Account 57,EMP033,CUST0057,Logistics,East,Upsell,Proposal,16500704.0,6930296.0,42,2026-04-01,121,None,None
+OPP0309,Deal 309 - India B2B Account 76,EMP020,CUST0076,Freight Forward,Central,Cross-sell,Lead,4276951.0,598773.0,14,2025-12-31,212,Delhivery,Low Activity
+OPP0310,Deal 310 - India B2B Account 69,EMP046,CUST0069,Express,North,Cross-sell,Proposal,3715740.0,1895028.0,51,2026-03-29,124,None,None
+OPP0311,Deal 311 - QuickCart Sellers,EMP021,CUST0190,Logistics,North,New Logo,Proposal,9808748.0,3923499.0,40,2025-08-09,356,DHL,Pricing
+OPP0312,Deal 312 - India B2B Account 91,EMP049,CUST0091,Express,West,Cross-sell,Qualification,10184665.0,3360940.0,33,2025-10-04,300,None,Pricing
+OPP0313,Deal 313 - Maruti Vendor Hub,EMP042,CUST0007,Logistics,South,Cross-sell,Closed Won,18981652.0,18981652.0,100,2025-12-19,224,FedEx,Competitor
+OPP0314,Deal 314 - Tata 1mg,EMP050,CUST0004,Freight Forward,Central,New Logo,Lead,5339006.0,800851.0,15,2026-02-16,165,None,Competitor
+OPP0315,Deal 315 - India B2B Account 96,EMP020,CUST0096,Freight Forward,Central,Expansion,Lead,2589708.0,336662.0,13,2025-07-25,371,None,Low Activity
+OPP0316,Deal 316 - Sunrise Hospital,EMP005,CUST0185,Freight Forward,Central,Cross-sell,Qualification,4334383.0,1256971.0,29,2025-07-15,381,DHL,None
+OPP0317,Deal 317 - India B2B Account 179,EMP049,CUST0179,Express,West,Cross-sell,Qualification,3311026.0,761536.0,23,2025-12-23,220,Delhivery,Low Activity
+OPP0318,Deal 318 - India B2B Account 59,EMP009,CUST0059,Logistics,West,Upsell,Qualification,8698180.0,2696436.0,31,2026-02-02,179,Blue Dart,Pricing
+OPP0319,Deal 319 - India B2B Account 175,EMP002,CUST0175,Freight Forward,South,Expansion,Negotiation,46389847.0,35256284.0,76,2025-11-21,252,DHL,Pricing
+OPP0320,Deal 320 - India B2B Account 119,EMP013,CUST0119,Express,East,Cross-sell,Closed Lost,3416880.0,0.0,0,2026-04-23,99,Blue Dart,None
+OPP0321,Deal 321 - Zomato Hyperpure,EMP022,CUST0025,Express,South,Cross-sell,Qualification,5099359.0,1580801.0,31,2026-02-16,165,Delhivery,Pricing
+OPP0322,Deal 322 - India B2B Account 116,EMP041,CUST0116,Freight Forward,North,Upsell,Lead,10304044.0,927364.0,9,2025-09-06,328,Delhivery,None
+OPP0323,Deal 323 - India B2B Account 160,EMP021,CUST0160,Logistics,North,Cross-sell,Closed Lost,6796132.0,0.0,0,2025-09-27,307,DHL,Competitor
+OPP0324,Deal 324 - India B2B Account 168,EMP017,CUST0168,Freight Forward,South,New Logo,Negotiation,40640676.0,26010033.0,64,2026-01-07,205,Delhivery,Pricing
+OPP0325,Deal 325 - India B2B Account 160,EMP011,CUST0160,Freight Forward,North,Cross-sell,Lead,3745207.0,486877.0,13,2026-03-23,130,None,None
+OPP0326,Deal 326 - Myntra Logistics,EMP046,CUST0011,Express,North,Upsell,Qualification,3004981.0,691146.0,23,2026-05-10,82,DHL,None
+OPP0327,Deal 327 - India B2B Account 90,EMP006,CUST0090,Logistics,North,Cross-sell,Lead,7850335.0,785034.0,10,2025-12-20,223,FedEx,Pricing
+OPP0328,Deal 328 - India B2B Account 87,EMP001,CUST0087,Express,North,Expansion,Closed Won,2237136.0,2237136.0,100,2025-09-12,322,FedEx,Low Activity
+OPP0329,Deal 329 - India B2B Account 151,EMP031,CUST0151,Express,North,Upsell,Qualification,1434392.0,473349.0,33,2025-07-01,395,FedEx,None
+OPP0330,Deal 330 - India B2B Account 33,EMP047,CUST0033,Freight Forward,South,Upsell,Lead,40242661.0,6841252.0,17,2026-02-14,167,Delhivery,Competitor
+OPP0331,Deal 331 - India B2B Account 100,EMP045,CUST0100,Logistics,Central,Expansion,Negotiation,2522562.0,2043275.0,81,2026-04-21,101,DHL,Pricing
+OPP0332,Deal 332 - India B2B Account 118,EMP041,CUST0118,Freight Forward,North,New Logo,Lead,5258233.0,578406.0,11,2026-04-26,96,Delhivery,None
+OPP0333,Deal 333 - India B2B Account 146,EMP016,CUST0146,Express,North,Cross-sell,Qualification,3389894.0,949170.0,28,2026-03-08,145,None,None
+OPP0334,Deal 334 - Flipkart Marketplace,EMP042,CUST0001,Logistics,South,Upsell,Proposal,8085302.0,4285210.0,53,2025-12-26,217,None,Competitor
+OPP0335,Deal 335 - Zomato Hyperpure,EMP022,CUST0025,Express,South,Upsell,Qualification,7857029.0,2121398.0,27,2026-03-11,142,Blue Dart,Competitor
+OPP0336,Deal 336 - Medicover Pvt. Ltd.,EMP049,CUST0182,Express,West,New Logo,Proposal,6429072.0,2700210.0,42,2025-09-03,331,FedEx,None
+OPP0337,Deal 337 - Swiggy Instamart,EMP008,CUST0026,Freight Forward,East,Upsell,Qualification,25522355.0,7656707.0,30,2025-09-20,314,FedEx,None
+OPP0338,Deal 338 - Metro Auto Parts,EMP008,CUST0187,Freight Forward,East,Cross-sell,Proposal,8581528.0,3861688.0,45,2025-09-06,328,DHL,Competitor
+OPP0339,Deal 339 - Apollo Pharmacy,EMP007,CUST0005,Express,South,Cross-sell,Lead,7083523.0,920858.0,13,2026-04-20,102,DHL,Low Activity
+OPP0340,Deal 340 - India B2B Account 76,EMP045,CUST0076,Logistics,Central,New Logo,Proposal,3080019.0,1601610.0,52,2026-04-17,105,DHL,None
+OPP0341,Deal 341 - Reliance Retail,EMP044,CUST0003,Freight Forward,West,New Logo,Qualification,43446259.0,12599415.0,29,2025-08-15,350,FedEx,None
+OPP0342,Deal 342 - Tata 1mg,EMP018,CUST0004,Logistics,East,Expansion,Lead,3695724.0,369572.0,10,2025-11-24,249,None,None
+OPP0343,Deal 343 - India B2B Account 129,EMP001,CUST0129,Express,North,Upsell,Negotiation,3280297.0,2263405.0,69,2025-09-05,329,Delhivery,None
+OPP0344,Deal 344 - India B2B Account 145,EMP049,CUST0145,Express,West,Cross-sell,Closed Won,3243194.0,3243194.0,100,2026-02-09,172,None,None
+OPP0345,Deal 345 - India B2B Account 175,EMP028,CUST0175,Express,East,New Logo,Qualification,1621435.0,356716.0,22,2026-04-03,119,Blue Dart,Competitor
+OPP0346,Deal 346 - India B2B Account 64,EMP032,CUST0064,Freight Forward,South,New Logo,Proposal,35919003.0,17959501.0,50,2025-10-30,274,None,None
+OPP0347,Deal 347 - India B2B Account 134,EMP006,CUST0134,Logistics,North,Cross-sell,Lead,10156906.0,1015691.0,10,2025-11-10,263,FedEx,None
+OPP0348,Deal 348 - India B2B Account 79,EMP011,CUST0079,Freight Forward,North,New Logo,Closed Won,9859957.0,9859957.0,100,2025-10-20,284,FedEx,Competitor
+OPP0349,Deal 349 - India B2B Account 89,EMP038,CUST0089,Freight Forward,East,New Logo,Lead,27772918.0,3610479.0,13,2025-10-11,293,None,Competitor
+OPP0350,Deal 350 - Zomato Hyperpure,EMP001,CUST0025,Express,North,Cross-sell,Qualification,1455597.0,407567.0,28,2025-08-09,356,DHL,Competitor
+OPP0351,Deal 351 - India B2B Account 64,EMP019,CUST0064,Express,West,Upsell,Qualification,11719427.0,2929857.0,25,2026-03-03,150,None,Low Activity
+OPP0352,Deal 352 - India B2B Account 65,EMP005,CUST0065,Freight Forward,Central,Expansion,Closed Won,4965856.0,4965856.0,100,2026-02-14,167,Blue Dart,None
+OPP0353,Deal 353 - Vivo Distribution,EMP016,CUST0009,Express,North,Cross-sell,Lead,3284749.0,525560.0,16,2026-01-17,195,None,Competitor
+OPP0354,Deal 354 - India B2B Account 123,EMP011,CUST0123,Freight Forward,North,New Logo,Negotiation,13884161.0,9024705.0,65,2026-05-23,69,Blue Dart,Competitor
+OPP0355,Deal 355 - India B2B Account 91,EMP047,CUST0091,Freight Forward,South,Upsell,Proposal,15860899.0,7296013.0,46,2025-12-23,220,DHL,None
+OPP0356,Deal 356 - India B2B Account 60,EMP050,CUST0060,Freight Forward,Central,Cross-sell,Closed Won,5682270.0,5682270.0,100,2026-01-17,195,FedEx,Competitor
+OPP0357,Deal 357 - India B2B Account 133,EMP007,CUST0133,Express,South,Cross-sell,Qualification,8255158.0,2476548.0,30,2025-11-30,243,Blue Dart,None
+OPP0358,Deal 358 - India B2B Account 80,EMP010,CUST0080,Express,Central,Cross-sell,Lead,631886.0,50551.0,8,2026-02-03,178,DHL,Pricing
+OPP0359,Deal 359 - India B2B Account 96,EMP030,CUST0096,Logistics,Central,Upsell,Negotiation,4839690.0,3629768.0,75,2025-10-19,285,FedEx,None
+OPP0360,Deal 360 - Bharat Textiles,EMP022,CUST0194,Express,South,New Logo,Closed Won,9228565.0,9228565.0,100,2026-04-10,112,Delhivery,Competitor
+OPP0361,Deal 361 - India B2B Account 40,EMP015,CUST0040,Logistics,Central,Upsell,Closed Lost,4647152.0,0.0,0,2026-02-02,179,None,Low Activity
+OPP0362,Deal 362 - Metro Auto Parts,EMP028,CUST0187,Express,East,New Logo,Negotiation,2695745.0,1590490.0,59,2026-03-06,147,Delhivery,None
+OPP0363,Deal 363 - India B2B Account 78,EMP013,CUST0078,Express,East,Upsell,Negotiation,8446960.0,5490524.0,65,2026-03-18,135,None,None
+OPP0364,Deal 364 - Apollo Hospitals,EMP018,CUST0183,Logistics,East,New Logo,Negotiation,19199433.0,12287637.0,64,2026-04-20,102,Blue Dart,Pricing
+OPP0365,Deal 365 - India B2B Account 162,EMP028,CUST0162,Express,East,New Logo,Proposal,2644798.0,1428191.0,54,2026-02-07,174,FedEx,None
+OPP0366,Deal 366 - India B2B Account 118,EMP044,CUST0118,Freight Forward,West,New Logo,Negotiation,32193389.0,26076645.0,81,2025-09-24,310,FedEx,None
+OPP0367,Deal 367 - CarePlus Diagnostics,EMP041,CUST0198,Freight Forward,North,Cross-sell,Proposal,9189001.0,5053950.0,55,2026-04-21,101,FedEx,None
+OPP0368,Deal 368 - India B2B Account 99,EMP027,CUST0099,Logistics,South,Upsell,Qualification,7268479.0,1889804.0,26,2025-11-29,244,DHL,Low Activity
+OPP0369,Deal 369 - India B2B Account 34,EMP003,CUST0034,Logistics,East,Expansion,Proposal,17310666.0,7616693.0,44,2026-02-20,161,Delhivery,None
+OPP0370,Deal 370 - India B2B Account 98,EMP023,CUST0098,Freight Forward,East,Expansion,Proposal,22258742.0,8903497.0,40,2026-03-25,128,FedEx,None
+OPP0371,Deal 371 - India B2B Account 123,EMP002,CUST0123,Freight Forward,South,Upsell,Proposal,39552667.0,21753967.0,55,2025-11-22,251,None,Low Activity
+OPP0372,Deal 372 - India B2B Account 107,EMP016,CUST0107,Express,North,Cross-sell,Closed Lost,2593428.0,0.0,0,2025-10-31,273,None,Pricing
+OPP0373,Deal 373 - D-Mart Supply Chain,EMP022,CUST0019,Express,South,Cross-sell,Negotiation,6030337.0,3919719.0,65,2025-11-05,268,DHL,Competitor
+OPP0374,Deal 374 - Zenith Export House,EMP011,CUST0197,Freight Forward,North,Upsell,Closed Won,3364945.0,3364945.0,100,2026-06-11,50,None,Competitor
+OPP0375,Deal 375 - Urban Company,EMP014,CUST0029,Freight Forward,West,Cross-sell,Proposal,7683006.0,3380523.0,44,2025-11-01,272,Delhivery,None
+OPP0376,Deal 376 - India B2B Account 38,EMP019,CUST0038,Express,West,Cross-sell,Proposal,6459916.0,2777764.0,43,2026-01-13,199,Blue Dart,Pricing
+OPP0377,Deal 377 - Central Medical Stores,EMP046,CUST0192,Express,North,Upsell,Qualification,4103332.0,1272033.0,31,2025-08-01,364,None,None
+OPP0378,Deal 378 - India B2B Account 114,EMP018,CUST0114,Logistics,East,Upsell,Qualification,6094926.0,1340884.0,22,2025-10-21,283,FedEx,None
+OPP0379,Deal 379 - India B2B Account 138,EMP040,CUST0138,Express,Central,Cross-sell,Qualification,1218559.0,341197.0,28,2026-02-11,170,Delhivery,Low Activity
+OPP0380,Deal 380 - Flipkart Marketplace,EMP032,CUST0001,Freight Forward,South,Expansion,Qualification,32072750.0,9621825.0,30,2025-10-19,285,Blue Dart,Pricing
+OPP0381,Deal 381 - India B2B Account 31,EMP002,CUST0031,Freight Forward,South,Upsell,Qualification,23650076.0,7804525.0,33,2026-04-13,109,DHL,Competitor
+OPP0382,Deal 382 - India B2B Account 40,EMP026,CUST0040,Freight Forward,North,Upsell,Negotiation,7706946.0,6011418.0,78,2025-10-18,286,FedEx,Pricing
+OPP0383,Deal 383 - India B2B Account 68,EMP038,CUST0068,Freight Forward,East,Expansion,Negotiation,37345256.0,29876205.0,80,2026-05-18,74,Blue Dart,None
+OPP0384,Deal 384 - India B2B Account 76,EMP029,CUST0076,Freight Forward,West,Cross-sell,Proposal,29820564.0,13419254.0,45,2025-07-05,391,None,Low Activity
+OPP0385,Deal 385 - Blue Star Components,EMP045,CUST0020,Logistics,Central,Cross-sell,Qualification,4495887.0,1258848.0,28,2026-01-30,182,None,Low Activity
+OPP0386,Deal 386 - India B2B Account 66,EMP021,CUST0066,Logistics,North,Upsell,Qualification,9100728.0,2275182.0,25,2026-03-03,150,None,None
+OPP0387,Deal 387 - India B2B Account 169,EMP013,CUST0169,Express,East,Expansion,Proposal,1672235.0,702339.0,42,2025-09-30,304,None,Low Activity
+OPP0388,Deal 388 - India B2B Account 48,EMP035,CUST0048,Freight Forward,Central,Cross-sell,Proposal,4672460.0,1962433.0,42,2026-02-27,154,None,Competitor
+OPP0389,Deal 389 - BigBasket Fulfillment,EMP018,CUST0028,Logistics,East,Upsell,Lead,13510201.0,1486122.0,11,2025-09-04,330,None,Low Activity
+OPP0390,Deal 390 - India B2B Account 153,EMP042,CUST0153,Logistics,South,Upsell,Negotiation,26418421.0,21663105.0,82,2025-08-01,364,None,None
+OPP0391,Deal 391 - India B2B Account 74,EMP012,CUST0074,Logistics,South,Upsell,Qualification,4897491.0,1175398.0,24,2025-07-03,393,Blue Dart,Low Activity
+OPP0392,Deal 392 - Blue Star Components,EMP030,CUST0020,Logistics,Central,Cross-sell,Negotiation,3899691.0,2768780.0,71,2026-06-16,45,None,Competitor
+OPP0393,Deal 393 - India B2B Account 57,EMP018,CUST0057,Logistics,East,New Logo,Qualification,22821357.0,5477126.0,24,2025-11-24,249,Blue Dart,None
+OPP0394,Deal 394 - OmniTech Distribution,EMP046,CUST0193,Express,North,Cross-sell,Qualification,2873407.0,948224.0,33,2025-08-10,355,None,Competitor
+OPP0395,Deal 395 - India B2B Account 176,EMP050,CUST0176,Freight Forward,Central,Upsell,Qualification,1707313.0,375609.0,22,2025-12-23,220,Blue Dart,None
+OPP0396,Deal 396 - Zepto Dark Store,EMP010,CUST0027,Express,Central,Upsell,Closed Lost,1238590.0,0.0,0,2026-05-14,78,DHL,None
+OPP0397,Deal 397 - Bharat Textiles,EMP046,CUST0194,Express,North,Expansion,Negotiation,4181333.0,2926933.0,70,2025-11-05,268,None,Competitor
+OPP0398,Deal 398 - India B2B Account 38,EMP038,CUST0038,Freight Forward,East,Cross-sell,Qualification,20791180.0,6029442.0,29,2025-08-01,364,None,None
+OPP0399,Deal 399 - India B2B Account 142,EMP009,CUST0142,Logistics,West,Expansion,Qualification,21304018.0,4686884.0,22,2025-12-07,236,None,Low Activity
+OPP0400,Deal 400 - India B2B Account 158,EMP048,CUST0158,Logistics,East,Upsell,Negotiation,21025945.0,17241275.0,82,2025-07-30,366,FedEx,Competitor
+OPP0401,Deal 401 - India B2B Account 114,EMP004,CUST0114,Express,West,Upsell,Proposal,11307446.0,4636053.0,41,2025-12-05,238,None,None
+OPP0402,Deal 402 - Bharat Electronics,EMP047,CUST0021,Freight Forward,South,Cross-sell,Closed Lost,25470933.0,0.0,0,2025-11-24,249,Delhivery,None
+OPP0403,Deal 403 - India B2B Account 100,EMP016,CUST0100,Express,North,Expansion,Negotiation,918587.0,652197.0,71,2026-06-18,43,None,Competitor
+OPP0404,Deal 404 - India B2B Account 158,EMP036,CUST0158,Logistics,North,Expansion,Closed Won,4317694.0,4317694.0,100,2026-02-08,173,DHL,None
+OPP0405,Deal 405 - India B2B Account 100,EMP044,CUST0100,Freight Forward,West,Expansion,Lead,30050133.0,3906517.0,13,2025-10-06,298,DHL,Low Activity
+OPP0406,Deal 406 - India B2B Account 160,EMP037,CUST0160,Express,South,Cross-sell,Proposal,4833645.0,2175140.0,45,2026-04-10,112,FedEx,Competitor
+OPP0407,Deal 407 - India B2B Account 40,EMP011,CUST0040,Freight Forward,North,Expansion,Lead,7406865.0,666618.0,9,2025-08-22,343,DHL,None
+OPP0408,Deal 408 - India B2B Account 81,EMP041,CUST0081,Freight Forward,North,Upsell,Lead,12291424.0,2212456.0,18,2026-01-03,209,None,None
+OPP0409,Deal 409 - India B2B Account 68,EMP019,CUST0068,Express,West,Cross-sell,Lead,1448064.0,130326.0,9,2025-12-17,226,Blue Dart,Pricing
+OPP0410,Deal 410 - India B2B Account 53,EMP010,CUST0053,Express,Central,Upsell,Lead,1102932.0,143381.0,13,2026-03-23,130,FedEx,None
+OPP0411,Deal 411 - India B2B Account 166,EMP034,CUST0166,Express,West,Cross-sell,Closed Lost,11125571.0,0.0,0,2025-09-26,308,DHL,Low Activity
+OPP0412,Deal 412 - India B2B Account 117,EMP020,CUST0117,Freight Forward,Central,Upsell,Proposal,4788126.0,2298301.0,48,2025-08-28,337,DHL,None
+OPP0413,Deal 413 - India B2B Account 73,EMP014,CUST0073,Freight Forward,West,Expansion,Negotiation,25192382.0,18390439.0,73,2025-10-07,297,Delhivery,None
+OPP0414,Deal 414 - India B2B Account 142,EMP035,CUST0142,Freight Forward,Central,Cross-sell,Qualification,7703676.0,1771846.0,23,2025-07-09,387,Blue Dart,None
+OPP0415,Deal 415 - India B2B Account 121,EMP003,CUST0121,Logistics,East,Upsell,Closed Won,16575664.0,16575664.0,100,2025-09-11,323,None,Pricing
+OPP0416,Deal 416 - India B2B Account 68,EMP027,CUST0068,Logistics,South,Upsell,Proposal,12669162.0,5701123.0,45,2025-12-21,222,Blue Dart,None
+OPP0417,Deal 417 - Zepto Dark Store,EMP002,CUST0027,Freight Forward,South,Upsell,Lead,10673940.0,1494352.0,14,2026-03-31,122,Blue Dart,None
+OPP0418,Deal 418 - India B2B Account 88,EMP036,CUST0088,Logistics,North,Upsell,Proposal,7147399.0,3931069.0,55,2026-01-25,187,None,None
+OPP0419,Deal 419 - India B2B Account 68,EMP027,CUST0068,Logistics,South,Upsell,Lead,19148605.0,2872291.0,15,2026-05-03,89,Delhivery,Pricing
+OPP0420,Deal 420 - Sunrise Hospital,EMP007,CUST0185,Express,South,New Logo,Proposal,8017408.0,3688008.0,46,2026-06-15,46,FedEx,Competitor
+OPP0421,Deal 421 - India B2B Account 142,EMP008,CUST0142,Freight Forward,East,Cross-sell,Proposal,10533428.0,5688051.0,54,2026-06-01,60,None,Pricing
+OPP0422,Deal 422 - Medicover Pvt. Ltd.,EMP029,CUST0182,Freight Forward,West,New Logo,Closed Won,32402324.0,32402324.0,100,2025-11-04,269,Blue Dart,None
+OPP0423,Deal 423 - OmniTech Distribution,EMP041,CUST0193,Freight Forward,North,Upsell,Proposal,11111705.0,5444736.0,49,2025-11-06,267,DHL,None
+OPP0424,Deal 424 - India B2B Account 161,EMP024,CUST0161,Logistics,West,New Logo,Qualification,4622904.0,1063268.0,23,2025-11-07,266,DHL,Competitor
+OPP0425,Deal 425 - India B2B Account 111,EMP017,CUST0111,Freight Forward,South,New Logo,Qualification,6998219.0,1539608.0,22,2026-05-26,66,None,Pricing
+OPP0426,Deal 426 - India B2B Account 39,EMP035,CUST0039,Freight Forward,Central,Cross-sell,Lead,5644405.0,677329.0,12,2025-10-02,302,Delhivery,Pricing
+OPP0427,Deal 427 - Godrej Appliances,EMP026,CUST0022,Freight Forward,North,Cross-sell,Negotiation,12031785.0,7219071.0,60,2025-10-25,279,Delhivery,Low Activity
+OPP0428,Deal 428 - India B2B Account 97,EMP020,CUST0097,Freight Forward,Central,Upsell,Negotiation,7233790.0,5642356.0,78,2026-06-11,50,DHL,None
+OPP0429,Deal 429 - Myntra Logistics,EMP005,CUST0011,Freight Forward,Central,Cross-sell,Qualification,3450894.0,1173304.0,34,2026-05-23,69,DHL,None
+OPP0430,Deal 430 - India B2B Account 133,EMP036,CUST0133,Logistics,North,Expansion,Closed Lost,4229190.0,0.0,0,2026-02-22,159,DHL,None
+OPP0431,Deal 431 - Nykaa Fulfillment,EMP024,CUST0010,Logistics,West,Cross-sell,Negotiation,22712925.0,15444789.0,68,2025-10-02,302,Delhivery,None
+OPP0432,Deal 432 - India B2B Account 32,EMP001,CUST0032,Express,North,New Logo,Lead,700639.0,112102.0,16,2026-01-03,209,FedEx,Competitor
+OPP0433,Deal 433 - India B2B Account 80,EMP016,CUST0080,Express,North,Cross-sell,Closed Won,1908575.0,1908575.0,100,2026-02-10,171,Blue Dart,Low Activity
+OPP0434,Deal 434 - India B2B Account 122,EMP041,CUST0122,Freight Forward,North,Upsell,Qualification,5320646.0,1649400.0,31,2025-11-24,249,DHL,None
+OPP0435,Deal 435 - India B2B Account 173,EMP050,CUST0173,Freight Forward,Central,New Logo,Qualification,7341604.0,2349313.0,32,2025-08-30,335,None,Competitor
+OPP0436,Deal 436 - India B2B Account 180,EMP025,CUST0180,Express,Central,New Logo,Lead,567792.0,90847.0,16,2025-10-03,301,Blue Dart,None
+OPP0437,Deal 437 - Samsung India,EMP041,CUST0008,Freight Forward,North,Cross-sell,Negotiation,17848565.0,13029452.0,73,2026-04-24,98,DHL,Competitor
+OPP0438,Deal 438 - India B2B Account 116,EMP026,CUST0116,Freight Forward,North,Upsell,Closed Won,9895333.0,9895333.0,100,2026-01-28,184,Blue Dart,Competitor
+OPP0439,Deal 439 - Nykaa Fulfillment,EMP020,CUST0010,Freight Forward,Central,Upsell,Proposal,1520932.0,836512.0,55,2026-06-25,36,DHL,Low Activity
+OPP0440,Deal 440 - Titan Company,EMP008,CUST0023,Freight Forward,East,Upsell,Negotiation,18873012.0,10946347.0,58,2026-01-28,184,FedEx,Competitor
+OPP0441,Deal 441 - Vivo Distribution,EMP008,CUST0009,Freight Forward,East,Upsell,Qualification,14280949.0,3713047.0,26,2025-12-01,242,DHL,Pricing
+OPP0442,Deal 442 - India B2B Account 168,EMP032,CUST0168,Freight Forward,South,New Logo,Proposal,46518338.0,24189536.0,52,2026-01-19,193,Blue Dart,None
+OPP0443,Deal 443 - India B2B Account 175,EMP036,CUST0175,Logistics,North,Upsell,Qualification,6245111.0,1498827.0,24,2026-02-22,159,None,Competitor
+OPP0444,Deal 444 - India B2B Account 75,EMP002,CUST0075,Freight Forward,South,Upsell,Qualification,23197629.0,7887194.0,34,2025-09-25,309,FedEx,None
+OPP0445,Deal 445 - Bharat Electronics,EMP028,CUST0021,Express,East,Cross-sell,Qualification,3947844.0,908004.0,23,2026-02-18,163,Blue Dart,Low Activity
+OPP0446,Deal 446 - India B2B Account 99,EMP050,CUST0099,Freight Forward,Central,Cross-sell,Lead,2260250.0,316435.0,14,2026-01-09,203,DHL,Competitor
+OPP0447,Deal 447 - India B2B Account 170,EMP039,CUST0170,Logistics,West,New Logo,Qualification,16097995.0,4990379.0,31,2025-07-03,393,DHL,None
+OPP0448,Deal 448 - India B2B Account 123,EMP033,CUST0123,Logistics,East,Cross-sell,Negotiation,18729328.0,11612184.0,62,2025-09-02,332,FedEx,Low Activity
+OPP0449,Deal 449 - India B2B Account 146,EMP014,CUST0146,Freight Forward,West,Cross-sell,Closed Won,49972972.0,49972972.0,100,2025-11-27,246,Blue Dart,None
+OPP0450,Deal 450 - India B2B Account 166,EMP005,CUST0166,Freight Forward,Central,New Logo,Proposal,1268941.0,583713.0,46,2025-12-16,227,Delhivery,Competitor
+OPP0451,Deal 451 - OmniTech Distribution,EMP040,CUST0193,Express,Central,Upsell,Qualification,1322542.0,357086.0,27,2025-10-15,289,DHL,Competitor
+OPP0452,Deal 452 - India B2B Account 71,EMP016,CUST0071,Express,North,Upsell,Qualification,3269579.0,719307.0,22,2026-05-05,87,None,Competitor
+OPP0453,Deal 453 - India B2B Account 130,EMP006,CUST0130,Logistics,North,Upsell,Qualification,5021332.0,1606826.0,32,2025-12-04,239,None,Pricing
+OPP0454,Deal 454 - Vivo Distribution,EMP003,CUST0009,Logistics,East,Cross-sell,Proposal,14282569.0,6855633.0,48,2026-04-04,118,DHL,None
+OPP0455,Deal 455 - India B2B Account 153,EMP006,CUST0153,Logistics,North,Upsell,Closed Won,3594581.0,3594581.0,100,2025-08-19,346,Delhivery,Low Activity
+OPP0456,Deal 456 - India B2B Account 92,EMP028,CUST0092,Express,East,Upsell,Proposal,6984602.0,3352609.0,48,2026-03-06,147,None,None
+OPP0457,Deal 457 - North Star Pharma,EMP032,CUST0186,Freight Forward,South,New Logo,Negotiation,43969821.0,29459780.0,67,2025-10-27,277,Delhivery,None
+OPP0458,Deal 458 - India B2B Account 92,EMP039,CUST0092,Logistics,West,Upsell,Negotiation,14177106.0,9923974.0,70,2026-02-25,156,FedEx,None
+OPP0459,Deal 459 - India B2B Account 37,EMP014,CUST0037,Freight Forward,West,Expansion,Qualification,22058241.0,7279219.0,33,2025-08-19,346,FedEx,None
+OPP0460,Deal 460 - India B2B Account 142,EMP015,CUST0142,Logistics,Central,Cross-sell,Closed Won,932347.0,932347.0,100,2025-07-29,367,None,Competitor
+OPP0461,Deal 461 - India B2B Account 53,EMP034,CUST0053,Express,West,Upsell,Lead,3735440.0,410898.0,11,2025-07-02,394,Blue Dart,Low Activity
+OPP0462,Deal 462 - Hindustan Unilever,EMP032,CUST0015,Freight Forward,South,Cross-sell,Negotiation,27152905.0,17920917.0,66,2026-05-15,77,DHL,None
+OPP0463,Deal 463 - India B2B Account 177,EMP004,CUST0177,Express,West,New Logo,Closed Lost,10389383.0,0.0,0,2025-11-19,254,Blue Dart,Competitor
+OPP0464,Deal 464 - India B2B Account 126,EMP009,CUST0126,Logistics,West,Cross-sell,Proposal,13720735.0,6311538.0,46,2026-04-23,99,DHL,Competitor
+OPP0465,Deal 465 - India B2B Account 126,EMP017,CUST0126,Freight Forward,South,Expansion,Negotiation,46798582.0,28547135.0,61,2025-11-17,256,DHL,Low Activity
+OPP0466,Deal 466 - India B2B Account 52,EMP016,CUST0052,Express,North,Cross-sell,Closed Lost,3874978.0,0.0,0,2026-05-28,64,FedEx,Pricing
+OPP0467,Deal 467 - India B2B Account 48,EMP031,CUST0048,Express,North,Cross-sell,Lead,3892595.0,389260.0,10,2026-04-09,113,None,Competitor
+OPP0468,Deal 468 - India B2B Account 121,EMP018,CUST0121,Logistics,East,Upsell,Qualification,7889139.0,2051176.0,26,2025-08-25,340,Delhivery,None
+OPP0469,Deal 469 - India B2B Account 159,EMP031,CUST0159,Express,North,Cross-sell,Lead,1323554.0,158826.0,12,2026-05-02,90,None,None
+OPP0470,Deal 470 - India B2B Account 75,EMP035,CUST0075,Freight Forward,Central,Upsell,Negotiation,2152290.0,1592694.0,74,2025-08-13,352,None,Competitor
+OPP0471,Deal 471 - India B2B Account 144,EMP049,CUST0144,Express,West,Expansion,Closed Won,1345162.0,1345162.0,100,2025-11-20,253,None,Low Activity
+OPP0472,Deal 472 - Urban Company,EMP020,CUST0029,Freight Forward,Central,Upsell,Lead,2805559.0,280556.0,10,2026-04-03,119,None,Low Activity
+OPP0473,Deal 473 - Mahindra Auto Components,EMP010,CUST0006,Express,Central,Cross-sell,Proposal,804147.0,418157.0,52,2025-10-20,284,None,None
+OPP0474,Deal 474 - India B2B Account 139,EMP018,CUST0139,Logistics,East,Cross-sell,Closed Won,6314736.0,6314736.0,100,2025-12-14,229,None,None
+OPP0475,Deal 475 - India B2B Account 81,EMP007,CUST0081,Express,South,Cross-sell,Negotiation,6391482.0,3962719.0,62,2026-04-19,103,None,None
+OPP0476,Deal 476 - Samsung India,EMP040,CUST0008,Express,Central,Upsell,Lead,1230720.0,172301.0,14,2026-01-01,211,DHL,None
+OPP0477,Deal 477 - India B2B Account 168,EMP023,CUST0168,Freight Forward,East,Upsell,Lead,36981393.0,2958511.0,8,2025-07-24,372,DHL,Pricing
+OPP0478,Deal 478 - India B2B Account 167,EMP034,CUST0167,Express,West,Expansion,Negotiation,5090333.0,3817750.0,75,2025-10-14,290,FedEx,Low Activity
+OPP0479,Deal 479 - India B2B Account 145,EMP043,CUST0145,Express,East,Upsell,Negotiation,6231569.0,3925889.0,63,2026-06-11,50,None,Pricing
+OPP0480,Deal 480 - Zenith Export House,EMP035,CUST0197,Freight Forward,Central,Cross-sell,Closed Won,5174951.0,5174951.0,100,2026-02-26,155,None,Competitor
+OPP0481,Deal 481 - India B2B Account 171,EMP006,CUST0171,Logistics,North,New Logo,Closed Won,5447956.0,5447956.0,100,2026-01-03,209,DHL,None
+OPP0482,Deal 482 - India B2B Account 172,EMP045,CUST0172,Logistics,Central,Expansion,Qualification,3541016.0,1168535.0,33,2025-07-07,389,None,Pricing
+OPP0483,Deal 483 - India B2B Account 171,EMP001,CUST0171,Express,North,New Logo,Closed Won,2009733.0,2009733.0,100,2026-04-27,95,Delhivery,None
+OPP0484,Deal 484 - India B2B Account 144,EMP048,CUST0144,Logistics,East,Cross-sell,Negotiation,23134628.0,17582317.0,76,2025-09-19,315,Blue Dart,None
+OPP0485,Deal 485 - Apollo Pharmacy,EMP036,CUST0005,Logistics,North,Expansion,Lead,6552811.0,1048450.0,16,2025-07-16,380,Delhivery,Pricing
+OPP0486,Deal 486 - India B2B Account 87,EMP007,CUST0087,Express,South,Cross-sell,Lead,4512672.0,406140.0,9,2025-11-24,249,Delhivery,None
+OPP0487,Deal 487 - India B2B Account 129,EMP027,CUST0129,Logistics,South,Cross-sell,Qualification,8005799.0,1921392.0,24,2025-11-04,269,None,Competitor
+OPP0488,Deal 488 - India B2B Account 81,EMP043,CUST0081,Express,East,Expansion,Proposal,7712343.0,4010418.0,52,2026-06-11,50,FedEx,Low Activity
+OPP0489,Deal 489 - India B2B Account 70,EMP008,CUST0070,Freight Forward,East,Cross-sell,Lead,8831547.0,1236417.0,14,2025-07-11,385,Blue Dart,Pricing
+OPP0490,Deal 490 - Myntra Logistics,EMP027,CUST0011,Logistics,South,Expansion,Negotiation,12662537.0,8610525.0,68,2026-04-15,107,Blue Dart,Pricing
+OPP0491,Deal 491 - India B2B Account 127,EMP045,CUST0127,Logistics,Central,New Logo,Lead,4117605.0,741169.0,18,2025-09-22,312,None,Pricing
+OPP0492,Deal 492 - Galaxy Electronics,EMP023,CUST0195,Freight Forward,East,Expansion,Negotiation,40639962.0,25603176.0,63,2025-11-24,249,FedEx,Competitor
+OPP0493,Deal 493 - India B2B Account 174,EMP009,CUST0174,Logistics,West,New Logo,Qualification,24250116.0,6062529.0,25,2025-12-02,241,DHL,None
+OPP0494,Deal 494 - India B2B Account 55,EMP038,CUST0055,Freight Forward,East,Expansion,Qualification,18051725.0,6318104.0,35,2025-09-19,315,None,None
+OPP0495,Deal 495 - India B2B Account 79,EMP030,CUST0079,Logistics,Central,Upsell,Qualification,4915639.0,1376379.0,28,2025-08-14,351,Blue Dart,Competitor
+OPP0496,Deal 496 - India B2B Account 139,EMP047,CUST0139,Freight Forward,South,Cross-sell,Proposal,33511236.0,15415169.0,46,2026-03-15,138,Delhivery,None
+OPP0497,Deal 497 - India B2B Account 52,EMP019,CUST0052,Express,West,Expansion,Qualification,2839543.0,880258.0,31,2026-03-04,149,Delhivery,Competitor
+OPP0498,Deal 498 - India B2B Account 48,EMP002,CUST0048,Freight Forward,South,Expansion,Proposal,11799948.0,4837979.0,41,2026-03-26,127,FedEx,None
+OPP0499,Deal 499 - OmniTech Distribution,EMP021,CUST0193,Logistics,North,New Logo,Closed Lost,4320989.0,0.0,0,2026-04-11,111,Delhivery,None
+OPP0500,Deal 500 - India B2B Account 71,EMP041,CUST0071,Freight Forward,North,Upsell,Closed Won,13157251.0,13157251.0,100,2025-08-01,364,Delhivery,Low Activity
+OPP0501,Deal 501 - India B2B Account 105,EMP047,CUST0105,Freight Forward,South,Upsell,Qualification,23206157.0,7425970.0,32,2026-02-28,153,Delhivery,Competitor
+OPP0502,Deal 502 - India B2B Account 175,EMP038,CUST0175,Freight Forward,East,Cross-sell,Qualification,34213328.0,11974665.0,35,2026-03-05,148,DHL,None
+OPP0503,Deal 503 - Heritage Foods DC,EMP027,CUST0191,Logistics,South,New Logo,Qualification,18374673.0,5144908.0,28,2026-06-04,57,DHL,Competitor
+OPP0504,Deal 504 - Prime Retail Hub,EMP040,CUST0188,Express,Central,Expansion,Lead,1690967.0,287464.0,17,2025-08-26,339,Blue Dart,Pricing
+OPP0505,Deal 505 - Medicover Pvt. Ltd.,EMP017,CUST0182,Freight Forward,South,Expansion,Closed Lost,43906614.0,0.0,0,2025-10-03,301,FedEx,Pricing
+OPP0506,Deal 506 - India B2B Account 33,EMP022,CUST0033,Express,South,Upsell,Proposal,9513953.0,3900721.0,41,2026-06-07,54,Blue Dart,Pricing
+OPP0507,Deal 507 - City Care Hospital,EMP007,CUST0181,Express,South,New Logo,Qualification,2995993.0,689078.0,23,2026-04-06,116,FedEx,None
+OPP0508,Deal 508 - Apex Industrial Tools,EMP036,CUST0200,Logistics,North,New Logo,Closed Won,5334771.0,5334771.0,100,2025-10-24,280,Blue Dart,None
+OPP0509,Deal 509 - India B2B Account 101,EMP020,CUST0101,Freight Forward,Central,Expansion,Lead,1707525.0,221978.0,13,2026-02-20,161,None,Low Activity
+OPP0510,Deal 510 - India B2B Account 160,EMP048,CUST0160,Logistics,East,Upsell,Lead,9201074.0,1012118.0,11,2025-11-14,259,FedEx,Competitor
+OPP0511,Deal 511 - India B2B Account 39,EMP033,CUST0039,Logistics,East,Cross-sell,Negotiation,25674211.0,15404527.0,60,2025-11-03,270,DHL,None
+OPP0512,Deal 512 - India B2B Account 155,EMP012,CUST0155,Logistics,South,Cross-sell,Proposal,13575536.0,6516257.0,48,2025-10-22,282,Blue Dart,Low Activity
+OPP0513,Deal 513 - India B2B Account 122,EMP022,CUST0122,Express,South,New Logo,Qualification,5360965.0,1608289.0,30,2025-08-31,334,DHL,None
+OPP0514,Deal 514 - India B2B Account 109,EMP023,CUST0109,Freight Forward,East,Expansion,Lead,8451751.0,1436798.0,17,2025-08-25,340,None,None
+OPP0515,Deal 515 - India B2B Account 139,EMP007,CUST0139,Express,South,Cross-sell,Proposal,9966982.0,5481840.0,55,2025-08-23,342,Blue Dart,None
+OPP0516,Deal 516 - India B2B Account 113,EMP024,CUST0113,Logistics,West,Upsell,Qualification,7782298.0,2023398.0,26,2025-08-27,338,Blue Dart,Competitor
+OPP0517,Deal 517 - India B2B Account 130,EMP018,CUST0130,Logistics,East,Expansion,Negotiation,6845955.0,4176032.0,61,2026-02-24,157,Blue Dart,None
+OPP0518,Deal 518 - Sunrise Hospital,EMP034,CUST0185,Express,West,New Logo,Negotiation,2872981.0,1982357.0,69,2025-08-30,335,None,Competitor
+OPP0519,Deal 519 - India B2B Account 122,EMP047,CUST0122,Freight Forward,South,Expansion,Lead,13544849.0,2438073.0,18,2026-06-18,43,Blue Dart,Competitor
+OPP0520,Deal 520 - India B2B Account 147,EMP025,CUST0147,Express,Central,Upsell,Proposal,622754.0,286467.0,46,2025-09-06,328,Blue Dart,Pricing
+OPP0521,Deal 521 - India B2B Account 44,EMP022,CUST0044,Express,South,Upsell,Lead,7240724.0,868887.0,12,2026-04-12,110,FedEx,None
+OPP0522,Deal 522 - India B2B Account 158,EMP032,CUST0158,Freight Forward,South,Upsell,Proposal,34752078.0,18766122.0,54,2025-09-21,313,Delhivery,Pricing
+OPP0523,Deal 523 - India B2B Account 122,EMP030,CUST0122,Logistics,Central,Upsell,Proposal,2252554.0,1171328.0,52,2025-11-01,272,Delhivery,None
+OPP0524,Deal 524 - India B2B Account 51,EMP025,CUST0051,Express,Central,Upsell,Proposal,819211.0,352261.0,43,2025-07-20,376,DHL,None
+OPP0525,Deal 525 - India B2B Account 100,EMP013,CUST0100,Express,East,Upsell,Proposal,2134159.0,981713.0,46,2026-06-20,41,FedEx,None
+OPP0526,Deal 526 - D-Mart Supply Chain,EMP036,CUST0019,Logistics,North,Upsell,Closed Lost,5031050.0,0.0,0,2026-01-04,208,DHL,Pricing
+OPP0527,Deal 527 - India B2B Account 80,EMP040,CUST0080,Express,Central,Expansion,Qualification,1687584.0,540027.0,32,2025-11-23,250,Blue Dart,None
+OPP0528,Deal 528 - Myntra Logistics,EMP021,CUST0011,Logistics,North,Upsell,Lead,8248239.0,1402201.0,17,2025-08-29,336,Blue Dart,Pricing
+OPP0529,Deal 529 - Apex Industrial Tools,EMP050,CUST0200,Freight Forward,Central,New Logo,Negotiation,2263435.0,1697576.0,75,2025-12-17,226,None,Competitor
+OPP0530,Deal 530 - India B2B Account 118,EMP011,CUST0118,Freight Forward,North,Expansion,Proposal,5763791.0,3170085.0,55,2025-07-20,376,Delhivery,None
+OPP0531,Deal 531 - India B2B Account 109,EMP010,CUST0109,Express,Central,Upsell,Proposal,233994.0,121677.0,52,2025-09-25,309,FedEx,None
+OPP0532,Deal 532 - India B2B Account 71,EMP022,CUST0071,Express,South,Expansion,Qualification,1828195.0,621586.0,34,2025-11-28,245,None,None
+OPP0533,Deal 533 - India B2B Account 95,EMP027,CUST0095,Logistics,South,Cross-sell,Negotiation,25600827.0,18432595.0,72,2025-10-30,274,Blue Dart,Competitor
+OPP0534,Deal 534 - India B2B Account 110,EMP007,CUST0110,Express,South,Upsell,Closed Lost,5609108.0,0.0,0,2025-07-12,384,DHL,None
+OPP0535,Deal 535 - India B2B Account 52,EMP004,CUST0052,Express,West,Upsell,Proposal,7110205.0,3626205.0,51,2025-12-16,227,Blue Dart,Competitor
+OPP0536,Deal 536 - India B2B Account 156,EMP039,CUST0156,Logistics,West,New Logo,Proposal,14082051.0,7041026.0,50,2025-12-11,232,FedEx,None
+OPP0537,Deal 537 - India B2B Account 137,EMP045,CUST0137,Logistics,Central,Expansion,Lead,759078.0,121452.0,16,2025-10-03,301,Delhivery,None
+OPP0538,Deal 538 - India B2B Account 106,EMP036,CUST0106,Logistics,North,Cross-sell,Proposal,4816712.0,2456523.0,51,2025-07-21,375,Blue Dart,Competitor
+OPP0539,Deal 539 - India B2B Account 173,EMP049,CUST0173,Express,West,Upsell,Negotiation,3537193.0,2652894.0,75,2025-08-10,355,FedEx,None
+OPP0540,Deal 540 - India B2B Account 56,EMP028,CUST0056,Express,East,Upsell,Proposal,2087319.0,897547.0,43,2026-06-18,43,Delhivery,Low Activity
+OPP0541,Deal 541 - India B2B Account 170,EMP028,CUST0170,Express,East,New Logo,Lead,5856878.0,995669.0,17,2026-04-12,110,Blue Dart,None
+OPP0542,Deal 542 - India B2B Account 65,EMP016,CUST0065,Express,North,Expansion,Proposal,817088.0,416715.0,51,2025-09-01,333,Delhivery,None
+OPP0543,Deal 543 - India B2B Account 101,EMP007,CUST0101,Express,South,Cross-sell,Closed Lost,4464846.0,0.0,0,2026-01-03,209,FedEx,None
+OPP0544,Deal 544 - India B2B Account 148,EMP044,CUST0148,Freight Forward,West,Upsell,Negotiation,15227816.0,11116305.0,73,2025-07-12,384,DHL,None
+OPP0545,Deal 545 - India B2B Account 37,EMP013,CUST0037,Express,East,New Logo,Negotiation,8163020.0,5224333.0,64,2026-03-22,131,DHL,None
+OPP0546,Deal 546 - India B2B Account 154,EMP014,CUST0154,Freight Forward,West,Expansion,Proposal,9219333.0,4978440.0,54,2026-01-24,188,Blue Dart,None
+OPP0547,Deal 547 - India B2B Account 57,EMP039,CUST0057,Logistics,West,Cross-sell,Lead,23289826.0,3959270.0,17,2025-12-20,223,FedEx,Pricing
+OPP0548,Deal 548 - India B2B Account 138,EMP042,CUST0138,Logistics,South,Cross-sell,Lead,21150122.0,2749516.0,13,2026-03-31,122,None,None
+OPP0549,Deal 549 - India B2B Account 164,EMP037,CUST0164,Express,South,Cross-sell,Lead,8007298.0,800730.0,10,2025-10-18,286,Delhivery,Competitor
+OPP0550,Deal 550 - India B2B Account 117,EMP028,CUST0117,Express,East,Expansion,Lead,1155997.0,115600.0,10,2025-08-17,348,FedEx,None
+OPP0551,Deal 551 - India B2B Account 77,EMP050,CUST0077,Freight Forward,Central,Expansion,Proposal,4551347.0,1820539.0,40,2025-11-28,245,None,Competitor
+OPP0552,Deal 552 - Zomato Hyperpure,EMP029,CUST0025,Freight Forward,West,Cross-sell,Lead,45296907.0,6341567.0,14,2025-10-10,294,Delhivery,Competitor
+OPP0553,Deal 553 - India B2B Account 140,EMP019,CUST0140,Express,West,Upsell,Lead,4459301.0,356744.0,8,2025-11-14,259,DHL,None
+OPP0554,Deal 554 - India B2B Account 73,EMP040,CUST0073,Express,Central,Upsell,Qualification,1747904.0,384539.0,22,2025-11-06,267,None,Low Activity
+OPP0555,Deal 555 - India B2B Account 165,EMP040,CUST0165,Express,Central,Upsell,Negotiation,869997.0,608998.0,70,2026-04-01,121,None,Low Activity
+OPP0556,Deal 556 - India B2B Account 167,EMP035,CUST0167,Freight Forward,Central,New Logo,Qualification,1686643.0,421661.0,25,2025-11-24,249,Blue Dart,Competitor
+OPP0557,Deal 557 - Lupin Labs,EMP021,CUST0014,Logistics,North,Cross-sell,Negotiation,8816810.0,6965280.0,79,2025-07-26,370,Blue Dart,None
+OPP0558,Deal 558 - Fortis Healthcare,EMP043,CUST0184,Express,East,Expansion,Qualification,2086776.0,459091.0,22,2025-07-31,365,DHL,None
+OPP0559,Deal 559 - India B2B Account 165,EMP009,CUST0165,Logistics,West,Upsell,Closed Lost,20217255.0,0.0,0,2026-05-15,77,DHL,None
+OPP0560,Deal 560 - India B2B Account 130,EMP011,CUST0130,Freight Forward,North,New Logo,Proposal,8749639.0,4724805.0,54,2025-09-18,316,None,Low Activity
+OPP0561,Deal 561 - Central Medical Stores,EMP031,CUST0192,Express,North,New Logo,Closed Lost,3487940.0,0.0,0,2026-01-31,181,DHL,Low Activity
+OPP0562,Deal 562 - India B2B Account 148,EMP039,CUST0148,Logistics,West,Upsell,Lead,19608258.0,3333404.0,17,2025-10-06,298,DHL,Pricing
+OPP0563,Deal 563 - Mahindra Auto Components,EMP001,CUST0006,Express,North,Cross-sell,Negotiation,506352.0,334193.0,66,2025-09-02,332,None,None
+OPP0564,Deal 564 - Amazon Seller Services,EMP032,CUST0002,Freight Forward,South,Upsell,Qualification,37297243.0,10443228.0,28,2025-11-07,266,Blue Dart,None
+OPP0565,Deal 565 - Aditya Birla Fashion,EMP039,CUST0024,Logistics,West,Upsell,Closed Lost,13164750.0,0.0,0,2026-04-22,100,FedEx,None
+OPP0566,Deal 566 - India B2B Account 49,EMP046,CUST0049,Express,North,Cross-sell,Qualification,491730.0,122933.0,25,2026-03-08,145,Delhivery,Competitor
+OPP0567,Deal 567 - India B2B Account 91,EMP016,CUST0091,Express,North,Upsell,Lead,2675117.0,428019.0,16,2026-06-25,36,DHL,Low Activity
+OPP0568,Deal 568 - India B2B Account 150,EMP007,CUST0150,Express,South,Upsell,Closed Won,8294794.0,8294794.0,100,2026-03-01,152,None,None
+OPP0569,Deal 569 - Tata 1mg,EMP029,CUST0004,Freight Forward,West,Upsell,Negotiation,35927860.0,24790224.0,69,2025-09-12,322,Delhivery,Competitor
+OPP0570,Deal 570 - India B2B Account 107,EMP043,CUST0107,Express,East,Upsell,Proposal,9335408.0,4761058.0,51,2026-02-18,163,FedEx,None
+OPP0571,Deal 571 - India B2B Account 71,EMP014,CUST0071,Freight Forward,West,Cross-sell,Qualification,31014573.0,10234809.0,33,2025-07-26,370,None,Low Activity
+OPP0572,Deal 572 - India B2B Account 52,EMP005,CUST0052,Freight Forward,Central,Cross-sell,Closed Lost,2416489.0,0.0,0,2026-04-15,107,Delhivery,Competitor
+OPP0573,Deal 573 - India B2B Account 65,EMP007,CUST0065,Express,South,Upsell,Proposal,5454287.0,2345343.0,43,2026-01-27,185,FedEx,Competitor
+OPP0574,Deal 574 - India B2B Account 178,EMP017,CUST0178,Freight Forward,South,Cross-sell,Closed Lost,26821943.0,0.0,0,2025-12-13,230,None,Competitor
+OPP0575,Deal 575 - India B2B Account 50,EMP004,CUST0050,Express,West,Upsell,Proposal,10726865.0,5792507.0,54,2026-06-16,45,Blue Dart,None
+OPP0576,Deal 576 - India B2B Account 97,EMP044,CUST0097,Freight Forward,West,Upsell,Proposal,22669022.0,9067609.0,40,2026-03-27,126,DHL,None
+OPP0577,Deal 577 - India B2B Account 82,EMP038,CUST0082,Freight Forward,East,Expansion,Proposal,32116915.0,13810273.0,43,2025-08-14,351,DHL,None
+OPP0578,Deal 578 - India B2B Account 75,EMP025,CUST0075,Express,Central,Cross-sell,Qualification,1757588.0,404245.0,23,2025-09-09,325,Blue Dart,Competitor
+OPP0579,Deal 579 - Zepto Dark Store,EMP033,CUST0027,Logistics,East,Upsell,Qualification,14558538.0,5095488.0,35,2025-11-30,243,None,None
+OPP0580,Deal 580 - Sun Pharma,EMP028,CUST0012,Express,East,Cross-sell,Qualification,2623312.0,577129.0,22,2026-06-21,40,Delhivery,Competitor
+OPP0581,Deal 581 - Apollo Pharmacy,EMP001,CUST0005,Express,North,Cross-sell,Qualification,2413293.0,675722.0,28,2026-05-19,73,DHL,None
+OPP0582,Deal 582 - India B2B Account 139,EMP032,CUST0139,Freight Forward,South,Expansion,Qualification,35959375.0,9709031.0,27,2025-11-30,243,FedEx,None
+OPP0583,Deal 583 - India B2B Account 98,EMP026,CUST0098,Freight Forward,North,Upsell,Proposal,18262235.0,9131118.0,50,2026-04-14,108,FedEx,Pricing
+OPP0584,Deal 584 - India B2B Account 144,EMP019,CUST0144,Express,West,Cross-sell,Negotiation,1785284.0,1410375.0,79,2025-08-03,362,FedEx,Pricing
+OPP0585,Deal 585 - India B2B Account 114,EMP016,CUST0114,Express,North,Expansion,Qualification,3247448.0,974234.0,30,2026-06-24,37,FedEx,Low Activity
+OPP0586,Deal 586 - India B2B Account 144,EMP002,CUST0144,Freight Forward,South,Cross-sell,Qualification,21148464.0,6556024.0,31,2026-06-04,57,FedEx,Pricing
+OPP0587,Deal 587 - Reliance Retail,EMP023,CUST0003,Freight Forward,East,Upsell,Negotiation,8215129.0,5257682.0,64,2025-11-03,270,FedEx,None
+OPP0588,Deal 588 - India B2B Account 171,EMP046,CUST0171,Express,North,Expansion,Qualification,1847935.0,498942.0,27,2026-03-22,131,FedEx,None
+OPP0589,Deal 589 - India B2B Account 156,EMP010,CUST0156,Express,Central,Upsell,Lead,844011.0,126602.0,15,2025-09-20,314,None,Pricing
+OPP0590,Deal 590 - India B2B Account 102,EMP034,CUST0102,Express,West,New Logo,Negotiation,9949042.0,6068916.0,61,2025-12-17,226,Blue Dart,Low Activity
+OPP0591,Deal 591 - Metro Auto Parts,EMP037,CUST0187,Express,South,Cross-sell,Lead,4087584.0,449634.0,11,2026-06-09,52,Delhivery,Competitor
+OPP0592,Deal 592 - India B2B Account 97,EMP037,CUST0097,Express,South,Expansion,Qualification,2947135.0,677841.0,23,2025-07-27,369,DHL,None
+OPP0593,Deal 593 - India B2B Account 110,EMP033,CUST0110,Logistics,East,Upsell,Negotiation,22512731.0,14858402.0,66,2026-02-03,178,Delhivery,Competitor
+OPP0594,Deal 594 - India B2B Account 138,EMP032,CUST0138,Freight Forward,South,Expansion,Proposal,10724807.0,4289923.0,40,2025-07-23,373,None,None
+OPP0595,Deal 595 - India B2B Account 178,EMP038,CUST0178,Freight Forward,East,New Logo,Closed Won,36350137.0,36350137.0,100,2026-03-09,144,DHL,None
+OPP0596,Deal 596 - India B2B Account 92,EMP038,CUST0092,Freight Forward,East,Cross-sell,Lead,12296000.0,1475520.0,12,2026-01-13,199,Delhivery,None
+OPP0597,Deal 597 - India B2B Account 126,EMP034,CUST0126,Express,West,Upsell,Qualification,4296429.0,1503750.0,35,2026-01-06,206,DHL,Pricing
+OPP0598,Deal 598 - Apex Industrial Tools,EMP047,CUST0200,Freight Forward,South,New Logo,Closed Lost,9185692.0,0.0,0,2026-02-27,154,Blue Dart,Competitor
+OPP0599,Deal 599 - India B2B Account 102,EMP034,CUST0102,Express,West,Expansion,Proposal,4503039.0,2296550.0,51,2026-05-08,84,None,Pricing
+OPP0600,Deal 600 - India B2B Account 79,EMP005,CUST0079,Freight Forward,Central,Cross-sell,Closed Won,1622951.0,1622951.0,100,2026-03-05,148,None,None
+OPP0601,Deal 601 - India B2B Account 132,EMP020,CUST0132,Freight Forward,Central,Expansion,Closed Lost,5949151.0,0.0,0,2025-07-16,380,Blue Dart,Competitor
+OPP0602,Deal 602 - India B2B Account 154,EMP038,CUST0154,Freight Forward,East,Cross-sell,Closed Won,37132791.0,37132791.0,100,2025-09-27,307,DHL,Competitor
+OPP0603,Deal 603 - Galaxy Electronics,EMP005,CUST0195,Freight Forward,Central,Upsell,Qualification,3992720.0,1157889.0,29,2025-12-31,212,None,Pricing
+OPP0604,Deal 604 - India B2B Account 162,EMP016,CUST0162,Express,North,New Logo,Qualification,1529144.0,366995.0,24,2025-09-17,317,DHL,None
+OPP0605,Deal 605 - India B2B Account 63,EMP034,CUST0063,Express,West,New Logo,Negotiation,10411496.0,8537426.0,82,2025-09-03,331,Delhivery,None
+OPP0606,Deal 606 - India B2B Account 120,EMP050,CUST0120,Freight Forward,Central,Expansion,Proposal,5986088.0,3112766.0,52,2025-10-23,281,DHL,None
+OPP0607,Deal 607 - India B2B Account 131,EMP049,CUST0131,Express,West,Cross-sell,Qualification,2243115.0,628072.0,28,2025-10-20,284,FedEx,None
+OPP0608,Deal 608 - Godrej Appliances,EMP042,CUST0022,Logistics,South,Upsell,Closed Won,13913773.0,13913773.0,100,2026-06-22,39,FedEx,Competitor
+OPP0609,Deal 609 - India B2B Account 177,EMP032,CUST0177,Freight Forward,South,Upsell,Lead,28663900.0,4872863.0,17,2025-12-27,216,Delhivery,None
+OPP0610,Deal 610 - Apollo Hospitals,EMP025,CUST0183,Express,Central,Upsell,Qualification,789649.0,276377.0,35,2026-05-06,86,FedEx,Low Activity
+OPP0611,Deal 611 - India B2B Account 121,EMP028,CUST0121,Express,East,Upsell,Closed Won,2531439.0,2531439.0,100,2025-12-16,227,FedEx,None
+OPP0612,Deal 612 - India B2B Account 129,EMP037,CUST0129,Express,South,Expansion,Proposal,9430227.0,3960695.0,42,2025-07-02,394,None,None
+OPP0613,Deal 613 - India B2B Account 51,EMP002,CUST0051,Freight Forward,South,Upsell,Negotiation,29722007.0,23777606.0,80,2025-11-03,270,Delhivery,Pricing
+OPP0614,Deal 614 - India B2B Account 176,EMP017,CUST0176,Freight Forward,South,Cross-sell,Proposal,40788481.0,21210010.0,52,2026-06-10,51,Delhivery,Competitor
+OPP0615,Deal 615 - India B2B Account 151,EMP019,CUST0151,Express,West,Cross-sell,Proposal,11629713.0,4768183.0,41,2026-05-15,77,Delhivery,Competitor
+OPP0616,Deal 616 - India B2B Account 32,EMP043,CUST0032,Express,East,Upsell,Proposal,8442300.0,4389996.0,52,2026-02-10,171,Blue Dart,None
+OPP0617,Deal 617 - India B2B Account 158,EMP007,CUST0158,Express,South,Cross-sell,Proposal,10717972.0,5787705.0,54,2026-01-21,191,FedEx,Competitor
+OPP0618,Deal 618 - India B2B Account 168,EMP009,CUST0168,Logistics,West,New Logo,Qualification,21480678.0,5155363.0,24,2025-09-02,332,FedEx,None
+OPP0619,Deal 619 - India B2B Account 98,EMP014,CUST0098,Freight Forward,West,Cross-sell,Negotiation,46193812.0,33259545.0,72,2026-03-01,152,Delhivery,Pricing
+OPP0620,Deal 620 - India B2B Account 168,EMP034,CUST0168,Express,West,Upsell,Proposal,1380892.0,718064.0,52,2025-11-06,267,DHL,None
+OPP0621,Deal 621 - India B2B Account 96,EMP050,CUST0096,Freight Forward,Central,Upsell,Proposal,1192523.0,536635.0,45,2025-07-22,374,Delhivery,None
+OPP0622,Deal 622 - BigBasket Fulfillment,EMP008,CUST0028,Freight Forward,East,New Logo,Proposal,20846086.0,11465347.0,55,2025-10-24,280,None,Low Activity
+OPP0623,Deal 623 - India B2B Account 57,EMP010,CUST0057,Express,Central,Upsell,Negotiation,1314962.0,815277.0,62,2026-03-20,133,FedEx,Low Activity
+OPP0624,Deal 624 - India B2B Account 149,EMP036,CUST0149,Logistics,North,Upsell,Closed Won,5659565.0,5659565.0,100,2025-08-08,357,Blue Dart,None
+OPP0625,Deal 625 - India B2B Account 146,EMP018,CUST0146,Logistics,East,Expansion,Proposal,21566761.0,9705042.0,45,2025-11-04,269,None,None
+OPP0626,Deal 626 - India B2B Account 72,EMP021,CUST0072,Logistics,North,Upsell,Qualification,5984591.0,1974915.0,33,2025-11-05,268,Delhivery,None
+OPP0627,Deal 627 - India B2B Account 31,EMP026,CUST0031,Freight Forward,North,New Logo,Qualification,10081847.0,2318825.0,23,2025-08-07,358,DHL,Competitor
+OPP0628,Deal 628 - India B2B Account 180,EMP040,CUST0180,Express,Central,Expansion,Qualification,1080855.0,335065.0,31,2026-01-18,194,FedEx,None
+OPP0629,Deal 629 - India B2B Account 47,EMP007,CUST0047,Express,South,Expansion,Qualification,6047789.0,1632903.0,27,2026-05-10,82,FedEx,None
+OPP0630,Deal 630 - India B2B Account 33,EMP015,CUST0033,Logistics,Central,New Logo,Proposal,1356406.0,678203.0,50,2026-02-12,169,Delhivery,Pricing
+OPP0631,Deal 631 - Zenith Export House,EMP027,CUST0197,Logistics,South,Cross-sell,Negotiation,5800049.0,3422029.0,59,2025-10-25,279,FedEx,Pricing
+OPP0632,Deal 632 - Asian Paints,EMP046,CUST0018,Express,North,Cross-sell,Lead,819755.0,65580.0,8,2026-03-12,141,FedEx,Pricing
+OPP0633,Deal 633 - India B2B Account 135,EMP022,CUST0135,Express,South,New Logo,Negotiation,8258295.0,6028555.0,73,2026-02-05,176,Blue Dart,None
+OPP0634,Deal 634 - India B2B Account 57,EMP023,CUST0057,Freight Forward,East,Cross-sell,Lead,28496044.0,2279684.0,8,2026-05-09,83,Blue Dart,Low Activity
+OPP0635,Deal 635 - Metro Auto Parts,EMP045,CUST0187,Logistics,Central,New Logo,Proposal,1517687.0,698136.0,46,2026-04-22,100,FedEx,None
+OPP0636,Deal 636 - India B2B Account 95,EMP031,CUST0095,Express,North,Expansion,Closed Won,1705520.0,1705520.0,100,2025-11-04,269,Delhivery,Competitor
+OPP0637,Deal 637 - India B2B Account 39,EMP018,CUST0039,Logistics,East,New Logo,Negotiation,10800616.0,6264357.0,58,2025-12-15,228,None,Competitor
+OPP0638,Deal 638 - India B2B Account 135,EMP005,CUST0135,Freight Forward,Central,Expansion,Closed Won,3184334.0,3184334.0,100,2026-01-05,207,Delhivery,None
+OPP0639,Deal 639 - India B2B Account 96,EMP039,CUST0096,Logistics,West,Upsell,Closed Won,19673858.0,19673858.0,100,2026-02-07,174,Delhivery,Pricing
+OPP0640,Deal 640 - QuickCart Sellers,EMP021,CUST0190,Logistics,North,New Logo,Proposal,4137016.0,1737547.0,42,2026-03-03,150,DHL,None
+OPP0641,Deal 641 - India B2B Account 180,EMP006,CUST0180,Logistics,North,Cross-sell,Closed Won,9609120.0,9609120.0,100,2026-02-07,174,FedEx,Low Activity
+OPP0642,Deal 642 - North Star Pharma,EMP044,CUST0186,Freight Forward,West,Cross-sell,Lead,47386152.0,4738615.0,10,2025-07-04,392,Blue Dart,None
+OPP0643,Deal 643 - India B2B Account 67,EMP009,CUST0067,Logistics,West,Upsell,Closed Lost,5660551.0,0.0,0,2025-11-10,263,DHL,Low Activity
+OPP0644,Deal 644 - India B2B Account 107,EMP032,CUST0107,Freight Forward,South,Upsell,Lead,43682471.0,3494598.0,8,2026-06-03,58,Delhivery,None
+OPP0645,Deal 645 - India B2B Account 173,EMP003,CUST0173,Logistics,East,New Logo,Lead,6778314.0,813398.0,12,2026-03-25,128,Blue Dart,None
+OPP0646,Deal 646 - India B2B Account 173,EMP027,CUST0173,Logistics,South,New Logo,Negotiation,5915419.0,4673181.0,79,2026-05-22,70,Blue Dart,None
+OPP0647,Deal 647 - India B2B Account 36,EMP045,CUST0036,Logistics,Central,Cross-sell,Closed Won,2164295.0,2164295.0,100,2026-01-17,195,None,Pricing
+OPP0648,Deal 648 - Samsung India,EMP028,CUST0008,Express,East,Upsell,Proposal,1651151.0,693484.0,42,2026-04-09,113,Blue Dart,Low Activity
+OPP0649,Deal 649 - North Star Pharma,EMP020,CUST0186,Freight Forward,Central,New Logo,Qualification,7164664.0,1862813.0,26,2025-07-13,383,None,None
+OPP0650,Deal 650 - India B2B Account 63,EMP010,CUST0063,Express,Central,Expansion,Lead,695385.0,118215.0,17,2025-07-23,373,Delhivery,None
