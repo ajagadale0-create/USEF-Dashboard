@@ -1,0 +1,51 @@
+Employee_ID,Employee_Name,Designation,Region,City,Division,Manager_ID,Join_Date,Monthly_Target,Performance_Tier
+EMP001,Rep 1,Sales Executive,North,Delhi,Express,EMP001,2023-05-20,1020867.0,Healthy
+EMP002,Rep 2,Sales Executive,South,Chennai,Freight Forward,EMP001,2022-10-13,1185746.0,Healthy
+EMP003,Rep 3,Sales Executive,East,Guwahati,Logistics,EMP001,2020-10-16,1543158.0,Healthy
+EMP004,Rep 4,VP Sales,West,Surat,Express,EMP050,2020-06-24,4950928.0,Healthy
+EMP005,Rep 5,Sales Manager,Central,Indore,Freight Forward,EMP046,2022-02-22,5412909.0,Healthy
+EMP006,Rep 6,Sales Executive,North,Lucknow,Logistics,EMP006,2024-06-04,1458713.0,Healthy
+EMP007,Rep 7,Regional Director,South,Chennai,Express,EMP050,2023-02-20,4888734.0,Healthy
+EMP008,Rep 8,Regional Director,East,Kolkata,Freight Forward,EMP050,2023-12-19,3199679.0,Healthy
+EMP009,Rep 9,Regional Director,West,Mumbai,Logistics,EMP050,2023-11-05,5254235.0,Healthy
+EMP010,Rep 10,Sales Executive,Central,Nagpur,Express,EMP006,2021-05-13,1998781.0,Healthy
+EMP011,Rep 11,Sales Manager,North,Lucknow,Freight Forward,EMP048,2022-06-29,4106205.0,Healthy
+EMP012,Rep 12,Sales Executive,South,Hyderabad,Logistics,EMP011,2021-03-17,1037655.0,Healthy
+EMP013,Rep 13,Sales Manager,East,Kolkata,Express,EMP046,2023-03-23,4839410.0,Healthy
+EMP014,Rep 14,Sales Executive,West,Pune,Freight Forward,EMP011,2020-05-22,1760901.0,Healthy
+EMP015,Rep 15,Sales Executive,Central,Raipur,Logistics,EMP011,2022-10-14,1879021.0,Healthy
+EMP016,Rep 16,Sales Executive,North,Jaipur,Express,EMP016,2023-12-01,1750652.0,Healthy
+EMP017,Rep 17,Sales Executive,South,Chennai,Freight Forward,EMP016,2021-09-17,852390.0,Healthy
+EMP018,Rep 18,Sales Manager,East,Bhubaneswar,Logistics,EMP047,2021-05-12,3251046.0,Healthy
+EMP019,Rep 19,Sales Executive,West,Pune,Express,EMP016,2020-03-03,2250785.0,Healthy
+EMP020,Rep 20,Sales Executive,Central,Bhopal,Freight Forward,EMP016,2024-03-20,899115.0,Healthy
+EMP021,Rep 21,Sales Executive,North,Chandigarh,Logistics,EMP021,2022-02-20,1299109.0,Healthy
+EMP022,Rep 22,Sales Executive,South,Hyderabad,Express,EMP021,2022-06-28,1746955.0,Healthy
+EMP023,Rep 23,Sales Executive,East,Patna,Freight Forward,EMP021,2022-01-06,1929333.0,Healthy
+EMP024,Rep 24,Sales Executive,West,Pune,Logistics,EMP021,2021-08-01,2183835.0,Healthy
+EMP025,Rep 25,Sales Executive,Central,Bhopal,Express,EMP021,2020-07-10,838611.0,Healthy
+EMP026,Rep 26,Sales Manager,North,Delhi,Freight Forward,EMP047,2023-06-08,5028258.0,Healthy
+EMP027,Rep 27,Sales Executive,South,Chennai,Logistics,EMP026,2024-06-09,1074162.0,Healthy
+EMP028,Rep 28,Sales Manager,East,Guwahati,Express,EMP049,2022-06-14,3033092.0,Healthy
+EMP029,Rep 29,Sales Executive,West,Ahmedabad,Freight Forward,EMP026,2020-10-26,1558466.0,Healthy
+EMP030,Rep 30,Sales Executive,Central,Indore,Logistics,EMP026,2023-05-15,1312571.0,Healthy
+EMP031,Rep 31,Sales Executive,North,Jaipur,Express,EMP031,2024-09-23,1415081.0,Healthy
+EMP032,Rep 32,Sales Manager,South,Bengaluru,Freight Forward,EMP049,2021-09-02,2913021.0,Healthy
+EMP033,Rep 33,Sales Executive,East,Patna,Logistics,EMP031,2022-06-10,2344587.0,Healthy
+EMP034,Rep 34,Sales Executive,West,Ahmedabad,Express,EMP031,2023-10-07,1251979.0,Healthy
+EMP035,Rep 35,Sales Manager,Central,Raipur,Freight Forward,EMP048,2021-04-15,5225628.0,Healthy
+EMP036,Rep 36,Sales Executive,North,Jaipur,Logistics,EMP036,2023-08-19,1563915.0,Healthy
+EMP037,Rep 37,Sales Executive,South,Chennai,Express,EMP036,2022-03-15,963865.0,Healthy
+EMP038,Rep 38,Sales Executive,East,Patna,Freight Forward,EMP036,2023-06-21,1574820.0,Healthy
+EMP039,Rep 39,Sales Executive,West,Mumbai,Logistics,EMP036,2023-12-26,1320126.0,Healthy
+EMP040,Rep 40,Sales Manager,Central,Nagpur,Express,EMP049,2022-04-13,3118705.0,Healthy
+EMP041,Rep 41,Sales Executive,North,Lucknow,Freight Forward,EMP041,2022-06-05,2089483.0,Healthy
+EMP042,Rep 42,Sales Executive,South,Hyderabad,Logistics,EMP041,2021-07-09,1534558.0,Healthy
+EMP043,Rep 43,Sales Executive,East,Guwahati,Express,EMP041,2020-06-19,1792967.0,Healthy
+EMP044,Rep 44,Regional Director,West,Ahmedabad,Freight Forward,EMP050,2023-09-25,2795555.0,Healthy
+EMP045,Rep 45,Sales Executive,Central,Indore,Logistics,EMP041,2020-11-19,870744.0,Healthy
+EMP046,Rep 46,Sales Manager,North,Chandigarh,Express,EMP047,2023-04-04,3654514.0,Focus
+EMP047,Rep 47,Sales Executive,South,Bengaluru,Freight Forward,EMP046,2020-11-11,975785.0,Focus
+EMP048,Rep 48,Sales Executive,East,Guwahati,Logistics,EMP046,2021-06-23,1090008.0,Focus
+EMP049,Rep 49,Sales Executive,West,Surat,Express,EMP046,2022-03-15,1787804.0,Focus
+EMP050,Rep 50,Sales Executive,Central,Indore,Freight Forward,EMP046,2021-06-14,1804556.0,Focus
