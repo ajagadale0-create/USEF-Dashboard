@@ -5,6 +5,7 @@ __pycache__/
 venv/
 env/
 .env
+.streamlit/secrets.toml
 *.log
 .DS_Store
 Thumbs.db
