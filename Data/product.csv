@@ -1,0 +1,13 @@
+Product_ID,Product_Name,Division,Base_Margin_Pct
+PRD001,Domestic Express,Express,10.9
+PRD002,International Express,Express,12.2
+PRD003,Same-Day,Express,13.5
+PRD004,COD Services,Express,13.8
+PRD005,Air Freight,Freight Forward,12.0
+PRD006,Sea Freight,Freight Forward,13.8
+PRD007,Customs Clearance,Freight Forward,25.8
+PRD008,Project Cargo,Freight Forward,12.0
+PRD009,Warehousing,Logistics,20.1
+PRD010,Last-Mile,Logistics,19.8
+PRD011,Cold Chain,Logistics,17.3
+PRD012,E-commerce Fulfillment,Logistics,18.9
