@@ -33,7 +33,7 @@ DATA_DIR = str(BASE_DIR / "Data")
 OUTPUT_DIR = str(BASE_DIR / "Output")
 COMPANY_NAME = "Aramex Logistics"
 SEED = 42
-DATA_VERSION = "2026-07-05-v45-jul-2026-forecast"
+DATA_VERSION = "2026-07-06-v46-division-yield-rate"
 GITHUB_OWNER = "ajagadale0-create"
 GITHUB_REPO = "USEF-Dashboard"
 GITHUB_BRANCH = "main"
@@ -47,6 +47,11 @@ REGION_PERFORMANCE = {
     "Central": {"revenue": 0.84, "collection": 0.66, "activity": 0.62, "pipeline": 0.18, "ach": 0.90},
 }
 DIVISIONS = ["Express", "Freight Forward", "Logistics"]
+DIVISION_UNIT_LABELS = {
+    "Express": "Parcels",
+    "Freight Forward": "Shipments",
+    "Logistics": "Shipments",
+}
 REGION_CITIES = {
     "North": ["Delhi", "Chandigarh", "Jaipur", "Lucknow"],
     "South": ["Bengaluru", "Chennai", "Hyderabad", "Kochi"],
@@ -668,6 +673,12 @@ DARK_CSS = """
     .forecast-kpi-title { color:#a8bdd2; font-size:.58rem; font-weight:900; margin-bottom:6px; }
     .forecast-kpi-value { color:#f8fafc; font-size:1.00rem; font-weight:900; line-height:1; }
     .forecast-kpi-sub { font-size:.58rem; font-weight:900; margin-top:6px; }
+    .wf-kpi-row-spacer { height: 48px !important; min-height: 48px !important; display: block !important; }
+    .wf-chart-row-spacer { height: 32px !important; min-height: 32px !important; display: block !important; }
+    .wf-row-divider {
+        height: 1px; background: rgba(51, 92, 136, .45);
+        margin: 22px 0 30px 0; border: none;
+    }
     .forecast-tile {
         background: linear-gradient(145deg, rgba(9, 25, 42, .96), rgba(5, 15, 27, .98));
         border: 1px solid rgba(51, 92, 136, .58);
@@ -780,6 +791,163 @@ def fmt_cr(val: float) -> str:
 
 def fmt_lakh(val: float) -> str:
     return f"₹ {val/1e5:.2f} L"
+
+
+def fmt_unit_rate(val: float, division: str) -> str:
+    if division == "Express":
+        return f"₹ {val:,.0f}/parcel"
+    if val >= 1e5:
+        return f"₹ {val/1e5:.2f} L/shipment"
+    return f"₹ {val:,.0f}/shipment"
+
+
+def enrich_sales_unit_counts(df: pd.DataFrame) -> pd.DataFrame:
+    """Add parcel/shipment counts per invoice by Aramex division."""
+    out = df.copy()
+    if "Unit_Count" in out.columns and out["Unit_Count"].notna().all():
+        if "Unit_Label" not in out.columns:
+            out["Unit_Label"] = out["Division"].map(DIVISION_UNIT_LABELS).fillna("Shipments")
+        return out
+
+    def _units(row: pd.Series) -> int:
+        rev = float(row["Revenue"])
+        div = str(row.get("Division", "Express"))
+        h = abs(hash(str(row.get("Invoice_No", row.name)))) % 1000 / 1000.0
+        if div == "Express":
+            rate = 155 + h * 240
+            return max(1, int(round(rev / rate)))
+        if div == "Freight Forward":
+            return 1 if h < 0.65 else 2
+        rate = 14000 + h * 38000
+        return max(1, int(round(rev / rate)))
+
+    out["Unit_Count"] = out.apply(_units, axis=1)
+    out["Unit_Label"] = out["Division"].map(DIVISION_UNIT_LABELS).fillna("Shipments")
+    return out
+
+
+def build_division_yield_metrics(sales: pd.DataFrame) -> pd.DataFrame:
+    df = enrich_sales_unit_counts(sales)
+    if df.empty:
+        return pd.DataFrame()
+    agg = df.groupby("Division", as_index=False).agg(
+        Revenue=("Revenue", "sum"),
+        Margin=("Margin", "sum"),
+        Units=("Unit_Count", "sum"),
+        Invoices=("Invoice_No", "nunique"),
+    )
+    agg["Rate_Per_Unit"] = agg["Revenue"] / agg["Units"].replace(0, np.nan)
+    agg["Yield_Per_Unit"] = agg["Margin"] / agg["Units"].replace(0, np.nan)
+    agg["GP_Pct"] = np.where(agg["Revenue"] > 0, agg["Margin"] / agg["Revenue"] * 100, 0)
+    agg["Unit_Label"] = agg["Division"].map(DIVISION_UNIT_LABELS).fillna("Shipments")
+    order = {d: i for i, d in enumerate(DIVISIONS)}
+    agg["_ord"] = agg["Division"].map(order)
+    return agg.sort_values("_ord").drop(columns=["_ord"]).reset_index(drop=True)
+
+
+def build_workforce_plan_grid(
+    data: dict[str, pd.DataFrame], filters: dict, growth_pct: float
+) -> tuple[pd.DataFrame, dict[str, float], pd.DataFrame]:
+    """Region × division workforce capacity, hiring gap, and coaching signals."""
+    scoped = scoped_data_for_filters(
+        data, filters["month"], filters["region"], filters["division"], filters["year"]
+    )
+    sc = build_employee_scorecard(data, filters["month"], filters["year"])
+    if filters["region"] != "All":
+        sc = sc[sc["Region"] == filters["region"]]
+    if filters["division"] != "All":
+        sc = sc[sc["Division"] == filters["division"]]
+
+    score_cols = [
+        "Employee_ID", "Revenue", "Target_Ach_Pct", "USEF_Score",
+        "Activity_Score", "Training_Score", "Forecast_Score",
+        "Collection_Score", "SF_Hygiene_Score",
+    ]
+    roster = scoped["employee"].merge(sc[score_cols], on="Employee_ID", how="left").fillna(0)
+    tgt = scoped["target"].groupby("Employee_ID", as_index=False)["Target_Value"].sum()
+    roster = roster.merge(tgt, on="Employee_ID", how="left").fillna(0)
+
+    healthy = roster[roster["Performance_Tier"] == "Healthy"]
+    if healthy.empty:
+        healthy = roster.copy()
+    bench: dict[str, float] = {}
+    for div in DIVISIONS:
+        div_rev = healthy.loc[healthy["Division"] == div, "Revenue"]
+        if len(div_rev):
+            bench[div] = float(div_rev.quantile(0.75))
+        else:
+            bench[div] = 1.0
+        bench[div] = max(bench[div], 1.0)
+
+    growth_factor = 1 + growth_pct / 100
+    grid = roster.groupby(["Region", "Division"], as_index=False).agg(
+        Headcount=("Employee_ID", "nunique"),
+        Revenue=("Revenue", "sum"),
+        Target=("Target_Value", "sum"),
+        Avg_USEF=("USEF_Score", "mean"),
+        Focus_Reps=("Performance_Tier", lambda s: int((s == "Focus").sum())),
+    )
+    grid["Revenue_Per_Rep"] = grid["Revenue"] / grid["Headcount"].replace(0, np.nan)
+    grid["Benchmark_Rev"] = grid["Division"].map(bench)
+    grid["Planned_Target"] = grid["Target"] * growth_factor
+    grid["Required_HC"] = np.ceil(
+        grid["Planned_Target"] / grid["Benchmark_Rev"].replace(0, np.nan)
+    ).fillna(0).astype(int)
+    grid["HC_Gap"] = grid["Required_HC"] - grid["Headcount"]
+    grid["Action"] = np.select(
+        [grid["HC_Gap"] > 0, grid["Avg_USEF"] < 65],
+        ["Hire", "Coach First"],
+        default="Maintain",
+    )
+
+    total_hc = int(roster["Employee_ID"].nunique())
+    summary = {
+        "total_hc": total_hc,
+        "total_revenue": float(roster["Revenue"].sum()),
+        "rev_per_rep": float(roster["Revenue"].sum() / max(total_hc, 1)),
+        "hiring_gap": int(grid["HC_Gap"].clip(lower=0).sum()),
+        "underperformers": int((roster["USEF_Score"] < 70).sum()),
+        "focus_reps": int((roster["Performance_Tier"] == "Focus").sum()),
+    }
+    return grid, summary, roster
+
+
+def _coaching_intervention_reasons(row: pd.Series) -> str:
+    reasons: list[str] = []
+    if row.get("USEF_Score", 100) < 70:
+        reasons.append("USEF below 70")
+    if row.get("Performance_Tier") == "Focus":
+        reasons.append("Focus development tier")
+    if row.get("Training_Score", 100) < 70:
+        reasons.append("Training below 70")
+    if row.get("Activity_Score", 100) < 75:
+        reasons.append("Activity below 75")
+    if row.get("Collection_Score", 100) < 80:
+        reasons.append("Collection below 80")
+    if row.get("SF_Hygiene_Score", 100) < 75:
+        reasons.append("SF hygiene below 75")
+    if row.get("Forecast_Score", 100) < 70:
+        reasons.append("Forecast accuracy gap")
+    if not reasons:
+        return "Relative lowest USEF in team"
+    return " · ".join(reasons)
+
+
+def build_coaching_intervention_roster(roster: pd.DataFrame) -> pd.DataFrame:
+    """Reps flagged for coaching — USEF composite, not achievement % alone."""
+    df = roster.copy()
+    df["Intervention_Reason"] = df.apply(_coaching_intervention_reasons, axis=1)
+    needs_coaching = (
+        (df["USEF_Score"] < 70)
+        | (df["Performance_Tier"] == "Focus")
+        | (df["Training_Score"] < 70)
+        | (df["Activity_Score"] < 75)
+        | (df["Collection_Score"] < 80)
+    )
+    flagged = df[needs_coaching].copy()
+    if flagged.empty:
+        flagged = df.nsmallest(5, "USEF_Score").copy()
+    return flagged.sort_values(["USEF_Score", "Target_Ach_Pct"]).reset_index(drop=True)
 
 
 def render_opportunity_heatmap_tile(open_opp: pd.DataFrame) -> None:
@@ -1038,6 +1206,7 @@ def generate_all_data(force: bool = False) -> dict[str, pd.DataFrame]:
     for value_col in ["Revenue", "Margin", "Invoice_Value"]:
         sales_df[value_col] = (sales_df[value_col] * sales_df["Trend_Scale"]).round(2)
     sales_df = sales_df.drop(columns=["Trend_Scale"])
+    sales_df = enrich_sales_unit_counts(sales_df)
 
     # --- Collection ---
     collection_rows = []
@@ -1293,6 +1462,8 @@ def load_data_from_csv() -> dict[str, pd.DataFrame]:
                 data[n]["Date"] = pd.to_datetime(data[n]["Date"])
     if {"sales", "forecast", "employee"}.issubset(data):
         data["forecast"] = _reconcile_forecast_data(data["sales"], data["forecast"], data["employee"])
+    if "sales" in data:
+        data["sales"] = enrich_sales_unit_counts(data["sales"])
     return data
 
 
@@ -2002,24 +2173,26 @@ def revenue_trend_chart(sales: pd.DataFrame, target: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=trend["Month_Index"], y=trend["Revenue"] / 1e7,
-        mode="lines+markers", name="Actual Revenue",
+        mode="lines+markers+text", name="Actual Revenue",
         line=dict(color="#3b82f6", width=3),
         marker=dict(size=7, color="#60a5fa"),
-        hovertemplate="Month: %{text}<br>Actual: ₹%{y:.2f} Cr<extra></extra>",
-        text=trend["Month_Label"],
+        text=[f"{v:.1f}" for v in trend["Revenue"] / 1e7],
+        textposition="top center",
+        textfont=dict(size=9, color="#93c5fd"),
+        hovertemplate="Month: %{customdata}<br>Actual: ₹%{y:.2f} Cr<extra></extra>",
+        customdata=trend["Month_Label"],
     ))
     fig.add_trace(go.Scatter(
         x=trend["Month_Index"], y=trend["Target_Value"] / 1e7,
         mode="lines", name="Target Revenue",
         line=dict(color="#94a3b8", dash="dot", width=2),
-        hovertemplate="Month: %{text}<br>Target: ₹%{y:.2f} Cr<extra></extra>",
-        text=trend["Month_Label"],
+        hovertemplate="Month: %{customdata}<br>Target: ₹%{y:.2f} Cr<extra></extra>",
+        customdata=trend["Month_Label"],
     ))
     fig.update_layout(
-        title=None,
         height=280,
         showlegend=False,
-        margin=dict(l=40, r=20, t=8, b=36),
+        margin=dict(l=40, r=20, t=12, b=36),
         xaxis=dict(
             tickmode="array",
             tickvals=list(range(len(month_order))),
@@ -2029,8 +2202,25 @@ def revenue_trend_chart(sales: pd.DataFrame, target: pd.DataFrame) -> go.Figure:
             range=[-0.3, len(month_order) - 0.7],
         ),
         yaxis=dict(title="₹ Cr", range=[max(0, y_min - 1), y_max + 1]),
+        legend=dict(visible=False),
     )
-    return apply_dark(fig)
+    fig = apply_dark(fig)
+    fig.update_layout(
+        height=280,
+        showlegend=False,
+        margin=dict(l=40, r=20, t=12, b=36),
+        xaxis=dict(
+            tickmode="array",
+            tickvals=list(range(len(month_order))),
+            ticktext=month_order,
+            tickangle=0,
+            showgrid=False,
+            range=[-0.3, len(month_order) - 0.7],
+        ),
+        yaxis=dict(title="₹ Cr", range=[max(0, y_min - 1), y_max + 1]),
+        legend=dict(visible=False),
+    )
+    return fig
 
 
 def region_health_chart(sales: pd.DataFrame, target: pd.DataFrame, activity: pd.DataFrame,
@@ -2204,9 +2394,7 @@ def business_health_chart(data: dict[str, pd.DataFrame], region: str = "All",
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=df["Month"], y=df["Health"],
-        mode="lines+markers+text",
-        text=df["Health"].astype(int).astype(str),
-        textposition="top center",
+        mode="lines+markers",
         line=dict(color="#f59e0b", width=3, shape="spline", smoothing=0.45),
         marker=dict(size=8, color="#fbbf24", line=dict(color="#f97316", width=1.5)),
         fill="tozeroy",
@@ -2214,15 +2402,31 @@ def business_health_chart(data: dict[str, pd.DataFrame], region: str = "All",
         name="Health Score",
         hovertemplate="%{x}<br>Health Score: %{y:.0f}<extra></extra>",
     ))
+    fig.add_trace(go.Scatter(
+        x=df["Month"], y=df["Health"],
+        mode="text",
+        text=[f"{int(v)}" for v in df["Health"]],
+        textposition="top center",
+        textfont=dict(size=10, color="#fde68a"),
+        hoverinfo="skip",
+        showlegend=False,
+    ))
     fig.update_layout(
-        title=None,
         height=280,
         showlegend=False,
         xaxis=dict(showgrid=False),
         yaxis=dict(title="Health Score", range=[0, 100], dtick=25),
-        margin=dict(l=42, r=14, t=8, b=36),
+        margin=dict(l=42, r=14, t=12, b=36),
+        legend=dict(visible=False),
     )
-    return apply_dark(fig)
+    fig = apply_dark(fig)
+    fig.update_layout(
+        height=280,
+        showlegend=False,
+        margin=dict(l=42, r=14, t=12, b=36),
+        legend=dict(visible=False),
+    )
+    return fig
 
 
 def style_region_health(df: pd.DataFrame):
@@ -2413,11 +2617,19 @@ def render_command_center(data, filters):
     with col6:
         st.markdown('<div class="command-section-title">Geography Overview</div>', unsafe_allow_html=True)
         geo = sales_f.groupby("Region", as_index=False)["Revenue"].sum()
-        fig = px.bar(geo, x="Region", y="Revenue", title="Revenue by Region", color="Region",
+        geo["Label"] = (geo["Revenue"] / 1e7).round(2).astype(str) + " Cr"
+        fig = px.bar(geo, x="Region", y="Revenue", color="Region", text="Label",
                      color_discrete_sequence=px.colors.qualitative.Set2)
-        fig.update_layout(showlegend=False, height=280, margin=dict(l=40, r=14, t=36, b=36))
+        fig = apply_dark(fig)
+        fig.update_traces(textposition="outside", textfont=dict(size=9, color="#e2e8f0"))
+        fig.update_layout(
+            title=dict(text="Revenue by Region", font=dict(size=12)),
+            showlegend=False,
+            height=280,
+            margin=dict(l=40, r=14, t=40, b=36),
+        )
         st.markdown('<div class="command-panel-chart"></div>', unsafe_allow_html=True)
-        st.plotly_chart(apply_dark(fig), use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
 
 
 def render_sales_performance(data, filters):
@@ -2456,6 +2668,86 @@ def render_sales_performance(data, filters):
         kpi_card("Collection %", f"{collection_pct:.1f}%", f"Collected {fmt_cr(sales_collected['Payment_Value'].sum()) if len(sales_collected) else '₹ 0.00 L'}", collection_pct),
     ]
     st.markdown(f'<div class="kpi-grid">{"".join(kpi_cards)}</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="exec-section-title">Yield &amp; Rate per Parcel / Shipment — Aramex Divisions</div>', unsafe_allow_html=True)
+    st.caption("Express = per parcel · Freight Forward & Logistics = per shipment · based on invoice volume in selected period")
+    yield_base = sales if len(sales) else sales_ytd
+    yield_df = build_division_yield_metrics(yield_base)
+    if yield_df.empty:
+        st.info("No yield/rate data for the selected filters.")
+    else:
+        ycols = st.columns(len(yield_df))
+        for col, (_, row) in zip(ycols, yield_df.iterrows()):
+            unit_singular = "parcel" if row["Division"] == "Express" else "shipment"
+            margin_txt = fmt_unit_rate(float(row["Yield_Per_Unit"]), row["Division"]).replace(
+                f"/{unit_singular}", f" margin/{unit_singular}"
+            )
+            with col:
+                st.markdown(
+                    f"""
+                    <div class="forecast-kpi-card">
+                        <div class="forecast-kpi-title">{row['Division']}</div>
+                        <div class="forecast-kpi-value">{fmt_unit_rate(float(row['Rate_Per_Unit']), row['Division'])}</div>
+                        <div class="forecast-kpi-sub cust-up">Yield {margin_txt}</div>
+                        <div style="color:#94a3b8;font-size:.68rem;margin-top:6px;">
+                            {int(row['Units']):,} {row['Unit_Label'].lower()} · GP {row['GP_Pct']:.1f}%
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+        yield_chart_col, yield_table_col = st.columns([1.45, 1.0], gap="small")
+        with yield_chart_col:
+            plot_df = yield_df.copy()
+            plot_df["Rate Label"] = plot_df.apply(
+                lambda r: fmt_unit_rate(float(r["Rate_Per_Unit"]), r["Division"]), axis=1
+            )
+            plot_df["Yield Label"] = plot_df.apply(
+                lambda r: fmt_unit_rate(float(r["Yield_Per_Unit"]), r["Division"]), axis=1
+            )
+            fig = go.Figure()
+            fig.add_trace(go.Bar(
+                x=plot_df["Division"],
+                y=plot_df["Rate_Per_Unit"],
+                name="Revenue Rate",
+                marker_color="#3b82f6",
+                text=plot_df["Rate Label"],
+                textposition="outside",
+            ))
+            fig.add_trace(go.Bar(
+                x=plot_df["Division"],
+                y=plot_df["Yield_Per_Unit"],
+                name="Margin Yield",
+                marker_color="#22c55e",
+                text=plot_df["Yield Label"],
+                textposition="outside",
+            ))
+            fig = apply_dark(fig)
+            fig.update_layout(
+                title="Rate vs Yield per Unit by Division",
+                barmode="group",
+                height=300,
+                yaxis_title="₹ per unit",
+                xaxis_title=None,
+                legend=dict(orientation="h", y=1.12, x=0),
+                margin=dict(l=50, r=14, t=48, b=36),
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        with yield_table_col:
+            disp = yield_df.copy()
+            disp["Volume"] = disp["Units"].map(lambda x: f"{int(x):,}")
+            disp["Revenue"] = disp["Revenue"].apply(fmt_cr)
+            disp["Rate"] = disp.apply(lambda r: fmt_unit_rate(float(r["Rate_Per_Unit"]), r["Division"]), axis=1)
+            disp["Yield"] = disp.apply(lambda r: fmt_unit_rate(float(r["Yield_Per_Unit"]), r["Division"]), axis=1)
+            disp["GP %"] = disp["GP_Pct"].map(lambda x: f"{x:.1f}%")
+            st.dataframe(
+                disp[["Division", "Unit_Label", "Volume", "Revenue", "Rate", "Yield", "GP %"]].rename(
+                    columns={"Unit_Label": "Unit Type", "Volume": "Total Volume"}
+                ),
+                hide_index=True,
+                use_container_width=True,
+                height=300,
+            )
 
     top1, top2 = st.columns([1.35, 1.0])
     with top1:
@@ -2957,6 +3249,166 @@ def render_executive_business_insight(data, filters):
     st.dataframe(action_plan, hide_index=True, use_container_width=True, height=250)
 
 
+def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
+    st.caption("Aramex India sales workforce — capacity, hiring gap & coaching priority by region and division")
+    growth_pct = st.slider(
+        "Planned revenue / target growth for next cycle (%)",
+        min_value=0, max_value=25, value=12, step=1,
+        key="wf_growth_pct",
+    )
+    grid, summary, roster = build_workforce_plan_grid(data, filters, growth_pct)
+    coaching_roster = build_coaching_intervention_roster(roster)
+    summary["coach_priority"] = len(coaching_roster)
+
+    st.info(
+        "**USEF score ≠ Achievement %.** A rep can hit **85–95% target** but still need coaching if "
+        "**training, activity, collection, CRM hygiene or forecast accuracy** pull the composite USEF down. "
+        "**Focus Tier** = HR-designated development reps (5 in base roster) — linked to the coaching table below."
+    )
+
+    def wf_kpi(title: str, value: str, sub: str) -> str:
+        return f"""
+        <div class="forecast-kpi-card">
+            <div class="forecast-kpi-title">{title}</div>
+            <div class="forecast-kpi-value">{value}</div>
+            <div class="forecast-kpi-sub cust-neutral">{sub}</div>
+        </div>
+        """
+
+    kpis = [
+        wf_kpi("Current Headcount", str(summary["total_hc"]), "Active sales reps"),
+        wf_kpi("Revenue / Rep", fmt_lakh(summary["rev_per_rep"]), "Productivity"),
+        wf_kpi("Hiring Gap", str(summary["hiring_gap"]), f"At {growth_pct}% growth plan"),
+        wf_kpi("Coach Priority", str(summary["coach_priority"]), "Linked to coaching table"),
+        wf_kpi("Focus Tier", str(summary["focus_reps"]), "HR development tier reps"),
+        wf_kpi("USEF Below 70", str(summary["underperformers"]), "Composite score only"),
+    ]
+    for col, card in zip(st.columns(6, gap="small"), kpis):
+        with col:
+            st.markdown(card, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:70px;'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="wf-row-divider"></div>', unsafe_allow_html=True)
+    st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
+
+    wf_legend = dict(
+        orientation="v",
+        yanchor="top",
+        y=1.0,
+        xanchor="left",
+        x=1.02,
+        font=dict(size=9),
+        bgcolor="rgba(0,0,0,0)",
+        bordercolor="rgba(0,0,0,0)",
+    )
+
+    chart_l, chart_r = st.columns([1.35, 1.0], gap="medium")
+    with chart_l:
+        fig = px.bar(
+            grid, x="Region", y="Headcount", color="Division",
+            title="Current Headcount by Region & Division",
+            color_discrete_sequence=["#3b82f6", "#22c55e", "#f59e0b"],
+            barmode="stack",
+            text="Headcount",
+        )
+        fig = apply_dark(fig)
+        fig.update_traces(
+            texttemplate="%{text}",
+            textposition="inside",
+            insidetextanchor="middle",
+            textfont=dict(size=9, color="#f8fafc"),
+            cliponaxis=False,
+        )
+        fig.update_layout(
+            height=320, xaxis_title=None, yaxis_title="Reps",
+            showlegend=True,
+            legend=wf_legend,
+            margin=dict(l=44, r=118, t=52, b=44),
+        )
+        st.plotly_chart(fig, use_container_width=True)
+    with chart_r:
+        rev_plot = grid.copy()
+        rev_plot["Region-Div"] = rev_plot["Region"] + " · " + rev_plot["Division"]
+        rev_plot["Rev_Label"] = rev_plot["Revenue_Per_Rep"].apply(
+            lambda x: f"₹{x/1e5:.1f}L" if x >= 1e5 else f"₹{x/1e3:.0f}K"
+        )
+        fig = px.bar(
+            rev_plot.sort_values("Revenue_Per_Rep"),
+            x="Revenue_Per_Rep", y="Region-Div", orientation="h",
+            title="Revenue per Rep by Region & Division",
+            color="Division",
+            color_discrete_sequence=["#3b82f6", "#22c55e", "#f59e0b"],
+            text="Rev_Label",
+        )
+        fig = apply_dark(fig)
+        fig.update_traces(
+            texttemplate="%{text}",
+            textposition="outside",
+            textfont=dict(size=9, color="#e2e8f0"),
+            cliponaxis=False,
+        )
+        fig.update_layout(
+            height=320, xaxis_title="₹ Revenue", yaxis_title=None,
+            showlegend=True,
+            legend=wf_legend,
+            margin=dict(l=44, r=118, t=52, b=44),
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("<div style='height:36px;'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="wf-row-divider"></div>', unsafe_allow_html=True)
+    st.markdown("<div style='height:20px;'></div>", unsafe_allow_html=True)
+
+    st.markdown('<div class="exec-section-title">Hiring & Capacity Plan</div>', unsafe_allow_html=True)
+    plan = grid.copy()
+    plan["Revenue"] = plan["Revenue"].apply(fmt_cr)
+    plan["Target"] = plan["Target"].apply(fmt_cr)
+    plan["Planned Target"] = plan["Planned_Target"].apply(fmt_cr)
+    plan["Rev / Rep"] = plan["Revenue_Per_Rep"].apply(fmt_lakh)
+    plan["Benchmark"] = plan["Benchmark_Rev"].apply(fmt_lakh)
+    plan["Avg USEF"] = plan["Avg_USEF"].map(lambda x: f"{x:.0f}")
+    plan_display = plan[
+        ["Region", "Division", "Headcount", "Required_HC", "HC_Gap", "Rev / Rep", "Benchmark",
+         "Planned Target", "Avg USEF", "Focus_Reps", "Action"]
+    ].rename(columns={
+        "Required_HC": "Required HC",
+        "HC_Gap": "HC Gap",
+        "Focus_Reps": "Focus Reps",
+    })
+    st.dataframe(plan_display, hide_index=True, use_container_width=True, height=280)
+
+    role_col, bench_col = st.columns(2, gap="small")
+    with role_col:
+        role_mix = roster.groupby(["Division", "Designation"], as_index=False).size()
+        role_mix = role_mix.pivot(index="Division", columns="Designation", values="size").fillna(0).astype(int)
+        st.markdown('<div class="emp-tile-title">Role Mix by Division</div>', unsafe_allow_html=True)
+        st.dataframe(role_mix.reset_index(), hide_index=True, use_container_width=True, height=220)
+    with bench_col:
+        bench_rows = coaching_roster.head(8)[
+            [
+                "Employee_Name", "Region", "Division", "USEF_Score", "Target_Ach_Pct",
+                "Training_Score", "Activity_Score", "Intervention_Reason",
+            ]
+        ].copy()
+        bench_rows["USEF_Score"] = bench_rows["USEF_Score"].map(lambda x: f"{x:.0f}")
+        bench_rows["Target_Ach_Pct"] = bench_rows["Target_Ach_Pct"].map(lambda x: f"{x:.1f}%")
+        bench_rows["Training_Score"] = bench_rows["Training_Score"].map(lambda x: f"{x:.0f}")
+        bench_rows["Activity_Score"] = bench_rows["Activity_Score"].map(lambda x: f"{x:.0f}")
+        st.markdown(
+            f'<div class="emp-tile-title">Coaching Bench — {len(coaching_roster)} flagged '
+            f'(matches Coach Priority)</div>',
+            unsafe_allow_html=True,
+        )
+        st.dataframe(
+            bench_rows.rename(columns={
+                "Employee_Name": "Employee", "USEF_Score": "USEF",
+                "Target_Ach_Pct": "Ach %", "Training_Score": "Training",
+                "Activity_Score": "Activity", "Intervention_Reason": "Why Coach?",
+            }),
+            hide_index=True, use_container_width=True, height=220,
+        )
+
+
 def render_employee_360(data, filters):
     st.markdown('<div class="page-header">Employee 360° Scorecard</div>', unsafe_allow_html=True)
     sc = build_employee_scorecard(data, filters["month"], filters["year"])
@@ -2969,6 +3421,27 @@ def render_employee_360(data, filters):
         st.warning("No employee scorecard data available for the selected filters.")
         return
 
+    st.markdown(
+        """
+        <div style="background:linear-gradient(90deg,#14532d,#0f172a);border:1px solid #22c55e;
+        border-radius:10px;padding:12px 16px;margin:8px 0 14px 0;">
+        <div style="color:#86efac;font-size:.78rem;font-weight:800;letter-spacing:.05em;">
+        WORKFORCE PLANNING — ARAMEX DIVISIONS</div>
+        <div style="color:#e2e8f0;font-size:.72rem;margin-top:4px;">
+        Headcount, hiring gap, revenue/rep & coaching bench by Region × Express / Freight / Logistics</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    render_workforce_planning(data, filters, sc)
+
+    st.markdown("---")
+    st.markdown('<div class="exec-section-title">Individual Employee Scorecard</div>', unsafe_allow_html=True)
+    st.caption("Select a rep below for drilldown — workforce plan is above.")
+    render_employee_360_individual(data, filters, sc)
+
+
+def render_employee_360_individual(data: dict, filters: dict, sc: pd.DataFrame):
     emp_list = sc["Employee_ID"].tolist()
     selected = st.selectbox(
         "Select Employee",
@@ -4872,7 +5345,7 @@ def main():
             st.session_state.data = generate_all_data(force=True)
             st.session_state.data_version = DATA_VERSION
             st.rerun()
-        st.caption("BUILD: GitHub in Settings")
+        st.caption("BUILD: Command Center Fix")
 
     months = ["All"] + sorted(data["sales"]["Month"].unique(), key=lambda x: pd.to_datetime(x, format="%b").month)
     years = sorted(data["sales"]["Year"].unique())
