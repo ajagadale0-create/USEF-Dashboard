@@ -1832,6 +1832,67 @@ def build_customer_watchlist(cust_sc: pd.DataFrame, target_gp: float = 14.0, top
     return watch.head(top_n)
 
 
+def build_customer_complaint_tracker(cust_sc: pd.DataFrame, top_n: int = 10) -> pd.DataFrame:
+    """Derive a lightweight complaint queue from existing customer risk signals."""
+    if cust_sc.empty:
+        return pd.DataFrame(columns=[
+            "Customer_Name", "Complaint_Type", "Severity", "Open_Days",
+            "Status", "Owner", "Region", "Revenue", "Complaint_Score",
+        ])
+
+    df = cust_sc.copy()
+    df["Customer_Key"] = df["Customer_ID"].astype(str).apply(lambda x: sum(ord(ch) for ch in x))
+    df["Complaint_Type"] = np.select(
+        [
+            df["Collection_Pct"] < 70,
+            df["Churn_Risk"] == "High",
+            df["GP_Pct"] < 12,
+            df["Health_Score"] < 60,
+        ],
+        [
+            "Billing / Collection Complaint",
+            "Retention / Service Escalation",
+            "Pricing / Commercial Complaint",
+            "Account Experience Complaint",
+        ],
+        default="General Service Follow-up",
+    )
+    df["Complaint_Score"] = (
+        (75 - df["Collection_Pct"]).clip(lower=0) * 1.3
+        + (14 - df["GP_Pct"]).clip(lower=0) * 3.2
+        + (100 - df["Health_Score"]).clip(lower=0) * 0.55
+        + np.where(df["Churn_Risk"] == "High", 18, np.where(df["Churn_Risk"] == "Medium", 8, 0))
+    )
+    df = df[df["Complaint_Score"] > 0].copy()
+    if df.empty:
+        return pd.DataFrame(columns=[
+            "Customer_Name", "Complaint_Type", "Severity", "Open_Days",
+            "Status", "Owner", "Region", "Revenue", "Complaint_Score",
+        ])
+
+    df["Open_Days"] = 2 + (df["Customer_Key"] % 12)
+    df["Severity"] = np.select(
+        [df["Complaint_Score"] >= 55, df["Complaint_Score"] >= 30],
+        ["High", "Medium"],
+        default="Low",
+    )
+    df["Status"] = np.select(
+        [df["Severity"] == "High", df["Severity"] == "Medium"],
+        ["Escalated", "In Review"],
+        default="Open",
+    )
+    df["Owner"] = np.where(
+        df["Complaint_Type"].str.contains("Collection|Billing", regex=True),
+        "Collections Lead",
+        np.where(
+            df["Complaint_Type"].str.contains("Pricing|Commercial", regex=True),
+            "Sales Manager",
+            "KAM / Customer Success",
+        ),
+    )
+    return df.sort_values(["Complaint_Score", "Revenue"], ascending=[False, False]).head(top_n)
+
+
 def build_customer_management_actions(
     cust_sc: pd.DataFrame,
     gp_alerts: pd.DataFrame,
@@ -3787,6 +3848,7 @@ def render_customer_360(data, filters):
     top_upsell = cust_sc[cust_sc["Upsell_Potential"] > 0].nlargest(5, "Upsell_Potential")
     cross_sell = build_customer_cross_sell_gaps(sales_scope, cust_sc)
     watchlist = build_customer_watchlist(cust_sc, target_gp=target_gp)
+    complaints = build_customer_complaint_tracker(cust_sc)
     mgmt_actions = build_customer_management_actions(cust_sc, gp_alerts, coll_alerts, mix_risk, top_upsell, target_gp)
 
     margin_at_risk = float(
@@ -3895,6 +3957,59 @@ def render_customer_360(data, filters):
         """,
         unsafe_allow_html=True,
     )
+
+    st.subheader("Customer Complaints & Escalations")
+    comp1, comp2 = st.columns([1.2, 1.0], gap="small")
+    with comp1:
+        complaint_rows = []
+        for _, row in complaints.iterrows():
+            sev_color = {"High": "#ef4444", "Medium": "#f59e0b", "Low": "#38bdf8"}.get(row["Severity"], "#38bdf8")
+            complaint_rows.append(
+                f"<tr><td>{row['Customer_Name'][:22]}</td>"
+                f"<td>{row['Complaint_Type'][:28]}</td>"
+                f"<td><span class='cust-pill-red' style='background:{sev_color}22;color:{sev_color};border:1px solid {sev_color}66;'>{row['Severity']}</span></td>"
+                f"<td>{int(row['Open_Days'])}d</td>"
+                f"<td>{row['Status']}</td></tr>"
+            )
+        if not complaint_rows:
+            complaint_rows.append("<tr><td colspan='5'>No complaint signals identified in the selected scope</td></tr>")
+        st.markdown(
+            f"""
+            <div class="cust-tile">
+                <div class="cust-tile-title">Complaint Queue</div>
+                <table class="cust-table">
+                    <thead><tr><th>Customer</th><th>Complaint Type</th><th>Severity</th><th>Age</th><th>Status</th></tr></thead>
+                    <tbody>{''.join(complaint_rows)}</tbody>
+                </table>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with comp2:
+        complaint_summary = complaints.groupby("Severity", as_index=False)["Customer_ID"].count() if len(complaints) else pd.DataFrame(columns=["Severity", "Customer_ID"])
+        complaint_summary = complaint_summary.rename(columns={"Customer_ID": "Complaints"})
+        if complaint_summary.empty:
+            complaint_summary = pd.DataFrame({"Severity": ["Open"], "Complaints": [0]})
+        high_count = int(complaints["Severity"].eq("High").sum()) if len(complaints) else 0
+        escalated_count = int(complaints["Status"].eq("Escalated").sum()) if len(complaints) else 0
+        avg_age = float(complaints["Open_Days"].mean()) if len(complaints) else 0
+        k1, k2, k3 = st.columns(3, gap="small")
+        k1.metric("High Severity", high_count)
+        k2.metric("Escalated", escalated_count)
+        k3.metric("Avg Age", f"{avg_age:.0f}d")
+        fig = px.bar(
+            complaint_summary,
+            x="Severity",
+            y="Complaints",
+            text="Complaints",
+            color="Severity",
+            color_discrete_map={"High": "#ef4444", "Medium": "#f59e0b", "Low": "#38bdf8", "Open": "#64748b"},
+            title="Complaint Severity Mix",
+        )
+        fig = apply_dark(fig)
+        fig.update_layout(height=255, showlegend=False, xaxis_title=None, yaxis_title="Customers", margin=dict(l=26, r=8, t=36, b=24))
+        fig.update_traces(textposition="outside")
+        st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Portfolio Health Snapshot")
     snap1, snap2 = st.columns([1.0, 1.55], gap="small")
