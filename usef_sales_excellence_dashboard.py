@@ -85,6 +85,8 @@ NEWS_FEEDS = [
     "https://www.logisticsmgmt.com/rss/topic/all",
     "https://www.freightwaves.com/feed",
 ]
+WORKFORCE_FIELD_ROLES = ("Sales Executive",)
+ANNUAL_TARGET_UPLIFT_PCT = 12.0
 
 PAGES = [
     ("command", "AI Command Center", "AI Command", "🏠"),
@@ -94,9 +96,7 @@ PAGES = [
     ("customer", "Customer 360", "Customer 360", "◎"),
     ("pipeline", "Opportunity Radar", "Opportunity", "✺"),
     ("forecast", "Forecast War Room", "Forecast", "▣"),
-    ("forecast_scenarios", "Forecast Scenarios", "Forecast Scenarios", "◈"),
     ("incentive", "Incentive Dashboard", "Incentive", "₹"),
-    ("action", "AI Action Center", "AI Action", "➤"),
     ("training", "Training & Capability", "Training", "⚙"),
     ("reports", "Reports", "Reports", "▥"),
     ("dictionary", "Data Dictionary", "Dictionary", "☷"),
@@ -255,6 +255,8 @@ DARK_CSS = """
         letter-spacing: 0.08em; text-transform: uppercase; }
     .kpi-value { color: #f1f5f9; font-size: 1.10rem; font-weight: 700; margin: 4px 0; white-space: nowrap; }
     .kpi-sub { color: #64748b; font-size: 0.64rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .exec-kpi .kpi-value { font-size: .95rem; white-space: normal; line-height: 1.25; }
+    .exec-kpi .kpi-sub { white-space: normal; line-height: 1.3; overflow: visible; text-overflow: unset; }
     .badge-excellent { background:#065f46; color:#6ee7b7; padding:3px 10px;
         border-radius:20px; font-size:0.60rem; font-weight:600; }
     .badge-good { background:#78350f; color:#fcd34d; padding:3px 10px;
@@ -666,13 +668,18 @@ DARK_CSS = """
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px;
-        min-height: 84px;
+        min-height: 96px;
+        height: 100%;
         text-align: center;
         box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.20);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    .forecast-kpi-title { color:#a8bdd2; font-size:.58rem; font-weight:900; margin-bottom:6px; }
-    .forecast-kpi-value { color:#f8fafc; font-size:1.00rem; font-weight:900; line-height:1; }
-    .forecast-kpi-sub { font-size:.58rem; font-weight:900; margin-top:6px; }
+    .forecast-kpi-title { color:#a8bdd2; font-size:.58rem; font-weight:900; margin-bottom:6px; line-height:1.2; }
+    .forecast-kpi-value { color:#f8fafc; font-size:1.00rem; font-weight:900; line-height:1.15; }
+    .forecast-kpi-sub { font-size:.54rem; font-weight:800; margin-top:5px; line-height:1.35; }
+    .forecast-kpi-sub + .forecast-kpi-sub { margin-top:3px; }
     .wf-kpi-row-spacer { height: 48px !important; min-height: 48px !important; display: block !important; }
     .wf-chart-row-spacer { height: 32px !important; min-height: 32px !important; display: block !important; }
     .wf-row-divider {
@@ -722,12 +729,56 @@ DARK_CSS = """
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px;
-        min-height: 185px;
+        height: 228px;
+        overflow: hidden;
         box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.22);
     }
+    .exec-reco-panel {
+        background: linear-gradient(145deg, rgba(9, 25, 42, .96), rgba(5, 15, 27, .98));
+        border: 1px solid rgba(51, 92, 136, .58);
+        border-radius: 9px;
+        padding: 10px 11px 8px 11px;
+        height: 228px;
+        overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.22);
+    }
+    .exec-reco-scroll {
+        max-height: 148px;
+        overflow-y: auto;
+        margin-top: 4px;
+    }
+    .exec-plot-tight {
+        margin-bottom: -18px !important;
+    }
+    .exec-plot-tight [data-testid="stPlotlyChart"] {
+        margin-bottom: 0 !important;
+    }
+    .exec-section-title {
+        color:#e5f2ff; font-size:.78rem; font-weight:900;
+        text-transform:uppercase; letter-spacing:.05em; margin:6px 0 4px 0;
+    }
+    .exec-section-title-tight { margin-top: 4px !important; margin-bottom: 4px !important; }
     .exec-tile-title {
         color:#dbeafe; font-size:.68rem; font-weight:900;
         text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;
+    }
+    .exec-table-scroll {
+        max-height: 188px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-top: 2px;
+        padding-right: 4px;
+    }
+    .exec-table-scroll::-webkit-scrollbar { width: 6px; }
+    .exec-table-scroll::-webkit-scrollbar-thumb {
+        background: rgba(96, 165, 250, .45);
+        border-radius: 6px;
+    }
+    .exec-table-scroll thead th {
+        position: sticky;
+        top: 0;
+        background: #0b1a2e;
+        z-index: 1;
     }
     .exec-table { width:100%; border-collapse:collapse; color:#dbeafe; font-size:.64rem; }
     .exec-table th {
@@ -746,11 +797,7 @@ DARK_CSS = """
     .exec-reco {
         color:#dbeafe; font-size:.68rem; line-height:1.55; padding-left:15px; margin:0;
     }
-    .exec-reco li { margin-bottom:8px; }
-    .exec-section-title {
-        color:#e5f2ff; font-size:.78rem; font-weight:900;
-        text-transform:uppercase; letter-spacing:.05em; margin:12px 0 7px 0;
-    }
+    .exec-reco li { margin-bottom: 8px; }
     .exec-impact-card {
         background: rgba(8, 18, 31, .78);
         border: 1px solid rgba(51, 92, 136, .55);
@@ -783,6 +830,16 @@ def kpi_card(title: str, value: str, sub: str, score: float) -> str:
         <div class="kpi-sub">{sub}</div>
         <div style="margin-top:8px">{status_badge(score)}</div>
     </div>"""
+
+
+def exec_kpi_card(title: str, value: str, sub: str) -> str:
+    return (
+        f'<div class="kpi-card exec-kpi">'
+        f'<div class="kpi-title">{title}</div>'
+        f'<div class="kpi-value">{value}</div>'
+        f'<div class="kpi-sub">{sub}</div>'
+        f"</div>"
+    )
 
 
 def fmt_cr(val: float) -> str:
@@ -846,9 +903,9 @@ def build_division_yield_metrics(sales: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_workforce_plan_grid(
-    data: dict[str, pd.DataFrame], filters: dict, growth_pct: float
+    data: dict[str, pd.DataFrame], filters: dict, expansion_pct: float
 ) -> tuple[pd.DataFrame, dict[str, float], pd.DataFrame]:
-    """Region × division workforce capacity, hiring gap, and coaching signals."""
+    """Region × division field-sales capacity — hiring only beyond annual target uplift."""
     scoped = scoped_data_for_filters(
         data, filters["month"], filters["region"], filters["division"], filters["year"]
     )
@@ -863,9 +920,13 @@ def build_workforce_plan_grid(
         "Activity_Score", "Training_Score", "Forecast_Score",
         "Collection_Score", "SF_Hygiene_Score",
     ]
-    roster = scoped["employee"].merge(sc[score_cols], on="Employee_ID", how="left").fillna(0)
+    roster_all = scoped["employee"].merge(sc[score_cols], on="Employee_ID", how="left").fillna(0)
     tgt = scoped["target"].groupby("Employee_ID", as_index=False)["Target_Value"].sum()
-    roster = roster.merge(tgt, on="Employee_ID", how="left").fillna(0)
+    roster_all = roster_all.merge(tgt, on="Employee_ID", how="left").fillna(0)
+
+    roster = roster_all[roster_all["Designation"].isin(WORKFORCE_FIELD_ROLES)].copy()
+    if roster.empty:
+        roster = roster_all.copy()
 
     healthy = roster[roster["Performance_Tier"] == "Healthy"]
     if healthy.empty:
@@ -879,7 +940,8 @@ def build_workforce_plan_grid(
             bench[div] = 1.0
         bench[div] = max(bench[div], 1.0)
 
-    growth_factor = 1 + growth_pct / 100
+    uplift_factor = 1 + ANNUAL_TARGET_UPLIFT_PCT / 100
+    expansion_factor = 1 + expansion_pct / 100
     grid = roster.groupby(["Region", "Division"], as_index=False).agg(
         Headcount=("Employee_ID", "nunique"),
         Revenue=("Revenue", "sum"),
@@ -889,9 +951,10 @@ def build_workforce_plan_grid(
     )
     grid["Revenue_Per_Rep"] = grid["Revenue"] / grid["Headcount"].replace(0, np.nan)
     grid["Benchmark_Rev"] = grid["Division"].map(bench)
-    grid["Planned_Target"] = grid["Target"] * growth_factor
+    grid["Stretch_Capacity_Per_Rep"] = grid["Benchmark_Rev"] * uplift_factor
+    grid["Planned_Target"] = grid["Target"] * uplift_factor * expansion_factor
     grid["Required_HC"] = np.ceil(
-        grid["Planned_Target"] / grid["Benchmark_Rev"].replace(0, np.nan)
+        grid["Planned_Target"] / grid["Stretch_Capacity_Per_Rep"].replace(0, np.nan)
     ).fillna(0).astype(int)
     grid["HC_Gap"] = grid["Required_HC"] - grid["Headcount"]
     grid["Action"] = np.select(
@@ -908,6 +971,8 @@ def build_workforce_plan_grid(
         "hiring_gap": int(grid["HC_Gap"].clip(lower=0).sum()),
         "underperformers": int((roster["USEF_Score"] < 70).sum()),
         "focus_reps": int((roster["Performance_Tier"] == "Focus").sum()),
+        "expansion_pct": expansion_pct,
+        "uplift_pct": ANNUAL_TARGET_UPLIFT_PCT,
     }
     return grid, summary, roster
 
@@ -2962,30 +3027,41 @@ def render_executive_business_insight(data, filters):
         100,
     )
 
-    def insight_kpi(title: str, value: str, sub: str, mood: str = "up") -> str:
-        cls = {"up": "cust-up", "down": "cust-down", "neutral": "cust-neutral"}.get(mood, "cust-up")
-        return f"""
-        <div class="forecast-kpi-card">
-            <div class="forecast-kpi-title">{title}</div>
-            <div class="forecast-kpi-value">{value}</div>
-            <div class="forecast-kpi-sub {cls}">{sub}</div>
-        </div>
-        """
-
-    kpis = [
-        ("Revenue Leakage", fmt_cr(revenue_leakage), "▲ " + fmt_cr(max(revenue_leakage * 0.12, 1)), "up"),
-        ("GP Reducing", fmt_cr(gp_reducing), "▼ " + fmt_cr(max(gp_reducing * 0.08, 1)), "down"),
-        ("Low Margin Products", f"{low_margin_products}", "▲ 3", "up"),
-        ("Collection Risk", fmt_cr(collection_risk), "▲ " + fmt_cr(max(collection_risk * 0.10, 1)), "up"),
-        ("Target Risk", fmt_cr(target_gap), "▼ " + fmt_cr(max(target_gap * 0.20, 1)), "down"),
-        ("AI Confidence", f"{ai_confidence:.0f}%", "High" if ai_confidence >= 80 else "Watch", "up" if ai_confidence >= 80 else "neutral"),
+    exec_kpis = [
+        exec_kpi_card(
+            "Revenue Leakage",
+            f"{fmt_cr(revenue_leakage)} · {company['avg_discount']:.1f}%",
+            "▲ " + fmt_cr(max(revenue_leakage * 0.12, 1)) + " leakage trend",
+        ),
+        exec_kpi_card(
+            "GP Margin",
+            f"{company['gp_pct']:.1f}% · {fmt_cr(gp_reducing)}",
+            "▼ " + fmt_cr(max(gp_reducing * 0.08, 1)) + " margin gap",
+        ),
+        exec_kpi_card(
+            "Low Margin Products",
+            str(low_margin_products),
+            "Below 12% GP · ▲ 3 vs prior cycle",
+        ),
+        exec_kpi_card(
+            "Collection Risk",
+            f"{fmt_cr(collection_risk)} · {100 - company['collection_pct']:.1f}%",
+            "▲ " + fmt_cr(max(collection_risk * 0.10, 1)) + " exposure",
+        ),
+        exec_kpi_card(
+            "Target Risk",
+            f"{fmt_cr(target_gap)} · {100 - min(company['ach_pct'], 100):.1f}%",
+            "▼ " + fmt_cr(max(target_gap * 0.20, 1)) + " revenue gap",
+        ),
+        exec_kpi_card(
+            "AI Confidence",
+            f"{ai_confidence:.0f}%",
+            "High" if ai_confidence >= 80 else "Watch",
+        ),
     ]
-    for col, (title, value, sub, mood) in zip(st.columns(6, gap="small"), kpis):
-        with col:
-            st.markdown(insight_kpi(title, value, sub, mood), unsafe_allow_html=True)
+    st.markdown(f'<div class="kpi-grid">{"".join(exec_kpis)}</div>', unsafe_allow_html=True)
 
-    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns([1.15, 1.15, 1.15], gap="small")
+    c1, c2, c3 = st.columns(3, gap="small")
     with c1:
         losing = cust_sc.copy()
         losing["Margin_Drop_Pct"] = (losing["GP_Pct"] - target_gp).round(1)
@@ -2993,7 +3069,7 @@ def render_executive_business_insight(data, filters):
         losing = losing.sort_values(["Margin_Drop_Value", "Discount_Pct"], ascending=False).head(20)
         rows = []
         max_drop = max(float(losing["Margin_Drop_Value"].max()), 1)
-        for _, row in losing.head(6).iterrows():
+        for _, row in losing.iterrows():
             bar_width = max(12, min(95, row["Margin_Drop_Value"] / max_drop * 95))
             rows.append(
                 f"<tr><td>{str(row['Customer_Name'])[:22]}</td>"
@@ -3002,15 +3078,10 @@ def render_executive_business_insight(data, filters):
                 f"<td>-{fmt_lakh(float(row['Margin_Drop_Value'])).replace('₹ ', '')}</td></tr>"
             )
         st.markdown(
-            f"""
-            <div class="exec-tile">
-                <div class="exec-tile-title">Top 20 Customers Losing Margin</div>
-                <table class="exec-table">
-                    <thead><tr><th>Customer</th><th>Margin Drop %</th><th></th><th>Margin Drop (₹)</th></tr></thead>
-                    <tbody>{''.join(rows)}</tbody>
-                </table>
-            </div>
-            """,
+            '<div class="exec-tile"><div class="exec-tile-title">Top 20 Customers Losing Margin</div>'
+            '<div class="exec-table-scroll"><table class="exec-table">'
+            '<thead><tr><th>Customer</th><th>Margin Drop %</th><th></th><th>Margin Drop (₹)</th></tr></thead>'
+            f"<tbody>{''.join(rows)}</tbody></table></div></div>",
             unsafe_allow_html=True,
         )
     with c2:
@@ -3022,11 +3093,16 @@ def render_executive_business_insight(data, filters):
             x="Margin_Drop_Pct",
             y="Product_Name",
             orientation="h",
-            title="Products With Margin Drop",
             color_discrete_sequence=["#ef4444"],
         )
-        fig.update_layout(height=205, yaxis_title=None, xaxis_title="Margin Drop %", margin=dict(l=10, r=8, t=38, b=28))
-        st.plotly_chart(apply_dark(fig), use_container_width=True)
+        fig.update_layout(
+            title=dict(text="Products With Margin Drop", font=dict(size=11, color="#dbeafe"), x=0, xanchor="left"),
+            height=188,
+            yaxis_title=None,
+            xaxis_title="Margin Drop %",
+            margin=dict(l=10, r=8, t=30, b=20),
+        )
+        st.plotly_chart(apply_dark(fig), use_container_width=True, config={"displayModeBar": False})
     with c3:
         low_margin_product = product_margin.sort_values("GP_Pct").iloc[0]
         high_margin_product = product_margin.sort_values(["GP_Pct", "Revenue"], ascending=False).iloc[0]
@@ -3036,22 +3112,39 @@ def render_executive_business_insight(data, filters):
             Discount_Pct=("Discount_Pct", "mean"),
             Revenue=("Revenue", "sum"),
         ).sort_values(["Discount_Pct", "Revenue"], ascending=[False, False]).iloc[0]
-        recs = [
-            f"Increase price for {low_margin_product['Product_Name']} where GP is {low_margin_product['GP_Pct']:.1f}%",
-            f"Upsell {high_margin_product['Product_Name']} to {top_upsell_customer['Customer_Name']}",
-            f"Reduce discount on {discount_focus['Product_Name']} in {discount_focus['Region']} ({discount_focus['Discount_Pct']:.1f}% avg discount)",
-            f"Focus collection on {collection_customer['Customer_Name']} ({collection_customer['Collection_Pct']:.1f}% collected)",
-            f"Recover {fmt_cr(max(collection_risk, revenue_leakage))} from pending invoices",
+        best_division = sales.groupby("Division", as_index=False).agg(
+            Revenue=("Revenue", "sum"),
+            GP_Pct=("GP_Pct", "mean"),
+        ).sort_values(["GP_Pct", "Revenue"], ascending=False).iloc[0]
+        rec_items = [
+            {"category": "Pricing", "text": f"Increase price 3-5% on {low_margin_product['Product_Name']} where GP is {low_margin_product['GP_Pct']:.1f}%"},
+            {"category": "Upsell", "text": f"Upsell {high_margin_product['Product_Name']} to {top_upsell_customer['Customer_Name']}"},
+            {"category": "Discount", "text": f"Reduce discount on {discount_focus['Product_Name']} in {discount_focus['Region']} ({discount_focus['Discount_Pct']:.1f}% avg discount)"},
+            {"category": "Collection", "text": f"Deploy collection task force for {collection_customer['Customer_Name']} ({collection_customer['Collection_Pct']:.1f}% collected)"},
+            {"category": "Division", "text": f"Shift focus to {best_division['Division']} - highest GP division at {best_division['GP_Pct']:.1f}%"},
+            {"category": "Recovery", "text": f"Recover {fmt_cr(max(collection_risk, revenue_leakage))} from pending invoices"},
         ]
+        st.markdown('<div class="exec-tile-title">AI Recommendations</div>', unsafe_allow_html=True)
+        rec_filter = st.selectbox(
+            "Focus area",
+            ["All", "Pricing", "Upsell", "Discount", "Collection", "Division", "Recovery"],
+            key="executive_ai_rec_filter",
+        )
+        filtered_recs = rec_items if rec_filter == "All" else [r for r in rec_items if r["category"] == rec_filter]
+        reco_html = "".join(f"<li><b>{item['category']}:</b> {item['text']}</li>" for item in filtered_recs)
+        if not reco_html:
+            reco_html = "<li>No recommendations for this filter.</li>"
         st.markdown(
-            f"""
-            <div class="exec-tile">
-                <div class="exec-tile-title">AI Recommendations</div>
-                <ul class="exec-reco">{''.join([f'<li>{r}</li>' for r in recs])}</ul>
-            </div>
-            """,
+            f'<div class="exec-reco-panel" style="height:156px;padding-top:4px;">'
+            f'<div class="exec-reco-scroll" style="max-height:148px;"><ul class="exec-reco">{reco_html}</ul></div></div>',
             unsafe_allow_html=True,
         )
+
+    st.markdown('<div class="exec-section-title exec-section-title-tight">Product GP %</div>', unsafe_allow_html=True)
+    gp_plot = product_margin.nlargest(10, "Revenue")
+    fig = px.bar(gp_plot, x="Product_Name", y="GP_Pct", color_discrete_sequence=["#38bdf8"])
+    fig.update_layout(height=235, xaxis_title=None, yaxis_title="GP %", margin=dict(l=10, r=8, t=8, b=32))
+    st.plotly_chart(apply_dark(fig), use_container_width=True, config={"displayModeBar": False})
 
     emp_sc = build_employee_scorecard(data, month, year)
     if region != "All":
@@ -3311,20 +3404,31 @@ def render_executive_business_insight(data, filters):
 
 
 def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
-    st.caption("Aramex India sales workforce — capacity, hiring gap & coaching priority by region and division")
-    growth_pct = st.slider(
-        "Planned revenue / target growth for next cycle (%)",
-        min_value=0, max_value=25, value=12, step=1,
-        key="wf_growth_pct",
+    st.caption(
+        "Field sales reps only (Sales Executive) — managers & leaders excluded from quota / hiring math. "
+        f"Built-in {ANNUAL_TARGET_UPLIFT_PCT:.0f}% annual target uplift is assigned to existing reps."
     )
-    grid, summary, roster = build_workforce_plan_grid(data, filters, growth_pct)
+    expansion_pct = st.slider(
+        "Expansion growth beyond annual 12% target uplift (%)",
+        min_value=0, max_value=20, value=0, step=1,
+        help="Normal 10–12% next-year target increase on existing reps does not trigger hiring. "
+        "Use this only for new markets, divisions, or growth above the annual uplift.",
+        key="wf_expansion_pct",
+    )
+    grid, summary, roster = build_workforce_plan_grid(data, filters, expansion_pct)
     coaching_roster = build_coaching_intervention_roster(roster)
     summary["coach_priority"] = len(coaching_roster)
 
     st.info(
-        "**USEF score ≠ Achievement %.** A rep can hit **85–95% target** but still need coaching if "
-        "**training, activity, collection, CRM hygiene or forecast accuracy** pull the composite USEF down. "
-        "**Focus Tier** = HR-designated development reps (5 in base roster) — linked to the coaching table below."
+        f"**Practical hiring rule:** Each existing **Sales Executive** gets **+{ANNUAL_TARGET_UPLIFT_PCT:.0f}%** "
+        "target next year on the same headcount. **Hiring gap appears only** when expansion ambition exceeds "
+        "what the current bench can carry at benchmark productivity — or when the team is already under-staffed. "
+        "**Managers / directors are not in target or hiring calculations.**"
+    )
+
+    st.caption(
+        "**USEF score ≠ Achievement %.** A rep can hit 85–95% target but still need coaching if "
+        "training, activity, collection, CRM hygiene or forecast accuracy pull USEF down."
     )
 
     def wf_kpi(title: str, value: str, sub: str) -> str:
@@ -3337,9 +3441,13 @@ def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
         """
 
     kpis = [
-        wf_kpi("Current Headcount", str(summary["total_hc"]), "Active sales reps"),
-        wf_kpi("Revenue / Rep", fmt_lakh(summary["rev_per_rep"]), "Productivity"),
-        wf_kpi("Hiring Gap", str(summary["hiring_gap"]), f"At {growth_pct}% growth plan"),
+        wf_kpi("Current Headcount", str(summary["total_hc"]), "Sales Executive reps only"),
+        wf_kpi("Revenue / Rep", fmt_lakh(summary["rev_per_rep"]), "Field sales productivity"),
+        wf_kpi(
+            "Hiring Gap",
+            str(summary["hiring_gap"]),
+            f"+{expansion_pct}% beyond {ANNUAL_TARGET_UPLIFT_PCT:.0f}% uplift" if expansion_pct else "No expansion — uplift only",
+        ),
         wf_kpi("Coach Priority", str(summary["coach_priority"]), "Linked to coaching table"),
         wf_kpi("Focus Tier", str(summary["focus_reps"]), "HR development tier reps"),
         wf_kpi("USEF Below 70", str(summary["underperformers"]), "Composite score only"),
@@ -3440,9 +3548,14 @@ def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
 
     role_col, bench_col = st.columns(2, gap="small")
     with role_col:
-        role_mix = roster.groupby(["Division", "Designation"], as_index=False).size()
+        emp_roles = data["employee"].copy()
+        if filters["region"] != "All":
+            emp_roles = emp_roles[emp_roles["Region"] == filters["region"]]
+        if filters["division"] != "All":
+            emp_roles = emp_roles[emp_roles["Division"] == filters["division"]]
+        role_mix = emp_roles.groupby(["Division", "Designation"], as_index=False).size()
         role_mix = role_mix.pivot(index="Division", columns="Designation", values="size").fillna(0).astype(int)
-        st.markdown('<div class="emp-tile-title">Role Mix by Division</div>', unsafe_allow_html=True)
+        st.markdown('<div class="emp-tile-title">Role Mix by Division (all roles)</div>', unsafe_allow_html=True)
         st.dataframe(role_mix.reset_index(), hide_index=True, use_container_width=True, height=220)
     with bench_col:
         bench_rows = coaching_roster.head(8)[
@@ -4976,15 +5089,6 @@ def render_forecast_scenarios_body(data, filters):
             st.plotly_chart(fig, use_container_width=True)
 
 
-def render_forecast_scenarios(data, filters):
-    st.markdown('<div class="page-header">Forecast Scenarios</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="page-sub">Multi-model forecasting for management — monthly, govt scheme, weighted, seasonal and product mix</div>',
-        unsafe_allow_html=True,
-    )
-    render_forecast_scenarios_body(data, filters)
-
-
 def render_incentive(data, filters):
     st.markdown('<div class="page-header">Incentive Dashboard</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-sub">Real-time earnings visibility for sales reps</div>', unsafe_allow_html=True)
@@ -5033,58 +5137,6 @@ def render_incentive(data, filters):
     lb["Pipeline_X"] = lb["Pipeline_X"].map(lambda x: f"{x:.1f}x")
     lb["Target_Ach_Pct"] = lb["Target_Ach_Pct"].map(lambda x: f"{x:.1f}%")
     st.dataframe(lb, hide_index=True, use_container_width=True)
-
-
-def render_action_center(data, filters):
-    st.markdown('<div class="page-header">AI Action Center</div>', unsafe_allow_html=True)
-    company = build_company_scorecard(data, filters["month"], filters["region"], filters["division"])
-    scoped = scoped_data_for_filters(data, filters["month"], filters["region"], filters["division"], filters["year"])
-    sales = scoped["sales"].copy()
-    sales["GP_Pct"] = np.where(sales["Revenue"] > 0, sales["Margin"] / sales["Revenue"] * 100, 0)
-    cust_sc = build_customer_scorecard(data, filters["month"], filters["year"])
-    if filters["region"] != "All":
-        cust_sc = cust_sc[cust_sc["Region"] == filters["region"]]
-    if filters["division"] != "All":
-        cust_sc = cust_sc[cust_sc["Customer_ID"].isin(sales["Customer_ID"].unique())]
-
-    m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Revenue Leakage (Disc)", f"{company['avg_discount']:.1f}%")
-    m2.metric("GP %", f"{company['gp_pct']:.1f}%")
-    m3.metric("Collection Risk", f"{100 - company['collection_pct']:.1f}%")
-    m4.metric("Target Risk", f"{100 - min(company['ach_pct'], 100):.1f}%")
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.subheader("Customers Losing Margin")
-        losing = cust_sc.nlargest(15, "Discount_Pct")[["Customer_Name", "GP_Pct", "Discount_Pct", "Revenue"]]
-        st.dataframe(losing, hide_index=True, use_container_width=True)
-    with c2:
-        prod_margin = sales.groupby("Product_Name", as_index=False).agg(Revenue=("Revenue", "sum"), GP=("GP_Pct", "mean"))
-        fig = px.bar(prod_margin.nlargest(10, "Revenue"), x="Product_Name", y="GP", title="Product GP %")
-        st.plotly_chart(apply_dark(fig), use_container_width=True)
-
-    st.subheader("AI Strategic Recommendations")
-    low_gp_product = prod_margin.sort_values("GP").iloc[0]
-    high_gp_product = prod_margin.sort_values(["GP", "Revenue"], ascending=False).iloc[0]
-    collection_customer = cust_sc.sort_values(["Collection_Pct", "Revenue"], ascending=[True, False]).iloc[0]
-    upsell_customer = cust_sc.nlargest(1, "Upsell_Potential").iloc[0]
-    high_discount = sales.groupby(["Region", "Product_Name"], as_index=False).agg(
-        Discount_Pct=("Discount_Pct", "mean"),
-        Revenue=("Revenue", "sum"),
-    ).sort_values(["Discount_Pct", "Revenue"], ascending=[False, False]).iloc[0]
-    best_division = sales.groupby("Division", as_index=False).agg(
-        Revenue=("Revenue", "sum"),
-        GP_Pct=("GP_Pct", "mean"),
-    ).sort_values(["GP_Pct", "Revenue"], ascending=False).iloc[0]
-    recs = [
-        f"Increase price 3-5% on {low_gp_product['Product_Name']} where GP is {low_gp_product['GP']:.1f}%",
-        f"Deploy collection task force for {collection_customer['Customer_Name']} ({collection_customer['Collection_Pct']:.1f}% collected)",
-        f"Shift focus to {best_division['Division']} - highest GP division at {best_division['GP_Pct']:.1f}%",
-        f"Launch cross-sell campaign: {high_gp_product['Product_Name']} to {upsell_customer['Customer_Name']}",
-        f"Reduce discount approvals for {high_discount['Product_Name']} in {high_discount['Region']} ({high_discount['Discount_Pct']:.1f}% avg discount)",
-    ]
-    for i, r in enumerate(recs, 1):
-        st.markdown(f"{i}. {r}")
 
 
 def render_training_capability(data, filters):
@@ -5206,12 +5258,364 @@ def render_data_dictionary(data, filters):
         st.dataframe(dictionary, hide_index=True, use_container_width=True)
     with c2:
         st.subheader("Scorecard Logic")
-        st.markdown("""
-        - **Employee USEF Score** combines sales, collection, activity, target, forecast, training, SF hygiene and GP.
-        - **Customer Health Score** combines revenue quality, collection, margin, discount control and pipeline.
-        - **Company Health** uses achievement, collection, team health, GP and weighted pipeline.
-        - This model can be reused for other industries by replacing source CSVs with the same column structure.
-        """)
+        st.markdown(
+            """
+            - **Employee USEF Score** combines sales, collection, activity, target, forecast, training, SF hygiene and GP.
+            - **Customer Health Score** combines revenue quality, collection, margin, discount control and pipeline.
+            - **Company Health** uses achievement, collection, team health, GP and weighted pipeline.
+            - This model can be reused for other industries by replacing source CSVs with the same column structure.
+            """
+        )
+
+        st.markdown("### Detailed Formulas & Current Logic (USEF Dashboard)")
+
+        with st.expander("Employee USEF score — `build_employee_scorecard()`"):
+            st.markdown(
+                """
+**KPI Weights (final USEF)**
+`USEF_Score =
+Sales_Score*0.30
++ Collection_Score*0.18
++ Activity_Score*0.12
++ Target_Score*0.15
++ Forecast_Score*0.08
++ Training_Score*0.05
++ SF_Hygiene_Score*0.07
++ GP_Score*0.05`**
+
+---
+**Pre-scores**
+1) Sales score components (`compute_sales_scores`)
+- `Revenue_Score = clip( Revenue / max(Revenue) * 100, 0..100 )`
+- `GP_Pct = (Margin/Revenue)*100` (0 if `Revenue==0`)
+- `GP_Score = clip( GP_Pct / max(GP_Pct) * 100, 0..100 )`
+- `Discount_Score = clip( (1 - Discount_Pct/max(Discount_Pct))*100, 0..100 )`
+- `Sales_Score_raw = Revenue_Score*0.40 + GP_Score*0.35 + Discount_Score*0.25`
+
+2) Collection score components (`compute_collection_scores`)
+- `Collection_Pct = clip( Payment_Value / Invoice_Value * 100, 0..100 )` (0 if `Invoice_Value==0`)
+- `Collection_Score = Collection_Pct` (already clipped)
+
+3) Activity score components (`compute_activity_scores`)
+- `Calls_Ach = Actual_Calls/Planned_Calls*100` (0 if `Planned_Calls==0`)
+- `Meetings_Ach = Actual_Meetings/Planned_Meetings*100` (0 if `Planned_Meetings==0`)
+- `Visits_Ach = Actual_Visits/Planned_Visits*100` (0 if `Planned_Visits==0`)
+- `Activity_Score = clip( Calls_Ach*0.40 + Meetings_Ach*0.30 + Visits_Ach*0.30, 0..100 )`
+- `SF_Hygiene_Score = clip(SF_Hygiene_Score, 0..100)`
+
+4) Target score components (`compute_target_scores`)
+- `Target_Ach_Pct = Revenue/Target_Value*100` (0 if `Target_Value==0`)
+- `Target_Score = clip(Target_Ach_Pct, 0..110)`
+
+5) Forecast score components (`compute_forecast_scores`)
+- `Forecast_Error = abs(Revenue - Forecast_Value)/Forecast_Value*100` (100 if `Forecast_Value==0`)
+- `Forecast_Score = clip(100 - Forecast_Error, 0..100)`
+
+6) Training score components (`compute_training_scores`)
+- `Training_Score = mean(Completion_Pct)` per employee
+
+---
+**Final employee sub-scores inside `build_employee_scorecard()`**
+- `GP_Score = clip( GP_Pct / max(GP_Pct) * 100, 0..100 )`
+- `Discount_Control_Score = clip( 100 - Discount_Pct*7, 0..100 )`
+- `Achievement_Score = clip( Target_Ach_Pct/110 * 100, 0..100 )`
+- `Sales_Score_final = Achievement_Score*0.50 + GP_Score*0.30 + Discount_Control_Score*0.20`
+
+---
+**Priority bucket**
+`bins=[0,55,70,85,100] → [Critical, High, Medium, Low]`
+
+**AI remarks triggers (`_ai_remarks`)**
+- `Target_Ach_Pct < 85`
+- `Collection_Score < 85`
+- `SF_Hygiene_Score < 75`
+- `Discount_Pct > 8`
+- `Activity_Score < 75`
+- `Forecast_Score < 70`
+- `Training_Score < 80`
+- `USEF_Score >= 85` (mentor/upsell remark)
+            """
+            )
+
+        with st.expander("Customer Health score — `build_customer_scorecard()`"):
+            st.markdown(
+                """
+**Collection inputs**
+- Uses `compute_collection_scores`:
+  `Collection_Pct = Payment_Value/Invoice_Value*100` (0 if `Invoice_Value==0`), clipped 0..100
+
+---
+**Customer components**
+Let `Revenue`, `GP_Pct`, `Discount_Pct`, `Collection_Pct`, and `Weighted_Pipeline` be computed from the selected period.
+
+1) `revenue_score = clip( Revenue / quantile(Revenue, 0.85) * 100, 0..100 )`
+2) `margin_score  = clip( GP_Pct / 18 * 100, 0..100 )`
+3) `collection_score = clip(Collection_Pct, 0..100)`
+4) `discount_score = clip( (100 - Discount_Pct*6), 0..100 )`
+5) `pipeline_score = clip( Weighted_Pipeline / (quantile(Weighted_Pipeline, 0.85) or 1) * 100, 0..100 )`
+
+**Customer Health Score**
+`Health_Score =
+revenue_score*0.20
++ margin_score*0.25
++ collection_score*0.30
++ discount_score*0.15
++ pipeline_score*0.10`
+
+---
+**Churn Risk**
+- `High` if `(Collection_Pct < 72) OR (Segment == "Risk") OR (Health_Score < 60)`
+- else `Medium` if `Health_Score < 75`
+- else `Low`
+
+---
+**Upsell Potential**
+- `Upsell_Potential = Weighted_Pipeline*0.3` if `(Health_Score >= 60) AND (Weighted_Pipeline > 0)`
+- else `0`
+                """
+            )
+
+        with st.expander("Company Health — `build_company_scorecard()`"):
+            st.markdown(
+                """
+**Computed measures (selected month/region/division)**
+- `revenue = sum(Revenue)`
+- `margin = sum(Margin)`
+- `gp_pct = margin/revenue*100`
+- `target = sum(Target_Value)`
+- `ach_pct = revenue/target*100`
+- `collection_pct = sum(Payment_Value)/sum(Invoice_Value)*100`
+- `pipeline = sum(Deal_Size)` for open opportunities only (`Stage` not in `Closed Won/Closed Lost`)
+- `weighted_pipeline = sum(Weighted_Value)` for open opportunities only
+- `team_health = mean(Employee USEF_Score)` over employee scope
+- `avg_discount = mean(Discount_Pct)` over sales rows
+                """
+            )
+
+        with st.expander("Forecast reconciliation + accuracy — Forecast War Room"):
+            st.markdown(
+                """
+**Reconciliation trigger**
+- If total revenue vs total forecast ratio is outside `0.75..1.35`, forecast CSV is rebuilt.
+
+**Forecast rebuild (per row)**
+- `base = Revenue if Revenue>0 else Forecast_Value`
+- `h = abs(hash(Employee_ID+Month+Year)) % 1000 / 1000`
+- `bias = (-0.05 + h*0.13)` if `Performance_Tier=="Healthy"` else `(-0.10 + h*0.13)`
+- `Forecast_Value = round( base*(1+bias), 0 )`
+- `Forecast_Low  = round( Forecast_Value*(0.88 + h*0.06), 0 )`
+- `Forecast_High = round( Forecast_Value*(1.06 + h*0.08), 0 )`
+
+**Accuracy shown in UI (`render_forecast`)**
+For each month row after merging Revenue and Forecast:
+- `Accuracy = clip( (1 - abs(Revenue - Forecast)/Forecast)*100, 0..100 )`
+(`Forecast==0` treated as NaN then filled to 0.)
+                """
+            )
+
+        with st.expander("Incentives — `compute_incentives()`"):
+            st.markdown(
+                """
+**INCENTIVE_SLABS**
+- `(0..80): 0.000`
+- `(80..90): 0.015`
+- `(90..100): 0.025`
+- `(100..110): 0.035`
+- `(110..999): 0.050`
+(`Commission_Rate` is in fraction form; later divided by 100.)
+
+**Steps**
+1) Per employee in selected month/year:
+- compute `Collection_Pct` (from invoices) using `compute_collection_scores`
+- `GP_Pct = Margin/Revenue*100` (0 if Revenue==0)
+- `Target_Ach_Pct = Revenue/Target_Value*100` (0 if Target_Value==0)
+
+2) `Commission_Rate = slab_rate(Target_Ach_Pct)`
+
+3) Earnings:
+- `Base_Incentive = Revenue * Commission_Rate / 100`
+- `Collection_Bonus = Revenue*0.005` if `Collection_Pct >= 90`, else 0
+- `GP_Bonus = Margin*0.01` if `GP_Pct >= 15`, else 0
+- `Total_Incentive = Base_Incentive + Collection_Bonus + GP_Bonus`
+
+4) Extra fields used in remarks:
+- `Target_Gap = max(Target_Value - Revenue, 0)`
+- `Pipeline_X = Open_Pipeline/Target_Value` if `Target_Value>0` else 0
+                """
+            )
+
+        with st.expander("Coaching / Workforce logic — `build_coaching_intervention_roster()`"):
+            st.markdown(
+                """
+**Coaching intervention reasons (`_coaching_intervention_reasons`)**
+Add reasons when thresholds are violated:
+- `USEF_Score < 70`
+- `Performance_Tier == "Focus"`
+- `Training_Score < 70`
+- `Activity_Score < 75`
+- `Collection_Score < 80`
+- `SF_Hygiene_Score < 75`
+- `Forecast_Score < 70`
+- else: `"Relative lowest USEF in team"`
+
+**Coaching bench selection**
+Flagged if any:
+- `USEF_Score < 70`
+- `Performance_Tier == "Focus"`
+- `Training_Score < 70`
+- `Activity_Score < 75`
+- `Collection_Score < 80`
+
+If nothing is flagged, it takes the 5 lowest USEF employees.
+                """
+            )
+
+        with st.expander("Yield & Rate per unit — `build_division_yield_metrics()`"):
+            st.markdown(
+                """
+**Unit count estimation (`enrich_sales_unit_counts`)**
+If `Unit_Count` is missing, it is estimated per invoice using a deterministic hash:
+- `h = abs(hash(Invoice_No)) % 1000 / 1000`
+
+Express:
+- `rate = 155 + h*240`
+- `Unit_Count = max(1, round(Revenue/rate))`
+
+Freight Forward:
+- `Unit_Count = 1` if `h < 0.65` else `2`
+
+Logistics:
+- `rate = 14000 + h*38000`
+- `Unit_Count = max(1, round(Revenue/rate))`
+
+**Yield & Rate**
+Aggregate by Division:
+- `Rate_Per_Unit = Revenue / Units`
+- `Yield_Per_Unit = Margin / Units`
+- `GP_Pct = Margin/Revenue*100`
+                """
+            )
+
+        with st.expander("Customer 360 risk math — GP/Collection alerts, Watchlist & Action Hub"):
+            st.markdown(
+                """
+**Action Hub KPIs**
+- `Margin at Risk (GP) =
+  sum(Revenue * (target_gp - GP_Pct)/100)`, for accounts where `GP_Pct < target_gp`
+- `Collection Gap =
+  sum(Revenue * (100 - Collection_Pct)/100)`, for accounts where `Collection_Pct < 75`
+
+**GP Alert Customers (`build_customer_gp_alerts`)**
+1) Filter: `GP_Pct < target_gp`
+2) `Exposure = (Revenue * (target_gp - GP_Pct) / 100).clip(lower=0)`
+3) Return top `nlargest(top_n, Exposure)`
+
+**Collection Alert Customers (`build_customer_collection_alerts`)**
+1) Filter: `Collection_Pct < threshold` (default 75)
+2) `Exposure = (Revenue * (100 - Collection_Pct) / 100).clip(lower=0)`
+3) Return top `nlargest(top_n, Exposure)`
+
+**Product Mix Risk (`build_customer_mix_risk`)**
+1) Compute product revenue share per customer:
+   - `Share_Pct = product_revenue / customer_total_revenue * 100`
+2) Keep each customer’s *largest-share* product (the “lead” product).
+3) Risk if `Share_Pct >= threshold` (default 65).
+4) Return top by customer revenue: `nlargest(top_n, Customer_Revenue)`
+
+**Management Priority Watchlist (`build_customer_watchlist`)**
+`Action_Score =
+ (target_gp - GP_Pct).clip(0)*3.5
+ + (75 - Collection_Pct).clip(0)*0.6
+ + (100 - Health_Score).clip(0)*0.4
+ + (Churn_Risk=="High")*15
+ + (Churn_Risk=="Medium")*8`
+
+Selection:
+- Prefer `nlargest(top_n, Action_Score)`
+- If empty / Action_Score <= 0 → fallback to `nsmallest(top_n, Health_Score)`
+
+Primary issue & recommended action (rule logic):
+- `Primary_Issue` lists up to 3 signals among: `GP`, `Collection`, `Churn`, `Health`
+- `Recommended_Action` is picked by first matching rule:
+  - Collection_Pct < 75 → “Collection call + payment plan”
+  - GP_Pct < target_gp → “Pricing / discount review”
+  - Churn_Risk == High → “Retention review with KAM”
+  - Upsell_Potential > 0 → “Upsell qualified pipeline”
+  - else → “Quarterly account review”
+                """
+            )
+
+        with st.expander("Workforce Planning — `build_workforce_plan_grid()`"):
+            st.markdown(
+                f"""
+**Scope**
+- **Field sales only:** `Designation in {WORKFORCE_FIELD_ROLES}` — managers, regional directors, VP excluded from target & hiring
+- Built-in annual uplift: **{ANNUAL_TARGET_UPLIFT_PCT:.0f}%** on existing reps (does not drive hiring by itself)
+
+**Inputs**
+- `uplift_factor = 1 + {ANNUAL_TARGET_UPLIFT_PCT}/100`
+- `expansion_factor = 1 + expansion_pct/100`  (slider — growth **beyond** annual uplift)
+
+**Bench / productivity**
+- Healthy `Sales Executive` reps only per division:
+  - `bench[div] = max(1.0, quantile(Healthy_Revenue, 0.75))`
+- `Stretch_Capacity_Per_Rep = bench[div] × uplift_factor`
+
+**Grid (Region × Division)**
+- `Headcount`, `Revenue`, `Target` = sums for **Sales Executives only**
+- `Planned_Target = Target × uplift_factor × expansion_factor`
+- `Required_HC = ceil(Planned_Target / Stretch_Capacity_Per_Rep)`
+- `HC_Gap = Required_HC − Headcount`
+
+When `expansion_pct = 0`: hiring gap reflects **structural under-staffing only**, not the normal 12% target rollover.
+
+**Action rule**
+- `HC_Gap > 0` → Hire
+- `Avg_USEF < 65` → Coach First
+- else → Maintain
+                """
+            )
+
+        with st.expander("Customer Complaints & Escalations — complaint tracker"):
+            st.markdown(
+                """
+This section uses `build_customer_complaint_tracker(cust_sc)` derived from the customer scorecard.
+
+**Complaint type**
+- `Billing / Collection Complaint` if `Collection_Pct < 70`
+- `Retention / Service Escalation` if `Churn_Risk == "High"`
+- `Pricing / Commercial Complaint` if `GP_Pct < 12`
+- `Account Experience Complaint` if `Health_Score < 60`
+- else `General Service Follow-up`
+
+**Complaint score**
+`Complaint_Score =
+(75 - Collection_Pct).clip(0)*1.3
++ (14 - GP_Pct).clip(0)*3.2
++ (100 - Health_Score).clip(0)*0.55
++ (Churn_Risk=="High")*18
++ (Churn_Risk=="Medium")*8`
+
+**Open days & deterministic age**
+- `Customer_Key = sum(ord(ch) for ch in Customer_ID as string)`
+- `Open_Days = 2 + (Customer_Key % 12)`
+
+**Severity / status**
+- `Severity = High` if `Complaint_Score >= 55`
+- `Severity = Medium` if `Complaint_Score >= 30`
+- else `Low`
+
+- `Status = Escalated` if `Severity==High`
+- `Status = In Review` if `Severity==Medium`
+- else `Open`
+
+**Owner**
+- if complaint type contains `Collection|Billing` → `Collections Lead`
+- else if contains `Pricing|Commercial` → `Sales Manager`
+- else → `KAM / Customer Success`
+                """
+            )
+
 
 
 def _github_config_from_secrets() -> dict[str, str]:
@@ -5460,7 +5864,7 @@ def main():
             st.session_state.data = generate_all_data(force=True)
             st.session_state.data_version = DATA_VERSION
             st.rerun()
-        st.caption("BUILD: Command Center Fix")
+        st.caption("BUILD: Workforce Practical v3")
 
     months = ["All"] + sorted(data["sales"]["Month"].unique(), key=lambda x: pd.to_datetime(x, format="%b").month)
     years = sorted(data["sales"]["Year"].unique())
@@ -5473,10 +5877,8 @@ def main():
         "employee": "Employee scorecard, coaching signals and sales activity",
         "customer": "Customer health, risk alerts, watchlist and upsell actions",
         "pipeline": "Pipeline quality, deal risk and close focus",
-        "forecast": "Forecast accuracy, scenario planning and seasonality",
-        "forecast_scenarios": "Multi-model forecast — monthly, govt scheme, weighted, seasonal, product mix",
+        "forecast": "Forecast accuracy, governance gaps and multi-model scenario planning",
         "incentive": "Sales incentive earnings and improvement remarks",
-        "action": "Management actions, risk priorities and growth focus",
         "training": "Training completion, capability gaps and coaching queue",
         "reports": "Downloadable management packs and scorecard exports",
         "dictionary": "Universal source tables, fields and scorecard logic",
@@ -5533,9 +5935,7 @@ def main():
         "customer": render_customer_360,
         "pipeline": render_pipeline,
         "forecast": render_forecast,
-        "forecast_scenarios": render_forecast_scenarios,
         "incentive": render_incentive,
-        "action": render_action_center,
         "training": render_training_capability,
         "reports": render_reports,
         "dictionary": render_data_dictionary,
