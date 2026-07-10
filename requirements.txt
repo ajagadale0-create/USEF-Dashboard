@@ -5,3 +5,7 @@ plotly>=5.18.0
 openpyxl>=3.1.0
 feedparser>=6.0.0
 requests>=2.31.0
+jugaad-data>=0.33.0
+kiteconnect>=5.0.0
+fyers-apiv3>=3.1.0
+matplotlib>=3.8.0
