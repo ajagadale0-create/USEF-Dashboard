@@ -5954,11 +5954,11 @@ def _execute_github_push(
 
 
 def render_global_view(data, filters):
-    """Group-level Global View for MD interview — last 4 public quarters + geo + sales agenda."""
+    """Group-level Global View — last 4 public quarters + geo + commercial focus."""
     st.caption(
-        "Sources: Aramex PJSC press releases, interim/annual FS, and investor presentations "
-        "(Q2’25 → Q1’26). Figures in **AED million**. "
-        "**India country P&L is not published** — closest public proxy is **South Asia** geo revenue."
+        "Aramex PJSC public filings (Q2’25 → Q1’26). Figures in **AED million**. "
+        "**India country P&L is not published** — closest public proxy is **South Asia** geo revenue. "
+        "Source links at the bottom of this page."
     )
 
     qdf = pd.DataFrame(ARAMEX_PUBLIC_QUARTERS).sort_values("Sort")
@@ -5980,9 +5980,9 @@ def render_global_view(data, filters):
     st.markdown(f'<div class="kpi-grid">{"".join(kpi_cards)}</div>', unsafe_allow_html=True)
 
     st.info(
-        "**Interview framing for MD:** Group top line is stable (+1% FY’25, +2% Q1’26), but the **engine has changed**. "
-        "Domestic Express, Logistics and Freight are carrying growth while **International Express and South Asia are the drag**. "
-        "Sales excellence must protect yield and shift the book toward nearshore / fulfilment demand — not chase long-haul volume with discount."
+        "Group top line is stable (+1% FY’25, +2% Q1’26), but the **growth engine has changed**. "
+        "Domestic Express, Logistics and Freight are carrying growth while **International Express and South Asia are soft**. "
+        "Commercial focus: protect yield and shift toward nearshore / fulfilment demand — not long-haul volume at any price."
     )
 
     # --- Three lenses ---
@@ -6200,7 +6200,7 @@ def render_global_view(data, filters):
                     EBIT uplift expected through 2028. First-year payoffs cited in logistics profitability and cost control.<br><br>
                     <b style="color:#e2e8f0;">Product-led 2026.</b> New Group CEO (Amadou Diallo, May’26) mandate:
                     customer-centric innovation, <b>margin optimisation</b>, scalable infrastructure — not volume at any price.<br><br>
-                    <b style="color:#e2e8f0;">H1’25 math that matters for sales:</b> Intl Express GP declined ~AED 83m —
+                    <b style="color:#e2e8f0;">H1’25 product mix math:</b> Intl Express GP declined ~AED 83m —
                     more than the combined GP gains from Domestic + Freight + Logistics in that half. Mix shift without
                     yield discipline destroys profit.
                 </div>
@@ -6209,15 +6209,14 @@ def render_global_view(data, filters):
             unsafe_allow_html=True,
         )
 
-    # --- MD sales agenda ---
-    st.markdown('<div class="exec-section-title">Sales Excellence Agenda — What to own in India</div>', unsafe_allow_html=True)
+    st.markdown('<div class="exec-section-title">Commercial focus areas</div>', unsafe_allow_html=True)
     agenda = pd.DataFrame([
-        {"Priority": "1. Mix shift", "Action": "Build Domestic + Logistics + India↔GCC Freight pipeline; stop defending long-haul with discount", "KPI to watch": "Product mix % · GP% by product"},
+        {"Priority": "1. Mix shift", "Action": "Build Domestic + Logistics + India↔GCC Freight pipeline; avoid defending long-haul with discount", "KPI to watch": "Product mix % · GP% by product"},
         {"Priority": "2. Yield discipline", "Action": "Rate-card governance, COD fee integrity, warehouse $/sqm quality like Group Logistics story", "KPI to watch": "Yield / shipment · discount leakage"},
         {"Priority": "3. South Asia recovery", "Action": "Named account plan for e-comm, pharma, retail nearshore; convert Intl churn to domestic/fulfilment", "KPI to watch": "South Asia / India rev YoY"},
         {"Priority": "4. Forecast trust", "Action": "Low-case governance, SF hygiene, weekly forecast vs actual by division", "KPI to watch": "Forecast accuracy · pipeline 3x"},
         {"Priority": "5. Peak readiness", "Action": "Dec-style demand needs capacity + priced peak offers — Group already proved the spike is possible", "KPI to watch": "Peak month rev · OTIF"},
-        {"Priority": "6. Accelerate28 local", "Action": "Map India initiatives to Group workstreams; report margin actions, not activity theatre", "KPI to watch": "Initiative EBIT impact"},
+        {"Priority": "6. Accelerate28 local", "Action": "Map India initiatives to Group workstreams; track margin actions", "KPI to watch": "Initiative EBIT impact"},
     ])
     st.dataframe(agenda, use_container_width=True, hide_index=True)
 
@@ -6234,16 +6233,28 @@ def render_global_view(data, filters):
     ]
     st.dataframe(detail, use_container_width=True, hide_index=True)
 
-    with st.expander("Source notes & caveats"):
-        st.markdown(
-            """
-            - **Aramex PJSC** Q2’25, Q3’25, Q4/FY’25, Q1’26 press releases and interim condensed FS (DFM filings).
-            - Investor presentations / management commentary on nearshoring, Accelerate28, and product-led strategy.
-            - **South Asia** quarterly figures reconstructed from YTD geo tables in interim FS (H1, 9M, FY) and Q1’26 FS.
-            - India is **not** separately disclosed in public filings — use internal India P&L for country truth; this tab is Group context for MD discussion.
-            - Currency: AED million unless stated. Approx USD ≈ AED ÷ 3.67 if needed for Group IR packs.
-            """
-        )
+    st.markdown('<div class="exec-section-title">Data sources (public)</div>', unsafe_allow_html=True)
+    st.markdown(
+        """
+**Caveat:** India is not separately disclosed. South Asia geo revenue is the closest public proxy.
+Currency: AED million. South Asia quarterly values are derived from YTD geo tables in interim FS.
+
+| Period | Source | Link |
+| --- | --- | --- |
+| Q2 / H1 2025 | Press release | [aramex.com — H1/Q2 2025 results](https://www.aramex.com/ae/en/media-details/news/news-details?contentid=479fc788-b3f2-659d-9310-ff0100e7fe0c&module=stories) |
+| Q2 / H1 2025 | Interim FS (geo) | [Aramex EBC 30 Jun 2025 PDF](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/financial-statements/aramex-ebc-30-june-2025.pdf) |
+| Q3 / 9M 2025 | Press release PDF | [Q3 2025 press release](https://www.aramex.com/docs/default-source/press-release/20251112_press-release_aramex-q3-2025_final.pdf?sfvrsn=462fac19_1) |
+| Q3 / 9M 2025 | Interim FS (geo) | [Aramex EBC 30 Sep 2025 PDF](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/financial-statements/aramex-ebc-30-september-2025.pdf?sfvrsn=c42fac19_1) |
+| Q3 2025 | Investor presentation | [Q3 2025 IR presentation](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/investor-presentations/20251118_q3-2025-investor-presentation.pdf?sfvrsn=e80fac19_1) |
+| Q4 / FY 2025 | Press release | [aramex.com — Q4/FY 2025 results](https://www.aramex.com/ae/en/media-details/news/news-details?contentid=6797cb88-b3f2-659d-9310-ff0100e7fe0c&module=stories) |
+| Q4 / FY 2025 | Press release PDF | [FY 2025 results PDF](https://www.aramex.com/docs/default-source/press-release/2026-02-10-press-release_-english_results-fy-2025_final.pdf) |
+| FY 2025 | Annual FS (geo) | [ARMX annual FS 10 Feb 2026](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/financial-statements/armx-fs-ann-e-10-02.pdf) |
+| FY 2025 | Investor presentation | [FY 2025 IR presentation](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/investor-presentations/20260216_fy_2025-investor-presentation-web.pdf) |
+| Q1 2026 | Press release | [aramex.com — Q1 2026 results](https://www.aramex.com/ae/en/media-details/news/news-details?contentid=3beecc88-b3f2-659d-9310-ff0100e7fe0c&module=stories) |
+| Q1 2026 | Interim FS (geo) | [ARMX FS Q1 2026 PDF](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/financial-statements/armx-fs-q1-2026-e-08-05-2026-pdf.pdf) |
+| IR hub | Earnings & presentations | [Quarterly earnings & investor presentations](https://www.aramex.com/us/en/investor-relations-details/quarterly-earnings-and-investor-presentations) |
+        """
+    )
 
 
 def render_quarterly_board_pack(data, filters):
@@ -6384,7 +6395,7 @@ def render_quarterly_board_pack(data, filters):
     st.dataframe(detail, use_container_width=True, hide_index=True)
     st.caption(
         "*South Asia is the closest public geo proxy that includes India — not a pure India P&L. "
-        "For the fuller MD interview pack (geo + sales agenda), open **Global View**."
+        "For geo trends and commercial focus areas, open **Global View**."
     )
 
     st.markdown('<div class="exec-section-title">Sales Excellence Read for Country Head</div>', unsafe_allow_html=True)
@@ -6604,7 +6615,7 @@ def main():
         "command": "Real-time overview of sales performance & business health",
         "sales": "Revenue, target achievement, product mix and sales ranking",
         "executive": "Board-style leakage, margin, collection and AI action signals",
-        "global": "Aramex Group last 4Q — improving, lacking & sales look-ahead from public filings / IR",
+        "global": "Aramex Group last 4Q — improving, lacking & commercial focus from public filings / IR",
         "quarterly": "Aramex Group last 4 quarters — improved vs lacking from public filings",
         "employee": "Employee scorecard, coaching signals and sales activity",
         "customer": "Customer health, risk alerts, watchlist and upsell actions",
