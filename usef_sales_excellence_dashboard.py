@@ -92,6 +92,8 @@ PAGES = [
     ("command", "AI Command Center", "AI Command", "🏠"),
     ("sales", "Sales Performance", "Sales", "📈"),
     ("executive", "Executive Business Insight", "Executive", "💡"),
+    ("global", "Global View", "Global View", "🌍"),
+    ("quarterly", "Quarterly Board Pack", "Quarterly", "📅"),
     ("employee", "Employee 360", "Employee 360", "👥"),
     ("customer", "Customer 360", "Customer 360", "◎"),
     ("pipeline", "Opportunity Radar", "Opportunity", "✺"),
@@ -106,6 +108,119 @@ PAGES = [
 ]
 
 # =============================================================================
+# ARAMEX PUBLIC QUARTERLY BOARD (Group filings — AED million)
+# Source: Aramex PJSC press releases / interim FS. Not India country P&L.
+# Last 4 published quarters as of mid-2026: Q2'25 → Q1'26
+# =============================================================================
+
+ARAMEX_PUBLIC_QUARTERS = [
+    {
+        "Quarter": "Q2 2025",
+        "Sort": 1,
+        "Revenue": 1497.7,
+        "Revenue_YoY_Pct": 0.0,
+        "Gross_Profit": 329.3,
+        "GP_Margin_Pct": 22.0,
+        "Intl_Express": 494.5,
+        "Intl_YoY_Pct": -16.0,
+        "Domestic_Express": 422.0,
+        "Domestic_YoY_Pct": 12.0,
+        "Freight": 438.3,
+        "Freight_YoY_Pct": 7.0,
+        "Logistics": 132.4,
+        "Logistics_YoY_Pct": 23.0,
+        "South_Asia": 97.5,
+        "South_Asia_YoY_Pct": -7.0,
+        "Normalized_EBIT": 31.4,
+        "Normalized_NP": 5.4,
+        "Notes": "Revenue flat; mix shift accelerates away from Intl Express.",
+    },
+    {
+        "Quarter": "Q3 2025",
+        "Sort": 2,
+        "Revenue": 1599.1,
+        "Revenue_YoY_Pct": 0.0,
+        "Gross_Profit": 370.3,
+        "GP_Margin_Pct": 23.2,
+        "Intl_Express": 514.2,
+        "Intl_YoY_Pct": -9.0,
+        "Domestic_Express": 470.1,
+        "Domestic_YoY_Pct": 5.0,
+        "Freight": 465.7,
+        "Freight_YoY_Pct": 4.0,
+        "Logistics": 137.3,
+        "Logistics_YoY_Pct": 16.0,
+        "South_Asia": 101.3,
+        "South_Asia_YoY_Pct": -4.0,
+        "Normalized_EBIT": 55.0,
+        "Normalized_NP": 27.0,
+        "Notes": "Stable top line; Logistics quality improving; GP margin recovers QoQ.",
+    },
+    {
+        "Quarter": "Q4 2025",
+        "Sort": 3,
+        "Revenue": 1700.2,
+        "Revenue_YoY_Pct": 0.0,
+        "Gross_Profit": 385.3,
+        "GP_Margin_Pct": 22.7,
+        "Intl_Express": 575.5,
+        "Intl_YoY_Pct": -6.0,
+        "Domestic_Express": 520.4,
+        "Domestic_YoY_Pct": 8.0,
+        "Freight": 454.4,
+        "Freight_YoY_Pct": -2.0,
+        "Logistics": 138.5,
+        "Logistics_YoY_Pct": 13.0,
+        "South_Asia": 104.5,
+        "South_Asia_YoY_Pct": -7.0,
+        "Normalized_EBIT": 68.4,
+        "Normalized_NP": 24.9,
+        "Notes": "Record Dec month; Domestic + Logistics carry seasonal peak.",
+    },
+    {
+        "Quarter": "Q1 2026",
+        "Sort": 4,
+        "Revenue": 1599.8,
+        "Revenue_YoY_Pct": 2.0,
+        "Gross_Profit": 342.5,
+        "GP_Margin_Pct": 21.4,
+        "Intl_Express": 509.7,
+        "Intl_YoY_Pct": -9.0,
+        "Domestic_Express": 478.2,
+        "Domestic_YoY_Pct": 11.0,
+        "Freight": 463.3,
+        "Freight_YoY_Pct": 7.0,
+        "Logistics": 140.2,
+        "Logistics_YoY_Pct": 9.0,
+        "South_Asia": 90.6,
+        "South_Asia_YoY_Pct": -11.0,
+        "Normalized_EBIT": 52.0,
+        "Normalized_NP": 17.0,
+        "Notes": "Group +2% YoY; GP margin softest in last 4Q; South Asia softer YoY.",
+    },
+]
+
+# FY geo revenues (AED m) — India sits inside South Asia (not disclosed separately)
+ARAMEX_FY_GEO = [
+    {"Region": "UAE", "FY2025": 1155.2, "FY2024": 1091.6, "Signal": "Improving"},
+    {"Region": "GCC (ex-UAE)", "FY2025": 1554.2, "FY2024": 1424.4, "Signal": "Improving"},
+    {"Region": "MENAT (ex-GCC)", "FY2025": 769.7, "FY2024": 962.9, "Signal": "Lacking"},
+    {"Region": "East & South Africa", "FY2025": 312.2, "FY2024": 298.1, "Signal": "Improving"},
+    {"Region": "Europe", "FY2025": 673.4, "FY2024": 663.7, "Signal": "Stable"},
+    {"Region": "North America", "FY2025": 564.4, "FY2024": 550.1, "Signal": "Stable"},
+    {"Region": "North Asia", "FY2025": 107.0, "FY2024": 142.0, "Signal": "Lacking"},
+    {"Region": "South Asia (incl. India)", "FY2025": 404.7, "FY2024": 427.7, "Signal": "Lacking"},
+    {"Region": "Oceania", "FY2025": 819.2, "FY2024": 764.2, "Signal": "Improving"},
+]
+
+ARAMEX_FY_PRODUCTS = [
+    {"Product": "International Express", "FY2025": 2144.3, "FY2024": 2412.5, "YoY_Pct": -11.0, "Signal": "Lacking"},
+    {"Product": "Domestic Express", "FY2025": 1843.2, "FY2024": 1685.6, "YoY_Pct": 9.0, "Signal": "Improving"},
+    {"Product": "Freight Forwarding", "FY2025": 1791.3, "FY2024": 1724.0, "YoY_Pct": 4.0, "Signal": "Improving"},
+    {"Product": "Logistics", "FY2025": 536.7, "FY2024": 455.3, "YoY_Pct": 18.0, "Signal": "Improving"},
+]
+
+# =============================================================================
 # STYLING
 # =============================================================================
 
@@ -113,7 +228,7 @@ DARK_CSS = """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-    .stApp { background: radial-gradient(circle at top left, #0f2a4a 0%, #0a0e1a 28%, #111827 58%, #070b12 100%); }
+    .stApp { background: radial-gradient(circle at top left, #1e3a5f 0%, #152a45 22%, #0c1e36 55%, #081526 100%); }
     div[data-testid="stAppViewContainer"] > .main { overflow-x: hidden; }
     .main .block-container {
         width: 100% !important;
@@ -138,7 +253,8 @@ DARK_CSS = """
         width: 100% !important;
     }
     section[data-testid="stSidebar"] {
-        background: #070b12; border-right: 1px solid #1e293b;
+        background: linear-gradient(180deg, #0a1a30 0%, #071525 100%);
+        border-right: 1px solid #1e3a5f;
         width: 270px !important; min-width: 270px !important;
         position: sticky !important; top: 0 !important; height: 100vh !important;
         overflow-y: auto !important; z-index: 50 !important;
@@ -208,8 +324,8 @@ DARK_CSS = """
         margin-top: 3px;
     }
     .top-refresh-card {
-        background: rgba(2, 8, 18, .30);
-        border-left: 1px solid rgba(59,130,246,.24);
+        background: rgba(14, 36, 64, .45);
+        border-left: 1px solid rgba(96,165,250,.35);
         padding: 2px 0 2px 10px;
         min-height: 46px;
     }
@@ -233,15 +349,15 @@ DARK_CSS = """
         text-transform: uppercase;
     }
     div[data-baseweb="select"] > div {
-        background-color: #07111f !important;
-        border-color: rgba(96,165,250,.35) !important;
+        background-color: #0c1e36 !important;
+        border-color: rgba(96,165,250,.40) !important;
         min-height: 30px !important;
     }
     .kpi-card {
-        background: linear-gradient(145deg, rgba(26,35,50,0.96), rgba(13,22,35,0.96));
-        border: 1px solid rgba(80, 116, 166, 0.35); border-radius: 13px;
+        background: linear-gradient(145deg, rgba(22,48,82,0.97), rgba(12,30,54,0.98));
+        border: 1px solid rgba(70, 120, 180, 0.40); border-radius: 13px;
         padding: 10px 11px; min-height: 96px;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+        box-shadow: 0 12px 30px rgba(4,20,40,0.35);
     }
     .kpi-grid {
         display: grid;
@@ -307,15 +423,15 @@ DARK_CSS = """
     .command-chart-wrap,
     .command-risk-wrap {
         min-height: 300px;
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.96), rgba(5, 15, 27, 0.98));
-        border: 1px solid rgba(51, 92, 136, 0.58);
+        background: linear-gradient(145deg, rgba(16, 38, 68, 0.97), rgba(10, 26, 48, 0.99));
+        border: 1px solid rgba(70, 120, 180, 0.45);
         border-radius: 9px;
         padding: 8px 10px 6px 10px;
-        box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.22);
+        box-shadow: inset 0 0 0 1px rgba(8, 24, 48, .80), 0 12px 25px rgba(4,20,40,.30);
     }
     .command-risk-wrap { padding: 10px 11px; }
     div.element-container:has(.command-panel-chart) + div.element-container [data-testid="stPlotlyChart"] {
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.96), rgba(5, 15, 27, 0.98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, 0.97), rgba(10, 26, 48, 0.99));
         border: 1px solid rgba(51, 92, 136, 0.58);
         border-radius: 9px;
         padding: 4px 6px 2px 6px;
@@ -410,16 +526,29 @@ DARK_CSS = """
         align-items: center;
     }
     .oppty-heatmap-cell {
-        height: 33px;
+        height: 36px;
         border: 1px solid rgba(15, 23, 42, 0.38);
         box-shadow: inset 0 0 14px rgba(255,255,255,0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f8fafc;
+        font-size: 0.58rem;
+        font-weight: 800;
+        text-shadow: 0 1px 2px rgba(0,0,0,.55);
     }
-    .oppty-heatmap-empty { background: rgba(15, 23, 42, 0.42); }
+    .oppty-heatmap-empty { background: rgba(15, 23, 42, 0.42); color: #64748b; }
     .oppty-heatmap-green { background: linear-gradient(135deg, #22c55e, #15803d); }
     .oppty-heatmap-lime { background: linear-gradient(135deg, #84cc16, #3f8f2f); }
     .oppty-heatmap-amber { background: linear-gradient(135deg, #facc15, #f59e0b); }
     .oppty-heatmap-orange { background: linear-gradient(135deg, #fb923c, #ea580c); }
     .oppty-heatmap-red { background: linear-gradient(135deg, #ef4444, #991b1b); }
+    .oppty-heatmap-hint {
+        color: #94a3b8;
+        font-size: 0.62rem;
+        margin-top: 8px;
+        line-height: 1.35;
+    }
     .oppty-heatmap-axis {
         color: #dbeafe;
         font-size: 0.70rem;
@@ -428,7 +557,7 @@ DARK_CSS = """
         margin-top: 5px;
     }
     .emp-tile {
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.96), rgba(5, 15, 27, 0.98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, 0.97), rgba(10, 26, 48, 0.99));
         border: 1px solid rgba(51, 92, 136, 0.58);
         border-radius: 9px;
         padding: 10px 11px;
@@ -534,7 +663,7 @@ DARK_CSS = """
         margin: 8px 0;
     }
     .cust-kpi-card {
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.97), rgba(5, 15, 27, 0.99));
+        background: linear-gradient(145deg, rgba(18, 42, 74, 0.97), rgba(10, 28, 52, 0.99));
         border: 1px solid rgba(51, 92, 136, 0.58);
         border-radius: 9px;
         min-height: 87px;
@@ -563,7 +692,7 @@ DARK_CSS = """
     .cust-down { color:#ef4444; }
     .cust-neutral { color:#fbbf24; }
     .cust-tile {
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.96), rgba(5, 15, 27, 0.98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, 0.97), rgba(10, 26, 48, 0.99));
         border: 1px solid rgba(51, 92, 136, 0.58);
         border-radius: 9px;
         padding: 10px 11px;
@@ -619,7 +748,7 @@ DARK_CSS = """
         float: right;
     }
     .cust-action-panel {
-        background: linear-gradient(145deg, rgba(9, 25, 42, 0.96), rgba(5, 15, 27, 0.98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, 0.97), rgba(10, 26, 48, 0.99));
         border: 1px solid rgba(51, 92, 136, 0.58);
         border-left: 3px solid #f59e0b;
         border-radius: 9px;
@@ -664,7 +793,7 @@ DARK_CSS = """
         margin: 2px 0 10px 0;
     }
     .forecast-kpi-card {
-        background: linear-gradient(145deg, rgba(9, 25, 42, .97), rgba(5, 15, 27, .99));
+        background: linear-gradient(145deg, rgba(18, 42, 74, .97), rgba(10, 28, 52, .99));
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px;
@@ -687,7 +816,7 @@ DARK_CSS = """
         margin: 22px 0 30px 0; border: none;
     }
     .forecast-tile {
-        background: linear-gradient(145deg, rgba(9, 25, 42, .96), rgba(5, 15, 27, .98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, .97), rgba(10, 26, 48, .99));
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 12px 13px;
@@ -700,7 +829,7 @@ DARK_CSS = """
     }
     .scenario-card-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:8px; }
     .scenario-card {
-        background: rgba(8, 18, 31, .78);
+        background: rgba(12, 32, 58, .85);
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 8px;
         padding: 9px 8px;
@@ -725,7 +854,7 @@ DARK_CSS = """
     .scenario-scheme-meta { color: #94a3b8; font-size: .60rem; margin-top: 4px; }
     .scenario-scheme-uplift { color: #4ade80; font-size: .78rem; font-weight: 900; margin-top: 6px; }
     .exec-tile {
-        background: linear-gradient(145deg, rgba(9, 25, 42, .96), rgba(5, 15, 27, .98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, .97), rgba(10, 26, 48, .99));
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px;
@@ -734,7 +863,7 @@ DARK_CSS = """
         box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.22);
     }
     .exec-reco-panel {
-        background: linear-gradient(145deg, rgba(9, 25, 42, .96), rgba(5, 15, 27, .98));
+        background: linear-gradient(145deg, rgba(16, 38, 68, .97), rgba(10, 26, 48, .99));
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px 8px 11px;
@@ -777,7 +906,7 @@ DARK_CSS = """
     .exec-table-scroll thead th {
         position: sticky;
         top: 0;
-        background: #0b1a2e;
+        background: #123056;
         z-index: 1;
     }
     .exec-table { width:100%; border-collapse:collapse; color:#dbeafe; font-size:.64rem; }
@@ -799,7 +928,7 @@ DARK_CSS = """
     }
     .exec-reco li { margin-bottom: 8px; }
     .exec-impact-card {
-        background: rgba(8, 18, 31, .78);
+        background: rgba(12, 32, 58, .85);
         border: 1px solid rgba(51, 92, 136, .55);
         border-radius: 8px;
         padding: 9px 10px;
@@ -809,6 +938,154 @@ DARK_CSS = """
     .exec-impact-value { color:#f8fafc; font-size:.95rem; font-weight:900; margin-top:5px; }
     .exec-impact-sub { color:#9fb3c8; font-size:.60rem; margin-top:4px; }
     div[data-testid="stMetricValue"] { color: #f1f5f9; }
+
+    /* ===== Mobile / tablet responsive ===== */
+    @media (max-width: 1100px) {
+        .main .block-container {
+            max-width: 100% !important;
+            padding: 0.55rem 0.70rem 1.4rem 0.70rem !important;
+        }
+        .kpi-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+        .forecast-kpi-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+        .cust-kpi-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .scenario-card-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .top-title { font-size: 1.15rem; }
+        .top-subtitle { font-size: .70rem; }
+    }
+
+    @media (max-width: 768px) {
+        .main .block-container {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0.45rem 0.55rem 1.6rem 0.55rem !important;
+        }
+        section[data-testid="stSidebar"] {
+            width: min(88vw, 300px) !important;
+            min-width: 0 !important;
+            position: fixed !important;
+            height: 100vh !important;
+            z-index: 999 !important;
+        }
+        section[data-testid="stSidebar"] > div {
+            width: 100% !important;
+            min-width: 0 !important;
+        }
+        section[data-testid="stSidebar"] .stRadio label {
+            white-space: normal !important;
+            font-size: 0.78rem !important;
+            line-height: 1.25 !important;
+        }
+        div[data-testid="stHorizontalBlock"] {
+            flex-wrap: wrap !important;
+            gap: 0.45rem !important;
+        }
+        /* Default: 2-up on tablet/phone so filters & KPI rows stay usable */
+        div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+            width: calc(50% - 0.30rem) !important;
+            flex: 1 1 calc(50% - 0.30rem) !important;
+            min-width: calc(50% - 0.30rem) !important;
+        }
+        .kpi-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 7px !important;
+        }
+        .forecast-kpi-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .cust-kpi-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .scenario-card-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .kpi-card, .forecast-kpi-card, .exec-impact-card {
+            min-height: 78px;
+            padding: 9px 10px;
+        }
+        .kpi-value, .forecast-kpi-value, .exec-impact-value {
+            font-size: 0.95rem !important;
+            white-space: normal !important;
+            line-height: 1.2 !important;
+        }
+        .kpi-sub, .forecast-kpi-sub {
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+            font-size: 0.58rem !important;
+        }
+        .top-title {
+            font-size: 1.02rem !important;
+            line-height: 1.15 !important;
+        }
+        .top-subtitle {
+            font-size: 0.68rem !important;
+            line-height: 1.3 !important;
+        }
+        .top-refresh-card {
+            min-height: auto;
+            margin-bottom: 4px;
+        }
+        .command-chart-wrap,
+        .command-risk-wrap,
+        .exec-tile,
+        .exec-reco-panel {
+            min-height: auto !important;
+            height: auto !important;
+        }
+        .exec-table-scroll {
+            max-height: 240px;
+            overflow-x: auto;
+        }
+        .exec-table td { white-space: normal; }
+        .command-chart-legend {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        div[data-testid="stPlotlyChart"] {
+            overflow-x: auto;
+        }
+        /* Touch-friendly controls */
+        div[data-baseweb="select"] > div {
+            min-height: 38px !important;
+        }
+        button[kind="primary"],
+        button[kind="secondary"],
+        .stDownloadButton button {
+            min-height: 40px !important;
+            width: 100% !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .kpi-grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        .forecast-kpi-grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        .cust-kpi-grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        .top-title { font-size: 0.95rem !important; }
+        .main .block-container {
+            padding: 0.35rem 0.40rem 1.5rem 0.40rem !important;
+        }
+        /* Charts / long panels: prefer full width on small phones */
+        div[data-testid="stHorizontalBlock"] > div[data-testid="column"]:has([data-testid="stPlotlyChart"]),
+        div[data-testid="stHorizontalBlock"] > div[data-testid="column"]:has([data-testid="stDataFrame"]) {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+        }
+    }
 </style>
 """
 
@@ -1016,33 +1293,36 @@ def build_coaching_intervention_roster(roster: pd.DataFrame) -> pd.DataFrame:
 
 
 def render_opportunity_heatmap_tile(open_opp: pd.DataFrame) -> None:
+    """Region × deal-risk heatmap. Color = pipeline ₹ intensity (not risk-in-bucket)."""
     heat = open_opp.copy()
     region_order = [r for r in ["North", "West", "South", "East", "Central"] if r in set(heat["Region"])]
     if not region_order:
         region_order = ["North", "West", "South", "East", "Central"]
 
+    # Low / Medium / High = how risky the deal is to lose (based on win probability)
     heat["Risk_Bucket"] = pd.cut(
         100 - heat["Win_Probability"],
         bins=[-1, 35, 65, 101],
         labels=["Low", "Medium", "High"],
     )
-    risk_factor = heat["Risk_Flag"].ne("None").astype(float) * 100
-    heat["Heat_Risk"] = np.clip(
-        (100 - heat["Win_Probability"]) * 0.48
-        + heat["Age_Days"].clip(0, 120) / 120 * 32
-        + risk_factor * 0.20,
-        0,
-        100,
-    )
 
-    def cell_class(score: float) -> str:
-        if score < 34:
+    matrix = (
+        heat.groupby(["Region", "Risk_Bucket"], observed=False)
+        .agg(Deals=("Opportunity_ID", "count"), Pipeline=("Deal_Size", "sum"))
+        .reset_index()
+    )
+    max_pipe = float(matrix["Pipeline"].max()) if len(matrix) and matrix["Pipeline"].max() > 0 else 1.0
+
+    def intensity_class(pipeline: float) -> str:
+        # Color = how much open pipeline ₹ sits in this region × risk cell
+        share = pipeline / max_pipe * 100
+        if share < 15:
             return "oppty-heatmap-green"
-        if score < 50:
+        if share < 30:
             return "oppty-heatmap-lime"
-        if score < 66:
+        if share < 50:
             return "oppty-heatmap-amber"
-        if score < 82:
+        if share < 75:
             return "oppty-heatmap-orange"
         return "oppty-heatmap-red"
 
@@ -1050,21 +1330,25 @@ def render_opportunity_heatmap_tile(open_opp: pd.DataFrame) -> None:
     for region in region_order:
         cells.append(f'<div class="oppty-heatmap-region">{region}</div>')
         for bucket in ["Low", "Medium", "High"]:
-            subset = heat[(heat["Region"] == region) & (heat["Risk_Bucket"].astype(str) == bucket)]
-            if subset.empty:
-                cells.append('<div class="oppty-heatmap-cell oppty-heatmap-empty"></div>')
+            row = matrix[(matrix["Region"] == region) & (matrix["Risk_Bucket"].astype(str) == bucket)]
+            if row.empty or float(row.iloc[0]["Pipeline"]) <= 0:
+                cells.append('<div class="oppty-heatmap-cell oppty-heatmap-empty">—</div>')
                 continue
-            risk_score = float(subset["Heat_Risk"].mean())
-            exposure = subset["Deal_Size"].sum()
+            deals = int(row.iloc[0]["Deals"])
+            pipeline = float(row.iloc[0]["Pipeline"])
+            label = f"{deals}"
+            tip = (
+                f"{region} · {bucket} risk deals · {deals} opps · {fmt_cr(pipeline)} open pipeline. "
+                f"Darker/redder = more ₹ stuck in this risk bucket."
+            )
             cells.append(
-                f'<div class="oppty-heatmap-cell {cell_class(risk_score)}" '
-                f'title="{region} | {bucket} risk | {fmt_lakh(exposure)} pipeline"></div>'
+                f'<div class="oppty-heatmap-cell {intensity_class(pipeline)}" title="{tip}">{label}</div>'
             )
     cells.extend([
         '<div></div>',
-        '<div class="oppty-heatmap-axis">Low</div>',
+        '<div class="oppty-heatmap-axis">Low risk</div>',
         '<div class="oppty-heatmap-axis">Medium</div>',
-        '<div class="oppty-heatmap-axis">High</div>',
+        '<div class="oppty-heatmap-axis">High risk</div>',
     ])
 
     st.markdown(
@@ -1072,6 +1356,10 @@ def render_opportunity_heatmap_tile(open_opp: pd.DataFrame) -> None:
         <div class="oppty-heatmap-card">
             <div class="oppty-heatmap-title">Opportunity Heatmap</div>
             <div class="oppty-heatmap-grid">{''.join(cells)}</div>
+            <div class="oppty-heatmap-hint">
+                Rows = region · Columns = deal risk (from win %). Number in cell = open deals.
+                Color = how much pipeline ₹ is concentrated there (green = light, red = heavy exposure).
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -5665,6 +5953,448 @@ def _execute_github_push(
     return False, errors[0] if errors else "Upload failed.", ok_paths, errors
 
 
+def render_global_view(data, filters):
+    """Group-level Global View for MD interview — last 4 public quarters + geo + sales agenda."""
+    st.caption(
+        "Sources: Aramex PJSC press releases, interim/annual FS, and investor presentations "
+        "(Q2’25 → Q1’26). Figures in **AED million**. "
+        "**India country P&L is not published** — closest public proxy is **South Asia** geo revenue."
+    )
+
+    qdf = pd.DataFrame(ARAMEX_PUBLIC_QUARTERS).sort_values("Sort")
+    latest = qdf.iloc[-1]
+    prior = qdf.iloc[-2]
+    fy_prod = pd.DataFrame(ARAMEX_FY_PRODUCTS)
+    fy_geo = pd.DataFrame(ARAMEX_FY_GEO).copy()
+    fy_geo["YoY_Pct"] = ((fy_geo["FY2025"] / fy_geo["FY2024"]) - 1.0) * 100
+
+    # --- Verdict strip ---
+    rev_qoq = (latest["Revenue"] / prior["Revenue"] - 1) * 100
+    sa_yoy = latest.get("South_Asia_YoY_Pct", 0)
+    kpi_cards = [
+        kpi_card("Pack Window", "Q2’25 → Q1’26", "Last 4 published quarters", 82),
+        kpi_card("Group Revenue", f"AED {latest['Revenue']:.0f}m", f"Q1’26 · {latest['Revenue_YoY_Pct']:+.0f}% YoY · {rev_qoq:+.1f}% QoQ", 78 if latest["Revenue_YoY_Pct"] >= 0 else 50),
+        kpi_card("GP Margin", f"{latest['GP_Margin_Pct']:.1f}%", "Softest in the 4Q window — mix + cost", 42),
+        kpi_card("South Asia*", f"AED {latest['South_Asia']:.0f}m", f"{sa_yoy:+.0f}% YoY · India inside this bucket", 35 if sa_yoy < 0 else 70),
+    ]
+    st.markdown(f'<div class="kpi-grid">{"".join(kpi_cards)}</div>', unsafe_allow_html=True)
+
+    st.info(
+        "**Interview framing for MD:** Group top line is stable (+1% FY’25, +2% Q1’26), but the **engine has changed**. "
+        "Domestic Express, Logistics and Freight are carrying growth while **International Express and South Asia are the drag**. "
+        "Sales excellence must protect yield and shift the book toward nearshore / fulfilment demand — not chase long-haul volume with discount."
+    )
+
+    # --- Three lenses ---
+    improving = [
+        ("Domestic Express", "Every quarter in this pack is YoY positive (Q2 +12% → Q1’26 +11%). Volumes follow nearshoring into local networks."),
+        ("Logistics & Fulfilment", "FY’25 +18% revenue and GP +49% — quality contracts + utilisation. Still the fastest structural growth pocket."),
+        ("Freight Forwarding", "FY’25 +4%; Q1’26 +7%. Air/sea/land volume growth on Europe–ME, China outbound, GCC land."),
+        ("GCC / UAE geo", "Core revenue engine; GCC ex-UAE +9% and UAE +6% in FY’25. Intra-regional trade is where Group is winning."),
+        ("Oceania turnaround", "FY’25 +7%; management called out Q4 ops recovery and early-2026 momentum — proof markets can be fixed."),
+        ("Peak execution", "Dec’25 = highest monthly revenue in Aramex history — network + commercial can still spike when demand is there."),
+    ]
+    lacking = [
+        ("International Express", "Negative YoY every quarter (−16% → −9% → −6% → −9%). Long-haul volumes down; high-margin contribution shrinking."),
+        ("Gross margin", "GP margin fell from 23.9% (FY’24) to 22.8% (FY’25); Q1’26 at 21.4% — softest in the window."),
+        ("Profit replacement gap", "Domestic/Logistics growth is not yet fully replacing Intl Express profit dollars (management said this explicitly in H1’25)."),
+        ("South Asia (India proxy)", "FY’25 −5% (AED 405m vs 428m). Q1’26 −11% YoY to AED 91m. Softest recent print in the 4Q pack."),
+        ("North Asia & MENAT", "FY’25 North Asia −25%, MENAT ex-GCC −20%. Asia long-haul corridors remain under pressure."),
+        ("Normalized earnings", "FY’25 normalized NP AED 85m vs 142m prior year — transformation year, but commercial mix must help rebuild margin."),
+    ]
+    look_here = [
+        ("Convert Intl → Domestic + Logistics", "When a customer nearshores inventory, sell warehousing + domestic last-mile as one solution — not a cheaper international rate."),
+        ("Yield & contract quality", "Logistics GP expansion proves priced right. Domestic GP% soft (~22%) — watch discount leakage and cost-to-serve on new volume."),
+        ("South Asia commercial rebuild", "Public data flags softness. India agenda: pipeline quality, e-comm / D2C domestic, fulfilment, India↔GCC freight lanes."),
+        ("Accelerate28 sales discipline", "300+ initiatives; product-led strategy under new Group CEO (Amadou Diallo from May’26). Align India KPIs to margin, not just revenue."),
+        ("Forecast trust & hygiene", "Group is navigating mix shift — country forecast accuracy and SF hygiene become board-visible risk controls."),
+        ("Competitive pricing pressure", "Management repeatedly cites pricing pressure in Domestic. Coach value selling; protect rate cards on peak and COD."),
+    ]
+
+    c1, c2, c3 = st.columns(3, gap="medium")
+    with c1:
+        st.markdown('<div class="exec-section-title">Where Group is improving</div>', unsafe_allow_html=True)
+        for title, body in improving:
+            st.markdown(
+                f"""
+                <div class="forecast-kpi-card" style="margin-bottom:10px;">
+                    <div class="forecast-kpi-title" style="color:#34d399;">▲ {title}</div>
+                    <div style="color:#cbd5e1;font-size:.8rem;margin-top:4px;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+    with c2:
+        st.markdown('<div class="exec-section-title">Where Group is lacking</div>', unsafe_allow_html=True)
+        for title, body in lacking:
+            st.markdown(
+                f"""
+                <div class="forecast-kpi-card" style="margin-bottom:10px;">
+                    <div class="forecast-kpi-title" style="color:#f87171;">▼ {title}</div>
+                    <div style="color:#cbd5e1;font-size:.8rem;margin-top:4px;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+    with c3:
+        st.markdown('<div class="exec-section-title">Where sales must look</div>', unsafe_allow_html=True)
+        for title, body in look_here:
+            st.markdown(
+                f"""
+                <div class="forecast-kpi-card" style="margin-bottom:10px;">
+                    <div class="forecast-kpi-title" style="color:#fbbf24;">◎ {title}</div>
+                    <div style="color:#cbd5e1;font-size:.8rem;margin-top:4px;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # --- Trend ---
+    st.markdown('<div class="exec-section-title">Last 4 Quarters — Revenue vs GP Margin</div>', unsafe_allow_html=True)
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(
+        go.Bar(name="Revenue (AED m)", x=qdf["Quarter"], y=qdf["Revenue"], marker_color="#3b82f6"),
+        secondary_y=False,
+    )
+    fig.add_trace(
+        go.Scatter(
+            name="GP Margin %",
+            x=qdf["Quarter"],
+            y=qdf["GP_Margin_Pct"],
+            mode="lines+markers",
+            line=dict(color="#fbbf24", width=3),
+            marker=dict(size=9),
+        ),
+        secondary_y=True,
+    )
+    fig.update_layout(**PLOTLY_TEMPLATE["layout"], height=340, legend=dict(orientation="h", y=1.12))
+    fig.update_yaxes(title_text="Revenue AED m", secondary_y=False, gridcolor="rgba(148,163,184,.15)")
+    fig.update_yaxes(title_text="GP Margin %", secondary_y=True, showgrid=False)
+    st.plotly_chart(fig, use_container_width=True)
+
+    # --- Product mix + YoY ---
+    left, right = st.columns(2, gap="medium")
+    with left:
+        st.markdown('<div class="exec-section-title">Product Mix by Quarter (AED m)</div>', unsafe_allow_html=True)
+        mix = qdf.melt(
+            id_vars=["Quarter"],
+            value_vars=["Intl_Express", "Domestic_Express", "Freight", "Logistics"],
+            var_name="Product",
+            value_name="Revenue_AED_m",
+        )
+        mix["Product"] = mix["Product"].map({
+            "Intl_Express": "International Express",
+            "Domestic_Express": "Domestic Express",
+            "Freight": "Freight Forwarding",
+            "Logistics": "Logistics",
+        })
+        fig2 = px.bar(
+            mix,
+            x="Quarter",
+            y="Revenue_AED_m",
+            color="Product",
+            barmode="stack",
+            color_discrete_sequence=["#64748b", "#22c55e", "#38bdf8", "#a78bfa"],
+        )
+        fig2.update_layout(**PLOTLY_TEMPLATE["layout"], height=360, legend=dict(orientation="h", y=1.15))
+        fig2.update_yaxes(title_text="AED million", gridcolor="rgba(148,163,184,.15)")
+        st.plotly_chart(fig2, use_container_width=True)
+    with right:
+        st.markdown('<div class="exec-section-title">Product YoY Growth Heat (%)</div>', unsafe_allow_html=True)
+        heat = pd.DataFrame({
+            "Quarter": qdf["Quarter"],
+            "Intl Express": qdf["Intl_YoY_Pct"],
+            "Domestic": qdf["Domestic_YoY_Pct"],
+            "Freight": qdf["Freight_YoY_Pct"],
+            "Logistics": qdf["Logistics_YoY_Pct"],
+            "South Asia": qdf["South_Asia_YoY_Pct"],
+            "GP Margin": qdf["GP_Margin_Pct"],
+        })
+        fig_h = go.Figure(
+            data=go.Heatmap(
+                z=heat[["Intl Express", "Domestic", "Freight", "Logistics", "South Asia"]].T.values,
+                x=heat["Quarter"],
+                y=["Intl Express", "Domestic", "Freight", "Logistics", "South Asia"],
+                colorscale=[
+                    [0.0, "#7f1d1d"],
+                    [0.45, "#f87171"],
+                    [0.55, "#94a3b8"],
+                    [1.0, "#22c55e"],
+                ],
+                zmid=0,
+                text=heat[["Intl Express", "Domestic", "Freight", "Logistics", "South Asia"]].T.values,
+                texttemplate="%{text:.0f}%",
+                colorbar=dict(title="YoY %"),
+            )
+        )
+        fig_h.update_layout(**PLOTLY_TEMPLATE["layout"], height=360)
+        st.plotly_chart(fig_h, use_container_width=True)
+
+    # --- FY product + geo ---
+    st.markdown('<div class="exec-section-title">FY 2025 Product Scorecard (vs FY 2024)</div>', unsafe_allow_html=True)
+    fig_fy = px.bar(
+        fy_prod,
+        x="Product",
+        y="YoY_Pct",
+        color="Signal",
+        color_discrete_map={"Improving": "#22c55e", "Lacking": "#f87171", "Stable": "#94a3b8"},
+        text="YoY_Pct",
+    )
+    fig_fy.update_traces(texttemplate="%{text:+.0f}%", textposition="outside")
+    fig_fy.update_layout(**PLOTLY_TEMPLATE["layout"], height=320, yaxis_title="YoY %", showlegend=True)
+    fig_fy.update_yaxes(gridcolor="rgba(148,163,184,.15)")
+    st.plotly_chart(fig_fy, use_container_width=True)
+
+    st.markdown('<div class="exec-section-title">FY 2025 Geography — Winners vs Laggards</div>', unsafe_allow_html=True)
+    geo_plot = fy_geo.sort_values("YoY_Pct")
+    fig_g = px.bar(
+        geo_plot,
+        x="YoY_Pct",
+        y="Region",
+        orientation="h",
+        color="Signal",
+        color_discrete_map={"Improving": "#22c55e", "Lacking": "#f87171", "Stable": "#94a3b8"},
+        text="YoY_Pct",
+    )
+    fig_g.update_traces(texttemplate="%{text:+.1f}%", textposition="outside")
+    fig_g.update_layout(**PLOTLY_TEMPLATE["layout"], height=420, xaxis_title="YoY %", showlegend=True)
+    fig_g.update_xaxes(gridcolor="rgba(148,163,184,.15)")
+    st.plotly_chart(fig_g, use_container_width=True)
+
+    g1, g2 = st.columns(2, gap="medium")
+    with g1:
+        st.markdown('<div class="exec-section-title">South Asia Trend (India proxy)</div>', unsafe_allow_html=True)
+        fig_sa = go.Figure()
+        fig_sa.add_trace(
+            go.Bar(name="South Asia AED m", x=qdf["Quarter"], y=qdf["South_Asia"], marker_color="#f97316")
+        )
+        fig_sa.add_trace(
+            go.Scatter(
+                name="YoY %",
+                x=qdf["Quarter"],
+                y=qdf["South_Asia_YoY_Pct"],
+                mode="lines+markers",
+                yaxis="y2",
+                line=dict(color="#fbbf24", width=3),
+            )
+        )
+        layout = dict(PLOTLY_TEMPLATE["layout"])
+        layout.update(
+            height=320,
+            yaxis=dict(title="AED m", gridcolor="rgba(148,163,184,.15)"),
+            yaxis2=dict(title="YoY %", overlaying="y", side="right", showgrid=False),
+            legend=dict(orientation="h", y=1.12),
+        )
+        fig_sa.update_layout(**layout)
+        st.plotly_chart(fig_sa, use_container_width=True)
+        st.caption("Derived from interim FS YTD geo tables (Q2/Q3/FY) and Q1’26 FS. Not a pure India P&L.")
+    with g2:
+        st.markdown('<div class="exec-section-title">Management narrative (earnings / IR)</div>', unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class="forecast-kpi-card">
+                <div style="color:#cbd5e1;font-size:.85rem;line-height:1.45;">
+                    <b style="color:#e2e8f0;">Nearshoring is the story.</b> Brands move stock closer to consumers →
+                    long-haul International Express shrinks; Domestic, Logistics and intra-regional Freight absorb the flow.<br><br>
+                    <b style="color:#e2e8f0;">Accelerate28</b> (launched Q1’25): 300+ initiatives across 9 workstreams;
+                    EBIT uplift expected through 2028. First-year payoffs cited in logistics profitability and cost control.<br><br>
+                    <b style="color:#e2e8f0;">Product-led 2026.</b> New Group CEO (Amadou Diallo, May’26) mandate:
+                    customer-centric innovation, <b>margin optimisation</b>, scalable infrastructure — not volume at any price.<br><br>
+                    <b style="color:#e2e8f0;">H1’25 math that matters for sales:</b> Intl Express GP declined ~AED 83m —
+                    more than the combined GP gains from Domestic + Freight + Logistics in that half. Mix shift without
+                    yield discipline destroys profit.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # --- MD sales agenda ---
+    st.markdown('<div class="exec-section-title">Sales Excellence Agenda — What to own in India</div>', unsafe_allow_html=True)
+    agenda = pd.DataFrame([
+        {"Priority": "1. Mix shift", "Action": "Build Domestic + Logistics + India↔GCC Freight pipeline; stop defending long-haul with discount", "KPI to watch": "Product mix % · GP% by product"},
+        {"Priority": "2. Yield discipline", "Action": "Rate-card governance, COD fee integrity, warehouse $/sqm quality like Group Logistics story", "KPI to watch": "Yield / shipment · discount leakage"},
+        {"Priority": "3. South Asia recovery", "Action": "Named account plan for e-comm, pharma, retail nearshore; convert Intl churn to domestic/fulfilment", "KPI to watch": "South Asia / India rev YoY"},
+        {"Priority": "4. Forecast trust", "Action": "Low-case governance, SF hygiene, weekly forecast vs actual by division", "KPI to watch": "Forecast accuracy · pipeline 3x"},
+        {"Priority": "5. Peak readiness", "Action": "Dec-style demand needs capacity + priced peak offers — Group already proved the spike is possible", "KPI to watch": "Peak month rev · OTIF"},
+        {"Priority": "6. Accelerate28 local", "Action": "Map India initiatives to Group workstreams; report margin actions, not activity theatre", "KPI to watch": "Initiative EBIT impact"},
+    ])
+    st.dataframe(agenda, use_container_width=True, hide_index=True)
+
+    st.markdown('<div class="exec-section-title">Quarter Detail (AED m)</div>', unsafe_allow_html=True)
+    detail = qdf[[
+        "Quarter", "Revenue", "Gross_Profit", "GP_Margin_Pct",
+        "Intl_Express", "Domestic_Express", "Freight", "Logistics",
+        "South_Asia", "South_Asia_YoY_Pct", "Notes",
+    ]].copy()
+    detail.columns = [
+        "Quarter", "Revenue", "GP", "GP %",
+        "Intl Express", "Domestic", "Freight", "Logistics",
+        "South Asia*", "SA YoY %", "Note",
+    ]
+    st.dataframe(detail, use_container_width=True, hide_index=True)
+
+    with st.expander("Source notes & caveats"):
+        st.markdown(
+            """
+            - **Aramex PJSC** Q2’25, Q3’25, Q4/FY’25, Q1’26 press releases and interim condensed FS (DFM filings).
+            - Investor presentations / management commentary on nearshoring, Accelerate28, and product-led strategy.
+            - **South Asia** quarterly figures reconstructed from YTD geo tables in interim FS (H1, 9M, FY) and Q1’26 FS.
+            - India is **not** separately disclosed in public filings — use internal India P&L for country truth; this tab is Group context for MD discussion.
+            - Currency: AED million unless stated. Approx USD ≈ AED ÷ 3.67 if needed for Group IR packs.
+            """
+        )
+
+
+def render_quarterly_board_pack(data, filters):
+    """Aramex Group last-4-quarter public pack: improved vs lacking."""
+    st.caption(
+        "Source: Aramex PJSC public press releases / interim FS (AED million). "
+        "**Group figures — not India country P&L** (India is inside South Asia geo bucket)."
+    )
+
+    qdf = pd.DataFrame(ARAMEX_PUBLIC_QUARTERS).sort_values("Sort")
+    latest = qdf.iloc[-1]
+    prior = qdf.iloc[-2]
+
+    # --- KPI strip ---
+    rev_qoq = (latest["Revenue"] / prior["Revenue"] - 1) * 100
+    gp_qoq = (latest["Gross_Profit"] / prior["Gross_Profit"] - 1) * 100
+    margin_delta = latest["GP_Margin_Pct"] - prior["GP_Margin_Pct"]
+    kpi_cards = [
+        kpi_card("Latest Quarter", str(latest["Quarter"]), "Published pack", 78),
+        kpi_card("Group Revenue", f"AED {latest['Revenue']:.0f}m", f"{latest['Revenue_YoY_Pct']:+.0f}% YoY · {rev_qoq:+.1f}% QoQ", 80 if latest["Revenue_YoY_Pct"] >= 0 else 55),
+        kpi_card("Gross Profit", f"AED {latest['Gross_Profit']:.0f}m", f"{gp_qoq:+.1f}% QoQ", 70 if gp_qoq >= 0 else 45),
+        kpi_card("GP Margin", f"{latest['GP_Margin_Pct']:.1f}%", f"{margin_delta:+.1f} pp vs prior Q", 75 if margin_delta >= 0 else 40),
+    ]
+    st.markdown(f'<div class="kpi-grid">{"".join(kpi_cards)}</div>', unsafe_allow_html=True)
+
+    # --- Improved vs Lacking ---
+    improved = [
+        ("Domestic Express", "Consistently positive YoY across last 4Q (Q1'26 +11%). Nearshoring / local demand captured."),
+        ("Logistics & Supply Chain", "Double-digit growth through 2025; Q1'26 still +9% YoY with better contract quality historically."),
+        ("Freight Forwarding", "Steady mid-single to high-single digit growth (Q1'26 +7% YoY) across air/sea/land."),
+        ("Top-line resilience", "Group revenue held flat-to-up despite Intl Express decline; Q1'26 group +2% YoY."),
+    ]
+    lacking = [
+        ("International Express mix", "Still negative YoY every quarter in this pack (−16% → −9% → −6% → −9%). High-margin engine shrinking."),
+        ("Gross margin pressure", "GP margin softest in Q1'26 at 21.4% (vs 23.2% in Q3'25). Mix + cost-to-serve."),
+        ("Profit quality vs volume", "Busy Domestic/Logistics growth not fully replacing Intl Express profit contribution yet."),
+        ("South Asia geo softness", "Q1'26 South Asia revenue AED 90.6m vs AED 101.5m prior year (−11%). India sits inside this bucket."),
+    ]
+
+    c1, c2 = st.columns(2, gap="medium")
+    with c1:
+        st.markdown('<div class="exec-section-title">Where they improved</div>', unsafe_allow_html=True)
+        for title, body in improved:
+            st.markdown(
+                f"""
+                <div class="forecast-kpi-card" style="margin-bottom:10px;">
+                    <div class="forecast-kpi-title" style="color:#34d399;">▲ {title}</div>
+                    <div style="color:#cbd5e1;font-size:.82rem;margin-top:4px;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+    with c2:
+        st.markdown('<div class="exec-section-title">Where they are lacking</div>', unsafe_allow_html=True)
+        for title, body in lacking:
+            st.markdown(
+                f"""
+                <div class="forecast-kpi-card" style="margin-bottom:10px;">
+                    <div class="forecast-kpi-title" style="color:#f87171;">▼ {title}</div>
+                    <div style="color:#cbd5e1;font-size:.82rem;margin-top:4px;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # --- Trend charts ---
+    st.markdown('<div class="exec-section-title">Last 4 Quarters — Group Trend</div>', unsafe_allow_html=True)
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(
+        go.Bar(name="Revenue (AED m)", x=qdf["Quarter"], y=qdf["Revenue"], marker_color="#3b82f6"),
+        secondary_y=False,
+    )
+    fig.add_trace(
+        go.Scatter(
+            name="GP Margin %",
+            x=qdf["Quarter"],
+            y=qdf["GP_Margin_Pct"],
+            mode="lines+markers",
+            line=dict(color="#fbbf24", width=3),
+            marker=dict(size=9),
+        ),
+        secondary_y=True,
+    )
+    fig.update_layout(**PLOTLY_TEMPLATE["layout"], height=340, legend=dict(orientation="h", y=1.12))
+    fig.update_yaxes(title_text="Revenue AED m", secondary_y=False, gridcolor="rgba(148,163,184,.15)")
+    fig.update_yaxes(title_text="GP Margin %", secondary_y=True, showgrid=False)
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown('<div class="exec-section-title">Product Mix — Revenue by Quarter (AED m)</div>', unsafe_allow_html=True)
+    mix = qdf.melt(
+        id_vars=["Quarter"],
+        value_vars=["Intl_Express", "Domestic_Express", "Freight", "Logistics"],
+        var_name="Product",
+        value_name="Revenue_AED_m",
+    )
+    mix["Product"] = mix["Product"].map({
+        "Intl_Express": "International Express",
+        "Domestic_Express": "Domestic Express",
+        "Freight": "Freight Forwarding",
+        "Logistics": "Logistics",
+    })
+    fig2 = px.bar(
+        mix,
+        x="Quarter",
+        y="Revenue_AED_m",
+        color="Product",
+        barmode="stack",
+        color_discrete_sequence=["#64748b", "#22c55e", "#38bdf8", "#a78bfa"],
+    )
+    fig2.update_layout(**PLOTLY_TEMPLATE["layout"], height=360, legend=dict(orientation="h", y=1.12))
+    fig2.update_yaxes(title_text="AED million", gridcolor="rgba(148,163,184,.15)")
+    st.plotly_chart(fig2, use_container_width=True)
+
+    # --- YoY heat table ---
+    st.markdown('<div class="exec-section-title">YoY Growth Heat — Product Lines</div>', unsafe_allow_html=True)
+    heat = pd.DataFrame({
+        "Quarter": qdf["Quarter"],
+        "Intl Express YoY %": qdf["Intl_YoY_Pct"],
+        "Domestic YoY %": qdf["Domestic_YoY_Pct"],
+        "Freight YoY %": qdf["Freight_YoY_Pct"],
+        "Logistics YoY %": qdf["Logistics_YoY_Pct"],
+        "Group Rev YoY %": qdf["Revenue_YoY_Pct"],
+        "GP Margin %": qdf["GP_Margin_Pct"],
+    })
+    st.dataframe(heat, use_container_width=True, hide_index=True)
+    st.caption("Green theme in narrative: Domestic / Freight / Logistics YoY positive. Red pressure: Intl Express YoY negative + softer GP margin.")
+
+    # --- Detail table ---
+    st.markdown('<div class="exec-section-title">Quarter Detail Pack</div>', unsafe_allow_html=True)
+    detail = qdf[[
+        "Quarter", "Revenue", "Gross_Profit", "GP_Margin_Pct",
+        "Intl_Express", "Domestic_Express", "Freight", "Logistics", "South_Asia", "Notes",
+    ]].copy()
+    detail.columns = [
+        "Quarter", "Revenue AED m", "GP AED m", "GP Margin %",
+        "Intl Express", "Domestic", "Freight", "Logistics", "South Asia*", "Board Note",
+    ]
+    st.dataframe(detail, use_container_width=True, hide_index=True)
+    st.caption(
+        "*South Asia is the closest public geo proxy that includes India — not a pure India P&L. "
+        "For the fuller MD interview pack (geo + sales agenda), open **Global View**."
+    )
+
+    st.markdown('<div class="exec-section-title">Sales Excellence Read for Country Head</div>', unsafe_allow_html=True)
+    st.info(
+        "**Protect yield while growing Domestic / Freight / Logistics.** "
+        "Intl Express decline is structural (nearshoring). Commercial excellence must stop "
+        "discount leakage, improve forecast trust, and coach value selling so new mix still delivers margin."
+    )
+
+
 def render_github_publish():
     from github_publish import verify_github_token
 
@@ -5825,7 +6555,7 @@ def main():
         page_title="USEF AI - Sales Excellence",
         page_icon="📊",
         layout="wide",
-        initial_sidebar_state="expanded",
+        initial_sidebar_state="auto",
     )
     st.markdown(DARK_CSS, unsafe_allow_html=True)
 
@@ -5864,7 +6594,7 @@ def main():
             st.session_state.data = generate_all_data(force=True)
             st.session_state.data_version = DATA_VERSION
             st.rerun()
-        st.caption("BUILD: Workforce Practical v3")
+        st.caption("BUILD: Global View v1")
 
     months = ["All"] + sorted(data["sales"]["Month"].unique(), key=lambda x: pd.to_datetime(x, format="%b").month)
     years = sorted(data["sales"]["Year"].unique())
@@ -5874,6 +6604,8 @@ def main():
         "command": "Real-time overview of sales performance & business health",
         "sales": "Revenue, target achievement, product mix and sales ranking",
         "executive": "Board-style leakage, margin, collection and AI action signals",
+        "global": "Aramex Group last 4Q — improving, lacking & sales look-ahead from public filings / IR",
+        "quarterly": "Aramex Group last 4 quarters — improved vs lacking from public filings",
         "employee": "Employee scorecard, coaching signals and sales activity",
         "customer": "Customer health, risk alerts, watchlist and upsell actions",
         "pipeline": "Pipeline quality, deal risk and close focus",
@@ -5886,8 +6618,8 @@ def main():
         "copilot": "Ask USEF AI for sales excellence guidance",
         "settings": "Dashboard configuration, filters and business rules",
     }
-    top = st.columns([1.55, .72, .55, .62, .72, .82], gap="small")
-    with top[0]:
+    title_col, refresh_col = st.columns([2.4, 1.0], gap="small")
+    with title_col:
         st.markdown(
             f"""
             <div class="top-title-block">
@@ -5897,7 +6629,7 @@ def main():
             """,
             unsafe_allow_html=True,
         )
-    with top[1]:
+    with refresh_col:
         st.markdown(
             f"""
             <div class="top-refresh-card">
@@ -5907,13 +6639,15 @@ def main():
             """,
             unsafe_allow_html=True,
         )
-    with top[2]:
+
+    f1, f2, f3, f4 = st.columns(4, gap="small")
+    with f1:
         year = st.selectbox("Year", years, index=years.index(default_year), key="global_year")
-    with top[3]:
+    with f2:
         month = st.selectbox("Month", months, index=0, key="global_month")
-    with top[4]:
+    with f3:
         region = st.selectbox("Region", ["All"] + REGIONS, key="global_region")
-    with top[5]:
+    with f4:
         division = st.selectbox("Division", ["All"] + DIVISIONS, key="global_division")
 
     with st.sidebar:
@@ -5931,6 +6665,8 @@ def main():
         "command": render_command_center,
         "sales": render_sales_performance,
         "executive": render_executive_business_insight,
+        "global": render_global_view,
+        "quarterly": render_quarterly_board_pack,
         "employee": render_employee_360,
         "customer": render_customer_360,
         "pipeline": render_pipeline,
