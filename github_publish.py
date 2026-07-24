@@ -31,6 +31,7 @@ DATA_FILES = [
     "Data/training.csv",
     "Data/opportunity.csv",
     "Data/incentive_config.csv",
+    "Data/aramex_historic_product_mix.csv",
 ]
 
 
