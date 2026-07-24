@@ -5953,12 +5953,21 @@ def _execute_github_push(
     return False, errors[0] if errors else "Upload failed.", ok_paths, errors
 
 
+def load_aramex_historic_product_mix() -> pd.DataFrame:
+    """Official IR Data Book Historic_Product_Breakdown (AED million)."""
+    path = Path(DATA_DIR) / "aramex_historic_product_mix.csv"
+    if not path.is_file():
+        return pd.DataFrame()
+    df = pd.read_csv(path)
+    return df.sort_values("Sort")
+
+
 def render_global_view(data, filters):
-    """Group-level Global View — last 4 public quarters + geo + commercial focus."""
+    """Group-level Global View — last 4 public quarters + historic product mix + geo."""
     st.caption(
-        "Aramex PJSC public filings (Q2’25 → Q1’26). Figures in **AED million**. "
-        "**India country P&L is not published** — closest public proxy is **South Asia** geo revenue. "
-        "Source links at the bottom of this page."
+        "Aramex PJSC public filings + **IR Data Book** Historic Product Breakdown. "
+        "Figures in **AED million**. India country P&L is not published — closest proxy is **South Asia**. "
+        "Source links at the bottom."
     )
 
     qdf = pd.DataFrame(ARAMEX_PUBLIC_QUARTERS).sort_values("Sort")
@@ -5967,6 +5976,7 @@ def render_global_view(data, filters):
     fy_prod = pd.DataFrame(ARAMEX_FY_PRODUCTS)
     fy_geo = pd.DataFrame(ARAMEX_FY_GEO).copy()
     fy_geo["YoY_Pct"] = ((fy_geo["FY2025"] / fy_geo["FY2024"]) - 1.0) * 100
+    hist = load_aramex_historic_product_mix()
 
     # --- Verdict strip ---
     rev_qoq = (latest["Revenue"] / prior["Revenue"] - 1) * 100
@@ -5984,6 +5994,177 @@ def render_global_view(data, filters):
         "Domestic Express, Logistics and Freight are carrying growth while **International Express and South Asia are soft**. "
         "Commercial focus: protect yield and shift toward nearshore / fulfilment demand — not long-haul volume at any price."
     )
+
+    # --- Historic product mix (IR Data Book) ---
+    if not hist.empty:
+        split = hist.dropna(subset=["Intl_Express"]).copy()
+        st.markdown(
+            '<div class="exec-section-title">Historic Product Mix — IR Data Book (Q1’21 → Q1’26)</div>',
+            unsafe_allow_html=True,
+        )
+        st.caption(
+            "Source sheet: **Historic_Product_Breakdown** in Aramex IR Data Book. "
+            "Intl Express = Express+SNS / Express+Parcel Forwarding. Values AED million."
+        )
+
+        # Annual mix KPI cards 2021 vs 2025
+        def _year_mix(year: int) -> dict:
+            ydf = split[split["Year"] == year]
+            tot = float(ydf["Total_Rev"].sum())
+            if tot <= 0 or len(ydf) < 4:
+                return {}
+            return {
+                "Total": tot,
+                "Intl": 100 * float(ydf["Intl_Express"].sum()) / tot,
+                "Dom": 100 * float(ydf["Domestic"].sum()) / tot,
+                "Frt": 100 * float(ydf["Freight"].sum()) / tot,
+                "Log": 100 * float(ydf["Logistics"].sum()) / tot,
+                "GP": float(ydf["Total_GP_Pct"].mean()),
+            }
+
+        m21, m25 = _year_mix(2021), _year_mix(2025)
+        if m21 and m25:
+            mix_kpis = [
+                kpi_card("Intl Express share", f"{m25['Intl']:.0f}%", f"FY’21 was {m21['Intl']:.0f}% · −{m21['Intl']-m25['Intl']:.0f} pp", 40),
+                kpi_card("Domestic share", f"{m25['Dom']:.0f}%", f"FY’21 was {m21['Dom']:.0f}% · +{m25['Dom']-m21['Dom']:.0f} pp", 78),
+                kpi_card("Freight share", f"{m25['Frt']:.0f}%", f"FY’21 was {m21['Frt']:.0f}% · +{m25['Frt']-m21['Frt']:.0f} pp", 80),
+                kpi_card("Logistics share", f"{m25['Log']:.1f}%", f"FY’21 was {m21['Log']:.1f}% · +{m25['Log']-m21['Log']:.1f} pp", 85),
+            ]
+            st.markdown(f'<div class="kpi-grid">{"".join(mix_kpis)}</div>', unsafe_allow_html=True)
+            st.success(
+                f"**Useful mix for commercial focus:** From FY’21 → FY’25, Intl Express fell "
+                f"**{m21['Intl']:.0f}% → {m25['Intl']:.0f}%** of Group revenue, while Domestic + Freight + Logistics rose to "
+                f"**{m25['Dom']+m25['Frt']+m25['Log']:.0f}%**. "
+                f"That is the mix to build in India — **Domestic + Logistics + regional Freight**, with yield discipline, "
+                f"because Group GP% eased ({m21['GP']:.1f}% → {m25['GP']:.1f}% avg) as high-margin Intl share shrank."
+            )
+
+        # Revenue by product over time
+        left, right = st.columns(2, gap="medium")
+        with left:
+            st.markdown('<div class="exec-section-title">Revenue by product (AED m)</div>', unsafe_allow_html=True)
+            long = split.melt(
+                id_vars=["Quarter"],
+                value_vars=["Intl_Express", "Domestic", "Freight", "Logistics"],
+                var_name="Product",
+                value_name="Revenue",
+            )
+            long["Product"] = long["Product"].map({
+                "Intl_Express": "International Express",
+                "Domestic": "Domestic Express",
+                "Freight": "Freight Forwarding",
+                "Logistics": "Logistics",
+            })
+            fig_hist = px.area(
+                long,
+                x="Quarter",
+                y="Revenue",
+                color="Product",
+                color_discrete_sequence=["#64748b", "#22c55e", "#38bdf8", "#a78bfa"],
+            )
+            fig_hist.update_layout(**PLOTLY_TEMPLATE["layout"], height=380, legend=dict(orientation="h", y=1.15))
+            fig_hist.update_xaxes(tickangle=-45)
+            fig_hist.update_yaxes(title_text="AED million", gridcolor="rgba(148,163,184,.15)")
+            st.plotly_chart(fig_hist, use_container_width=True)
+        with right:
+            st.markdown('<div class="exec-section-title">Product mix share of Group (%)</div>', unsafe_allow_html=True)
+            share = split.melt(
+                id_vars=["Quarter"],
+                value_vars=["Intl_Express_Share", "Domestic_Share", "Freight_Share", "Logistics_Share"],
+                var_name="Product",
+                value_name="Share",
+            )
+            share["Product"] = share["Product"].map({
+                "Intl_Express_Share": "International Express",
+                "Domestic_Share": "Domestic Express",
+                "Freight_Share": "Freight Forwarding",
+                "Logistics_Share": "Logistics",
+            })
+            fig_share = px.area(
+                share,
+                x="Quarter",
+                y="Share",
+                color="Product",
+                groupnorm="percent",
+                color_discrete_sequence=["#64748b", "#22c55e", "#38bdf8", "#a78bfa"],
+            )
+            fig_share.update_layout(**PLOTLY_TEMPLATE["layout"], height=380, legend=dict(orientation="h", y=1.15))
+            fig_share.update_xaxes(tickangle=-45)
+            fig_share.update_yaxes(title_text="Share %", gridcolor="rgba(148,163,184,.15)")
+            st.plotly_chart(fig_share, use_container_width=True)
+
+        # GP% by product
+        st.markdown('<div class="exec-section-title">Gross margin by product (%)</div>', unsafe_allow_html=True)
+        gp_long = split.melt(
+            id_vars=["Quarter"],
+            value_vars=["Intl_GP_Pct", "Domestic_GP_Pct", "Freight_GP_Pct", "Logistics_GP_Pct", "Total_GP_Pct"],
+            var_name="Metric",
+            value_name="GP_Pct",
+        )
+        gp_long["Product"] = gp_long["Metric"].map({
+            "Intl_GP_Pct": "International Express",
+            "Domestic_GP_Pct": "Domestic Express",
+            "Freight_GP_Pct": "Freight Forwarding",
+            "Logistics_GP_Pct": "Logistics",
+            "Total_GP_Pct": "Group Total",
+        })
+        fig_gp = px.line(
+            gp_long,
+            x="Quarter",
+            y="GP_Pct",
+            color="Product",
+            markers=True,
+            color_discrete_map={
+                "International Express": "#94a3b8",
+                "Domestic Express": "#22c55e",
+                "Freight Forwarding": "#38bdf8",
+                "Logistics": "#a78bfa",
+                "Group Total": "#fbbf24",
+            },
+        )
+        fig_gp.update_layout(**PLOTLY_TEMPLATE["layout"], height=360, legend=dict(orientation="h", y=1.15))
+        fig_gp.update_xaxes(tickangle=-45)
+        fig_gp.update_yaxes(title_text="GP %", gridcolor="rgba(148,163,184,.15)")
+        st.plotly_chart(fig_gp, use_container_width=True)
+        st.caption(
+            "Intl Express still has the highest GP%, but its share is shrinking. "
+            "Logistics GP% has improved; Domestic/Freight are lower — so volume growth there needs yield control."
+        )
+
+        # FY mix comparison bar
+        if m21 and m25:
+            st.markdown('<div class="exec-section-title">FY’21 vs FY’25 — which mix is more useful?</div>', unsafe_allow_html=True)
+            cmp = pd.DataFrame([
+                {"Year": "FY 2021", "Product": "International Express", "Share %": m21["Intl"]},
+                {"Year": "FY 2021", "Product": "Domestic Express", "Share %": m21["Dom"]},
+                {"Year": "FY 2021", "Product": "Freight Forwarding", "Share %": m21["Frt"]},
+                {"Year": "FY 2021", "Product": "Logistics", "Share %": m21["Log"]},
+                {"Year": "FY 2025", "Product": "International Express", "Share %": m25["Intl"]},
+                {"Year": "FY 2025", "Product": "Domestic Express", "Share %": m25["Dom"]},
+                {"Year": "FY 2025", "Product": "Freight Forwarding", "Share %": m25["Frt"]},
+                {"Year": "FY 2025", "Product": "Logistics", "Share %": m25["Log"]},
+            ])
+            fig_cmp = px.bar(
+                cmp,
+                x="Product",
+                y="Share %",
+                color="Year",
+                barmode="group",
+                color_discrete_sequence=["#64748b", "#22c55e"],
+                text="Share %",
+            )
+            fig_cmp.update_traces(texttemplate="%{text:.0f}%", textposition="outside")
+            fig_cmp.update_layout(**PLOTLY_TEMPLATE["layout"], height=360, legend=dict(orientation="h", y=1.12))
+            fig_cmp.update_yaxes(gridcolor="rgba(148,163,184,.15)")
+            st.plotly_chart(fig_cmp, use_container_width=True)
+
+            play = pd.DataFrame([
+                {"Product": "International Express", "Trend": "Shrinking share", "Why it matters": "Still highest GP% but structurally declining — don’t chase with discount", "India sales play": "Keep premium lanes; convert nearshore churn to Domestic + Logistics"},
+                {"Product": "Domestic Express", "Trend": "Rising share + volume", "Why it matters": "Nearshoring winner; GP% lower (~22%) so yield risk", "India sales play": "Grow e-comm / D2C domestic with rate-card discipline"},
+                {"Product": "Freight Forwarding", "Trend": "Rising share", "Why it matters": "Volume growth across air/sea/land; mid-teens GP%", "India sales play": "Push India↔GCC / regional lanes tied to customer stock moves"},
+                {"Product": "Logistics", "Trend": "Fastest quality growth", "Why it matters": "Share up + GP% improving in IR pack — best ‘useful mix’ engine", "India sales play": "Sell warehousing + fulfilment as the nearshore solution"},
+            ])
+            st.dataframe(play, use_container_width=True, hide_index=True)
 
     # --- Three lenses ---
     improving = [
@@ -6237,10 +6418,12 @@ def render_global_view(data, filters):
     st.markdown(
         """
 **Caveat:** India is not separately disclosed. South Asia geo revenue is the closest public proxy.
-Currency: AED million. South Asia quarterly values are derived from YTD geo tables in interim FS.
+Currency: AED million. Historic product mix parsed from IR Data Book sheet **Historic_Product_Breakdown**.
 
-| Period | Source | Link |
+| Period / item | Source | Link |
 | --- | --- | --- |
+| **Historic product mix (2020–Q1’26)** | **IR Data Book — Historic_Product_Breakdown** | [Open IR Data Book (xlsx)](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/ir-data/ir-data-book.xlsx) |
+| IR Data Book (Office viewer) | Same file via Microsoft viewer | [View in browser](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fdotcomaramexprod.blob.core.windows.net%2Fdefault%2Fdocs%2Fdefault-source%2Fir-data%2Fir-data-book.xlsx&wdOrigin=BROWSELINK) |
 | Q2 / H1 2025 | Press release | [aramex.com — H1/Q2 2025 results](https://www.aramex.com/ae/en/media-details/news/news-details?contentid=479fc788-b3f2-659d-9310-ff0100e7fe0c&module=stories) |
 | Q2 / H1 2025 | Interim FS (geo) | [Aramex EBC 30 Jun 2025 PDF](https://dotcomaramexprod.blob.core.windows.net/default/docs/default-source/financial-statements/aramex-ebc-30-june-2025.pdf) |
 | Q3 / 9M 2025 | Press release PDF | [Q3 2025 press release](https://www.aramex.com/docs/default-source/press-release/20251112_press-release_aramex-q3-2025_final.pdf?sfvrsn=462fac19_1) |
@@ -6605,7 +6788,7 @@ def main():
             st.session_state.data = generate_all_data(force=True)
             st.session_state.data_version = DATA_VERSION
             st.rerun()
-        st.caption("BUILD: Global View v1")
+        st.caption("BUILD: Global View v2 — IR product mix")
 
     months = ["All"] + sorted(data["sales"]["Month"].unique(), key=lambda x: pd.to_datetime(x, format="%b").month)
     years = sorted(data["sales"]["Year"].unique())
