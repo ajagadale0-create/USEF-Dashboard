@@ -6022,21 +6022,42 @@ def render_global_view(data, filters):
                 "GP": float(ydf["Total_GP_Pct"].mean()),
             }
 
-        m21, m25 = _year_mix(2021), _year_mix(2025)
-        if m21 and m25:
+        m21, m24, m25 = _year_mix(2021), _year_mix(2024), _year_mix(2025)
+        if m21 and m24 and m25:
             mix_kpis = [
-                kpi_card("Intl Express share", f"{m25['Intl']:.0f}%", f"FY’21 was {m21['Intl']:.0f}% · −{m21['Intl']-m25['Intl']:.0f} pp", 40),
-                kpi_card("Domestic share", f"{m25['Dom']:.0f}%", f"FY’21 was {m21['Dom']:.0f}% · +{m25['Dom']-m21['Dom']:.0f} pp", 78),
-                kpi_card("Freight share", f"{m25['Frt']:.0f}%", f"FY’21 was {m21['Frt']:.0f}% · +{m25['Frt']-m21['Frt']:.0f} pp", 80),
-                kpi_card("Logistics share", f"{m25['Log']:.1f}%", f"FY’21 was {m21['Log']:.1f}% · +{m25['Log']-m21['Log']:.1f} pp", 85),
+                kpi_card(
+                    "Intl Express share",
+                    f"{m25['Intl']:.0f}%",
+                    f"FY’21 {m21['Intl']:.0f}% → FY’24 {m24['Intl']:.0f}% → FY’25 {m25['Intl']:.0f}%",
+                    40,
+                ),
+                kpi_card(
+                    "Domestic share",
+                    f"{m25['Dom']:.0f}%",
+                    f"FY’21 {m21['Dom']:.0f}% → FY’24 {m24['Dom']:.0f}% → FY’25 {m25['Dom']:.0f}%",
+                    78,
+                ),
+                kpi_card(
+                    "Freight share",
+                    f"{m25['Frt']:.0f}%",
+                    f"FY’21 {m21['Frt']:.0f}% → FY’24 {m24['Frt']:.0f}% → FY’25 {m25['Frt']:.0f}%",
+                    80,
+                ),
+                kpi_card(
+                    "Logistics share",
+                    f"{m25['Log']:.1f}%",
+                    f"FY’21 {m21['Log']:.1f}% → FY’24 {m24['Log']:.1f}% → FY’25 {m25['Log']:.1f}%",
+                    85,
+                ),
             ]
             st.markdown(f'<div class="kpi-grid">{"".join(mix_kpis)}</div>', unsafe_allow_html=True)
             st.success(
-                f"**Useful mix for commercial focus:** From FY’21 → FY’25, Intl Express fell "
-                f"**{m21['Intl']:.0f}% → {m25['Intl']:.0f}%** of Group revenue, while Domestic + Freight + Logistics rose to "
-                f"**{m25['Dom']+m25['Frt']+m25['Log']:.0f}%**. "
+                f"**Useful mix for commercial focus:** FY’21 → FY’24 → FY’25, Intl Express fell "
+                f"**{m21['Intl']:.0f}% → {m24['Intl']:.0f}% → {m25['Intl']:.0f}%** of Group revenue, while "
+                f"Domestic + Freight + Logistics rose to **{m25['Dom']+m25['Frt']+m25['Log']:.0f}%** in FY’25 "
+                f"(FY’24 was {m24['Dom']+m24['Frt']+m24['Log']:.0f}%). "
                 f"That is the mix to build in India — **Domestic + Logistics + regional Freight**, with yield discipline, "
-                f"because Group GP% eased ({m21['GP']:.1f}% → {m25['GP']:.1f}% avg) as high-margin Intl share shrank."
+                f"because Group GP% eased ({m21['GP']:.1f}% → {m24['GP']:.1f}% → {m25['GP']:.1f}% avg) as high-margin Intl share shrank."
             )
 
         # Revenue by product over time
@@ -6132,30 +6153,33 @@ def render_global_view(data, filters):
         )
 
         # FY mix comparison bar
-        if m21 and m25:
-            st.markdown('<div class="exec-section-title">FY’21 vs FY’25 — which mix is more useful?</div>', unsafe_allow_html=True)
-            cmp = pd.DataFrame([
-                {"Year": "FY 2021", "Product": "International Express", "Share %": m21["Intl"]},
-                {"Year": "FY 2021", "Product": "Domestic Express", "Share %": m21["Dom"]},
-                {"Year": "FY 2021", "Product": "Freight Forwarding", "Share %": m21["Frt"]},
-                {"Year": "FY 2021", "Product": "Logistics", "Share %": m21["Log"]},
-                {"Year": "FY 2025", "Product": "International Express", "Share %": m25["Intl"]},
-                {"Year": "FY 2025", "Product": "Domestic Express", "Share %": m25["Dom"]},
-                {"Year": "FY 2025", "Product": "Freight Forwarding", "Share %": m25["Frt"]},
-                {"Year": "FY 2025", "Product": "Logistics", "Share %": m25["Log"]},
-            ])
+        if m21 and m24 and m25:
+            st.markdown(
+                '<div class="exec-section-title">FY’21 vs FY’24 vs FY’25 — which mix is more useful?</div>',
+                unsafe_allow_html=True,
+            )
+            cmp_rows = []
+            for year_label, mix in [("FY 2021", m21), ("FY 2024", m24), ("FY 2025", m25)]:
+                cmp_rows.extend([
+                    {"Year": year_label, "Product": "International Express", "Share %": mix["Intl"]},
+                    {"Year": year_label, "Product": "Domestic Express", "Share %": mix["Dom"]},
+                    {"Year": year_label, "Product": "Freight Forwarding", "Share %": mix["Frt"]},
+                    {"Year": year_label, "Product": "Logistics", "Share %": mix["Log"]},
+                ])
+            cmp = pd.DataFrame(cmp_rows)
             fig_cmp = px.bar(
                 cmp,
                 x="Product",
                 y="Share %",
                 color="Year",
                 barmode="group",
-                color_discrete_sequence=["#64748b", "#22c55e"],
+                category_orders={"Year": ["FY 2021", "FY 2024", "FY 2025"]},
+                color_discrete_sequence=["#64748b", "#38bdf8", "#22c55e"],
                 text="Share %",
             )
             fig_cmp.update_traces(texttemplate="%{text:.0f}%", textposition="outside")
-            fig_cmp.update_layout(**PLOTLY_TEMPLATE["layout"], height=360, legend=dict(orientation="h", y=1.12))
-            fig_cmp.update_yaxes(gridcolor="rgba(148,163,184,.15)")
+            fig_cmp.update_layout(**PLOTLY_TEMPLATE["layout"], height=380, legend=dict(orientation="h", y=1.12))
+            fig_cmp.update_yaxes(gridcolor="rgba(148,163,184,.15)", range=[0, 55])
             st.plotly_chart(fig_cmp, use_container_width=True)
 
             play = pd.DataFrame([
