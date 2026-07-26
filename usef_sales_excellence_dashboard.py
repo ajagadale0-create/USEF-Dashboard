@@ -1241,12 +1241,16 @@ def build_workforce_plan_grid(
     )
 
     total_hc = int(roster["Employee_ID"].nunique())
+    # USEF < 70 on full scorecard (all roles) — same rule as Executive "Coach N"
+    usef_below_all = int((sc["USEF_Score"] < 70).sum()) if len(sc) else 0
+    usef_below_field = int((roster["USEF_Score"] < 70).sum()) if len(roster) else 0
     summary = {
         "total_hc": total_hc,
         "total_revenue": float(roster["Revenue"].sum()),
         "rev_per_rep": float(roster["Revenue"].sum() / max(total_hc, 1)),
         "hiring_gap": int(grid["HC_Gap"].clip(lower=0).sum()),
-        "underperformers": int((roster["USEF_Score"] < 70).sum()),
+        "underperformers": usef_below_all,
+        "underperformers_field": usef_below_field,
         "focus_reps": int((roster["Performance_Tier"] == "Focus").sum()),
         "expansion_pct": expansion_pct,
         "uplift_pct": ANNUAL_TARGET_UPLIFT_PCT,
@@ -3501,7 +3505,7 @@ def render_executive_business_insight(data, filters):
         ["Price Correction", f"Recover leakage of {fmt_cr(revenue_leakage)} from high-discount lanes", "Immediate"],
         ["Collection War Room", f"Assign owners for {fmt_cr(collection_risk)} overdue exposure", "Immediate"],
         ["Forecast Governance", f"Protect {fmt_cr(forecast_risk_value)} low-case forecast gap", "Weekly"],
-        ["People Intervention", f"Coach {employee_risk_count} reps below USEF 70", "30 Days"],
+        ["People Intervention", f"Coach {employee_risk_count} people below USEF 70 (all roles)", "30 Days"],
         ["Customer Retention", f"Save {customer_risk_count} weak-health accounts", "30 Days"],
     ], columns=["Decision", "Why It Matters", "Timing"])
 
@@ -3798,7 +3802,16 @@ def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
         ),
         wf_kpi("Coach Priority", str(summary["coach_priority"]), "Linked to coaching table"),
         wf_kpi("Focus Tier", str(summary["focus_reps"]), "HR development tier reps"),
-        wf_kpi("USEF Below 70", str(summary["underperformers"]), "Composite score only"),
+        wf_kpi(
+            "USEF Below 70",
+            str(summary["underperformers"]),
+            f"All roles · matches Executive"
+            + (
+                f" · {summary['underperformers_field']} field SE"
+                if summary.get("underperformers_field", 0) != summary["underperformers"]
+                else ""
+            ),
+        ),
     ]
     for col, card in zip(st.columns(6, gap="small"), kpis):
         with col:
