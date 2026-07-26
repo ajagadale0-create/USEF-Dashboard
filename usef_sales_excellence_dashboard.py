@@ -3539,6 +3539,66 @@ def render_executive_business_insight(data, filters):
         st.markdown('<div class="exec-tile-title">Top 5 Threats</div>', unsafe_allow_html=True)
         st.dataframe(threats, hide_index=True, use_container_width=True, height=240)
 
+    # Named lists behind People Intervention / Customer Retention counts
+    coach_list = emp_sc[emp_sc["USEF_Score"] < 70].sort_values("USEF_Score").copy()
+    weak_health_list = cust_sc[cust_sc["Health_Score"] < 65].sort_values("Health_Score").copy()
+    st.caption(
+        "Open the two lists below to see **exact names** behind “Coach N” and “Save N weak-health”. "
+        "Use the same Year / Month / Region / Division filters when you open Employee 360 or Customer 360."
+    )
+    name_l, name_r = st.columns(2, gap="medium")
+    with name_l:
+        st.markdown(
+            f'<div class="exec-section-title">People Intervention — {len(coach_list)} reps (USEF &lt; 70)</div>',
+            unsafe_allow_html=True,
+        )
+        if len(coach_list):
+            coach_view = coach_list[
+                ["Employee_Name", "Designation", "Region", "Division", "USEF_Score", "Target_Ach_Pct", "Revenue"]
+            ].copy()
+            coach_view["USEF_Score"] = coach_view["USEF_Score"].map(lambda x: f"{x:.1f}")
+            coach_view["Target_Ach_Pct"] = coach_view["Target_Ach_Pct"].map(lambda x: f"{x:.1f}%")
+            coach_view["Revenue"] = coach_view["Revenue"].apply(fmt_cr)
+            st.dataframe(
+                coach_view.rename(columns={
+                    "Employee_Name": "Employee",
+                    "USEF_Score": "USEF",
+                    "Target_Ach_Pct": "Ach %",
+                }),
+                hide_index=True,
+                use_container_width=True,
+                height=220,
+            )
+        else:
+            st.info("No employees below USEF 70 for current filters.")
+    with name_r:
+        st.markdown(
+            f'<div class="exec-section-title">Customer Retention — {len(weak_health_list)} accounts (Health &lt; 65)</div>',
+            unsafe_allow_html=True,
+        )
+        if len(weak_health_list):
+            weak_view = weak_health_list[
+                ["Customer_Name", "Region", "Health_Score", "Collection_Pct", "GP_Pct", "Churn_Risk", "Revenue"]
+            ].copy()
+            weak_view["Health_Score"] = weak_view["Health_Score"].map(lambda x: f"{x:.0f}")
+            weak_view["Collection_Pct"] = weak_view["Collection_Pct"].map(lambda x: f"{x:.0f}%")
+            weak_view["GP_Pct"] = weak_view["GP_Pct"].map(lambda x: f"{x:.1f}%")
+            weak_view["Revenue"] = weak_view["Revenue"].apply(fmt_cr)
+            st.dataframe(
+                weak_view.rename(columns={
+                    "Customer_Name": "Customer",
+                    "Health_Score": "Health",
+                    "Collection_Pct": "Collection",
+                    "GP_Pct": "GP %",
+                    "Churn_Risk": "Churn",
+                }),
+                hide_index=True,
+                use_container_width=True,
+                height=220,
+            )
+        else:
+            st.info("No customers below Health 65 for current filters.")
+
     customer_trouble = cust_sc.copy()
     customer_trouble["Trouble_Score"] = (
         (100 - customer_trouble["Health_Score"]).clip(0, 100) * 0.35
@@ -3858,9 +3918,10 @@ def render_workforce_planning(data: dict, filters: dict, sc: pd.DataFrame):
         bench_rows["Activity_Score"] = bench_rows["Activity_Score"].map(lambda x: f"{x:.0f}")
         st.markdown(
             f'<div class="emp-tile-title">Coaching Bench — {len(coaching_roster)} flagged '
-            f'(matches Coach Priority)</div>',
+            f'(Sales Executive · broader rules)</div>',
             unsafe_allow_html=True,
         )
+        st.caption("Not the same as Executive “USEF below 70” — see the matching list further down this page.")
         st.dataframe(
             bench_rows.rename(columns={
                 "Employee_Name": "Employee", "USEF_Score": "USEF",
@@ -3897,9 +3958,40 @@ def render_employee_360(data, filters):
     )
     render_workforce_planning(data, filters, sc)
 
+    # Same rule as Executive "Coach N reps below USEF 70" (all roles in scorecard, not only Sales Executive)
+    usef_below = sc[sc["USEF_Score"] < 70].sort_values("USEF_Score").copy()
+    st.markdown("---")
+    st.markdown(
+        f'<div class="exec-section-title">Matches Executive signal — USEF below 70 ({len(usef_below)})</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "This list uses the **same rule** as Executive → People Intervention (`USEF_Score < 70`). "
+        "Coaching Bench above can show a different count because it also flags Focus tier / low training / activity / collection "
+        "and only includes **Sales Executive** field roles."
+    )
+    if len(usef_below):
+        ub = usef_below[
+            ["Employee_Name", "Designation", "Region", "Division", "USEF_Score", "Target_Ach_Pct", "Priority"]
+        ].copy()
+        ub["USEF_Score"] = ub["USEF_Score"].map(lambda x: f"{x:.1f}")
+        ub["Target_Ach_Pct"] = ub["Target_Ach_Pct"].map(lambda x: f"{x:.1f}%")
+        st.dataframe(
+            ub.rename(columns={
+                "Employee_Name": "Employee",
+                "USEF_Score": "USEF",
+                "Target_Ach_Pct": "Ach %",
+            }),
+            hide_index=True,
+            use_container_width=True,
+            height=200,
+        )
+    else:
+        st.success("No employees below USEF 70 for current filters.")
+
     st.markdown("---")
     st.markdown('<div class="exec-section-title">Individual Employee Scorecard</div>', unsafe_allow_html=True)
-    st.caption("Select a rep below for drilldown — workforce plan is above.")
+    st.caption("Select a rep below for drilldown — workforce plan is above. Tip: pick names from the USEF &lt; 70 list.")
     render_employee_360_individual(data, filters, sc)
 
 
@@ -4268,6 +4360,39 @@ def render_customer_360(data, filters):
     exp1.metric("Margin at Risk (GP)", fmt_cr(margin_at_risk), f"{len(cust_sc[cust_sc['GP_Pct'] < target_gp])} accounts")
     exp2.metric("Collection Gap", fmt_cr(collection_gap), f"{len(cust_sc[cust_sc['Collection_Pct'] < 75])} accounts")
     exp3.metric("Product Mix Risk", f"{mix_risk_count}", "Single-product concentration")
+
+    # Same rule as Executive "Save N weak-health accounts"
+    weak_health_exec = cust_sc[cust_sc["Health_Score"] < 65].sort_values("Health_Score").copy()
+    st.markdown(
+        f'<div class="exec-section-title">Matches Executive signal — Weak health &lt; 65 ({len(weak_health_exec)})</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "This list uses the **same rule** as Executive → Customer Retention (`Health_Score < 65`). "
+        "Watchlist / Lost Customers / Churn Risk below use **different** rules, so counts will not always match."
+    )
+    if len(weak_health_exec):
+        wh = weak_health_exec[
+            ["Customer_Name", "Region", "Health_Score", "Collection_Pct", "GP_Pct", "Churn_Risk", "Revenue"]
+        ].copy()
+        wh["Health_Score"] = wh["Health_Score"].map(lambda x: f"{x:.0f}")
+        wh["Collection_Pct"] = wh["Collection_Pct"].map(lambda x: f"{x:.0f}%")
+        wh["GP_Pct"] = wh["GP_Pct"].map(lambda x: f"{x:.1f}%")
+        wh["Revenue"] = wh["Revenue"].apply(fmt_cr)
+        st.dataframe(
+            wh.rename(columns={
+                "Customer_Name": "Customer",
+                "Health_Score": "Health",
+                "Collection_Pct": "Collection",
+                "GP_Pct": "GP %",
+                "Churn_Risk": "Churn",
+            }),
+            hide_index=True,
+            use_container_width=True,
+            height=240,
+        )
+    else:
+        st.success("No customers below Health 65 for current filters.")
 
     st.subheader("Customer Risk Alerts — Immediate Action")
     alert1, alert2, alert3 = st.columns(3, gap="small")
