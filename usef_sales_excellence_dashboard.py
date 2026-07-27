@@ -1,6 +1,6 @@
 """
-USEF AI - Unified Sales Excellence Framework
-Universal Sales Force Excellence Dashboard for Logistics / Express / Freight
+Decision Intelligence Platform (USEF)
+Universal Sales Force Excellence — logistics / express / freight
 
 Run locally:  streamlit run streamlit_app.py
 Deploy:       https://share.streamlit.io  (connect GitHub repo)
@@ -6939,8 +6939,8 @@ def main():
         generate_all_data.clear()
 
     with st.sidebar:
-        st.markdown("## USEF AI")
-        st.caption("Unified Sales Excellence Framework")
+        st.markdown("## Decision Intelligence Platform")
+        st.caption("USEF · Sales & commercial decisions")
         st.markdown("---")
 
         page_labels = [f"{p[3]}  {p[1]}" for p in PAGES]
@@ -6952,7 +6952,7 @@ def main():
         selected_title = page_titles[selected_idx]
 
         st.markdown("---")
-        st.caption("USEF AI Platform")
+        st.caption("Decision Intelligence Platform")
         st.caption("Version 1.0")
         if st.button("Regenerate Data"):
             generate_all_data.clear()
@@ -6980,7 +6980,7 @@ def main():
         "reports": "Downloadable management packs and scorecard exports",
         "dictionary": "Universal source tables, fields and scorecard logic",
         "industry": "Logistics market intelligence and external signals",
-        "copilot": "Ask USEF AI for sales excellence guidance",
+        "copilot": "Ask the Decision Intelligence Platform for sales excellence guidance",
         "settings": "Dashboard configuration, filters and business rules",
     }
     title_col, refresh_col = st.columns([2.4, 1.0], gap="small")
