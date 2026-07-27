@@ -6917,8 +6917,8 @@ def render_copilot(data, filters):
 
 def main():
     st.set_page_config(
-        page_title="USEF AI - Sales Excellence",
-        page_icon="📊",
+        page_title="Decision Intelligence Platform",
+        page_icon="◈",
         layout="wide",
         initial_sidebar_state="auto",
     )
