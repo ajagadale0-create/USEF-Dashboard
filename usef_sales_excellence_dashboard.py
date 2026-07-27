@@ -858,8 +858,8 @@ DARK_CSS = """
         border: 1px solid rgba(51, 92, 136, .58);
         border-radius: 9px;
         padding: 10px 11px;
-        height: 228px;
-        overflow: hidden;
+        height: 260px;
+        overflow: auto;
         box-shadow: inset 0 0 0 1px rgba(4, 13, 24, .80), 0 12px 25px rgba(0,0,0,.22);
     }
     .exec-reco-panel {
@@ -892,16 +892,32 @@ DARK_CSS = """
         text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;
     }
     .exec-table-scroll {
-        max-height: 188px;
+        max-height: 210px;
         overflow-y: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
         margin-top: 2px;
         padding-right: 4px;
+        -webkit-overflow-scrolling: touch;
     }
-    .exec-table-scroll::-webkit-scrollbar { width: 6px; }
+    .exec-table-scroll::-webkit-scrollbar { width: 6px; height: 8px; }
     .exec-table-scroll::-webkit-scrollbar-thumb {
-        background: rgba(96, 165, 250, .45);
+        background: rgba(96, 165, 250, .55);
         border-radius: 6px;
+    }
+    .exec-table {
+        width: max-content;
+        min-width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+    }
+    .exec-table th, .exec-table td {
+        white-space: nowrap;
+        padding: 4px 8px;
+        font-size: .68rem;
+    }
+    .exec-table th:last-child, .exec-table td:last-child {
+        text-align: right;
+        min-width: 92px;
     }
     .exec-table-scroll thead th {
         position: sticky;
@@ -3359,23 +3375,16 @@ def render_executive_business_insight(data, filters):
         losing["Margin_Drop_Pct"] = (losing["GP_Pct"] - target_gp).round(1)
         losing["Margin_Drop_Value"] = (losing["Revenue"] * (target_gp - losing["GP_Pct"]).clip(lower=0) / 100).round(0)
         losing = losing.sort_values(["Margin_Drop_Value", "Discount_Pct"], ascending=False).head(20)
-        rows = []
-        max_drop = max(float(losing["Margin_Drop_Value"].max()), 1)
-        for _, row in losing.iterrows():
-            bar_width = max(12, min(95, row["Margin_Drop_Value"] / max_drop * 95))
-            rows.append(
-                f"<tr><td>{str(row['Customer_Name'])[:22]}</td>"
-                f"<td>{row['Margin_Drop_Pct']:.1f}%</td>"
-                f"<td><span class='exec-red-bar' style='width:{bar_width}px'></span></td>"
-                f"<td>-{fmt_lakh(float(row['Margin_Drop_Value'])).replace('₹ ', '')}</td></tr>"
-            )
-        st.markdown(
-            '<div class="exec-tile"><div class="exec-tile-title">Top 20 Customers Losing Margin</div>'
-            '<div class="exec-table-scroll"><table class="exec-table">'
-            '<thead><tr><th>Customer</th><th>Margin Drop %</th><th></th><th>Margin Drop (₹)</th></tr></thead>'
-            f"<tbody>{''.join(rows)}</tbody></table></div></div>",
-            unsafe_allow_html=True,
-        )
+        st.markdown('<div class="exec-tile-title">Top 20 Customers Losing Margin</div>', unsafe_allow_html=True)
+        lose_view = losing[["Customer_Name", "Margin_Drop_Pct", "Margin_Drop_Value"]].copy()
+        lose_view["Margin_Drop_Pct"] = lose_view["Margin_Drop_Pct"].map(lambda x: f"{x:.1f}%")
+        lose_view["Margin_Drop_Value"] = lose_view["Margin_Drop_Value"].map(lambda x: f"-{fmt_lakh(float(x))}")
+        lose_view = lose_view.rename(columns={
+            "Customer_Name": "Customer",
+            "Margin_Drop_Pct": "Drop %",
+            "Margin_Drop_Value": "Drop (₹)",
+        })
+        st.dataframe(lose_view, hide_index=True, use_container_width=True, height=220)
     with c2:
         prod = product_margin.copy()
         prod["Margin_Drop_Pct"] = (prod["GP_Pct"] - target_gp).round(1)
