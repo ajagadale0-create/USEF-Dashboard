@@ -4787,6 +4787,11 @@ def render_pipeline(data, filters):
     st.markdown(f'<div class="kpi-grid">{"".join(funnel_cards)}</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="exec-section-title">Month Wise Target, Achievement & Pipeline Coverage</div>', unsafe_allow_html=True)
+    st.caption(
+        "Bars = monthly **Target vs Achievement** (so target stays visible). "
+        "Orange line = open pipeline; purple dashed = **3x target** coverage benchmark. "
+        "Coverage label on pipeline = Open Pipeline ÷ Target."
+    )
     monthly_scope = scoped_data_for_filters(data, "All", filters["region"], filters["division"], filters["year"])
     monthly_sales = monthly_scope["sales"].groupby(["Year", "Month"], as_index=False)["Revenue"].sum()
     monthly_target = monthly_scope["target"].groupby(["Year", "Month"], as_index=False)["Target_Value"].sum()
@@ -4811,42 +4816,54 @@ def render_pipeline(data, filters):
             lambda dt: monthly_opp[monthly_opp["Created_Date"] <= (dt + pd.offsets.MonthEnd(0))]["Deal_Size"].sum()
         )
         monthly_coverage["Target_3X"] = monthly_coverage["Target_Value"] * 3
-        monthly_coverage["Target_4X"] = monthly_coverage["Target_Value"] * 4
         monthly_coverage["Coverage_X"] = np.where(
             monthly_coverage["Target_Value"] > 0,
             monthly_coverage["Open_Pipeline"] / monthly_coverage["Target_Value"],
             0,
         )
+        months = monthly_coverage["Month"]
         fig = go.Figure()
-        fig.add_trace(go.Scatter(
-            x=monthly_coverage["Month"], y=monthly_coverage["Target_Value"] / 1e7,
-            mode="lines+markers", name="Target", line=dict(color="#38bdf8", width=2.5),
+        # Bars so Target is never hidden behind Achievement / pipeline scale
+        fig.add_trace(go.Bar(
+            x=months,
+            y=monthly_coverage["Target_Value"] / 1e7,
+            name="Target",
+            marker_color="#38bdf8",
+            opacity=0.9,
+        ))
+        fig.add_trace(go.Bar(
+            x=months,
+            y=monthly_coverage["Revenue"] / 1e7,
+            name="Achievement",
+            marker_color="#22c55e",
+            opacity=0.9,
         ))
         fig.add_trace(go.Scatter(
-            x=monthly_coverage["Month"], y=monthly_coverage["Revenue"] / 1e7,
-            mode="lines+markers", name="Achievement Revenue", line=dict(color="#22c55e", width=2.5),
-        ))
-        fig.add_trace(go.Scatter(
-            x=monthly_coverage["Month"], y=monthly_coverage["Open_Pipeline"] / 1e7,
-            mode="lines+markers+text", name="Open Pipeline",
+            x=months,
+            y=monthly_coverage["Open_Pipeline"] / 1e7,
+            mode="lines+markers+text",
+            name="Open Pipeline",
             text=monthly_coverage["Coverage_X"].map(lambda x: f"{x:.1f}x"),
             textposition="top center",
+            textfont=dict(size=10, color="#fbbf24"),
             line=dict(color="#f59e0b", width=3),
+            marker=dict(size=8),
         ))
         fig.add_trace(go.Scatter(
-            x=monthly_coverage["Month"], y=monthly_coverage["Target_3X"] / 1e7,
-            mode="lines", name="3x Target Pipeline", line=dict(color="#a855f7", width=2, dash="dash"),
-        ))
-        fig.add_trace(go.Scatter(
-            x=monthly_coverage["Month"], y=monthly_coverage["Target_4X"] / 1e7,
-            mode="lines", name="4x Stretch Pipeline", line=dict(color="#ef4444", width=2, dash="dot"),
+            x=months,
+            y=monthly_coverage["Target_3X"] / 1e7,
+            mode="lines",
+            name="3x Target (benchmark)",
+            line=dict(color="#c084fc", width=2.5, dash="dash"),
         ))
         fig.update_layout(
-            height=330,
+            height=360,
+            barmode="group",
             yaxis_title="₹ Cr",
             xaxis_title=None,
-            legend=dict(orientation="h", y=1.12, x=0, font=dict(size=9)),
-            margin=dict(l=42, r=14, t=42, b=34),
+            legend=dict(orientation="h", y=1.14, x=0, font=dict(size=10)),
+            margin=dict(l=42, r=14, t=48, b=34),
+            bargap=0.25,
         )
         st.plotly_chart(apply_dark(fig), use_container_width=True)
 
